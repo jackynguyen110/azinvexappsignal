@@ -10,6 +10,7 @@ import AccountPage from '../../Components/user/Settings/AccountPage';
 import Changepass from '../../Components/user/Settings/Changepassword';
 import ReduxToastr from 'react-redux-toastr'
 import ManageSignal from '../../Components/ManageSignal/ManageSignal';
+import PageRoute from '../routes/PageRoute';
 
 
 class App extends Component {
@@ -26,8 +27,8 @@ class App extends Component {
             <ExpertRoute exact component={Dashboard} path="/" />
             <ExpertRoute exact component={Signal} path="/experts" />
             <ExpertRoute component={ExpertDetail} path="/experts/:id" />
-            <ExpertRoute component={LoginForm} path="/login" />
-            <ExpertRoute component={RegisterForm} path="/register" />
+            <PageRoute component={LoginForm} path="/login" />
+            <PageRoute component={RegisterForm} path="/register" />
             <ExpertRoute component={AccountPage} path="/information" />
             <ExpertRoute component={Changepass} path="/changepassword" />
             <ExpertRoute component={ManageSignal} path="/managesignal" />
