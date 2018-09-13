@@ -29,19 +29,19 @@ import React, { Component } from 'react'
                     </div>
                     <div className="timeline-card card border-grey border-lighten-2">
                         <div className="card-header">
-                            <span class="badge badge-primary mr-1 mb-1">Ticket : 11232</span>
-                            <span class="badge badge-info mr-1 mb-1">NGUYỄN NHẬT TRUNG</span>
-                            <span class="badge badge-success mr-1 mb-1">Tín Hiệu Mới</span> 
-                            <span class="badge badge-dark mr-1 mb-1">5:20</span> 
-                            <span class="badge badge-warning mr-1 mb-1">EURUSD</span> 
+                            <span className="badge badge-primary mr-1 mb-1">Ticket : 11232</span>
+                            <span className="badge badge-info mr-1 mb-1">NGUYỄN NHẬT TRUNG</span>
+                            <span className="badge badge-success mr-1 mb-1">Tín Hiệu Mới</span> 
+                            <span className="badge badge-dark mr-1 mb-1">5:20</span> 
+                            <span className="badge badge-warning mr-1 mb-1">EURUSD</span> 
                             
                             
                             <div className="card-subtitle text-muted">
-                                <button class="btn btn-white btn-raised  mr-1 mb-1" type="button">
-                                    Stoploss <span class="badge badge-light">1.2323</span>
+                                <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
+                                    Stoploss <span className="badge badge-light">1.2323</span>
                                 </button>
-                                <button class="btn btn-white btn-raised mr-1 mb-1" type="button">
-                                    TakeProfit <span class="badge badge-light">1.2323</span>
+                                <button className="btn btn-white btn-raised mr-1 mb-1" type="button">
+                                    TakeProfit <span className="badge badge-light">1.2323</span>
                                 </button>
                             </div>
                         </div>
@@ -55,17 +55,17 @@ import React, { Component } from 'react'
                     </div>
                     <div className="timeline-card card border-grey border-lighten-2">
                         <div className="card-header">
-                            <span class="badge badge-primary mr-1 mb-1">Ticket : 11232</span>
-                            <span class="badge badge-info mr-1 mb-1">NGUYỄN NHẬT TRUNG</span>
-                            <span class="badge badge-success mr-1 mb-1">Tín Hiệu Mới</span> 
-                            <span class="badge badge-warning mr-1 mb-1">EURUSD</span> 
+                            <span className="badge badge-primary mr-1 mb-1">Ticket : 11232</span>
+                            <span className="badge badge-info mr-1 mb-1">NGUYỄN NHẬT TRUNG</span>
+                            <span className="badge badge-success mr-1 mb-1">Tín Hiệu Mới</span> 
+                            <span className="badge badge-warning mr-1 mb-1">EURUSD</span> 
                             
                             <div className="card-subtitle text-muted">
-                                <button class="btn btn-white btn-raised  mr-1 mb-1" type="button">
-                                    Stoploss <span class="badge badge-light">1.2323</span>
+                                <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
+                                    Stoploss <span className="badge badge-light">1.2323</span>
                                 </button>
-                                <button class="btn btn-white btn-raised mr-1 mb-1" type="button">
-                                    TakeProfit <span class="badge badge-light">1.2323</span>
+                                <button className="btn btn-white btn-raised mr-1 mb-1" type="button">
+                                    TakeProfit <span className="badge badge-light">1.2323</span>
                                 </button>
                             </div>
                         </div>
@@ -79,17 +79,17 @@ import React, { Component } from 'react'
                     </div>
                     <div className="timeline-card card border-grey border-lighten-2">
                         <div className="card-header">
-                            <span class="badge badge-primary mr-1 mb-1">Ticket : 11232</span>
-                            <span class="badge badge-info mr-1 mb-1">NGUYỄN NHẬT TRUNG</span>
-                            <span class="badge badge-success mr-1 mb-1">Tín Hiệu Mới</span> 
-                            <span class="badge badge-warning mr-1 mb-1">EURUSD</span> 
+                            <span className="badge badge-primary mr-1 mb-1">Ticket : 11232</span>
+                            <span className="badge badge-info mr-1 mb-1">NGUYỄN NHẬT TRUNG</span>
+                            <span className="badge badge-success mr-1 mb-1">Tín Hiệu Mới</span> 
+                            <span className="badge badge-warning mr-1 mb-1">EURUSD</span> 
                             
                             <div className="card-subtitle text-muted">
-                                <button class="btn btn-white btn-raised  mr-1 mb-1" type="button">
-                                    Stoploss <span class="badge badge-light">1.2323</span>
+                                <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
+                                    Stoploss <span className="badge badge-light">1.2323</span>
                                 </button>
-                                <button class="btn btn-white btn-raised mr-1 mb-1" type="button">
-                                    TakeProfit <span class="badge badge-light">1.2323</span>
+                                <button className="btn btn-white btn-raised mr-1 mb-1" type="button">
+                                    TakeProfit <span className="badge badge-light">1.2323</span>
                                 </button>
                             </div>
                         </div>
@@ -103,17 +103,17 @@ import React, { Component } from 'react'
                     </div>
                     <div className="timeline-card card border-grey border-lighten-2">
                         <div className="card-header">
-                            <span class="badge badge-primary mr-1 mb-1">Ticket : 11232</span>
-                            <span class="badge badge-info mr-1 mb-1">NGUYỄN NHẬT TRUNG</span>
-                            <span class="badge badge-success mr-1 mb-1">Tín Hiệu Mới</span> 
-                            <span class="badge badge-warning mr-1 mb-1">EURUSD</span> 
+                            <span className="badge badge-primary mr-1 mb-1">Ticket : 11232</span>
+                            <span className="badge badge-info mr-1 mb-1">NGUYỄN NHẬT TRUNG</span>
+                            <span className="badge badge-success mr-1 mb-1">Tín Hiệu Mới</span> 
+                            <span className="badge badge-warning mr-1 mb-1">EURUSD</span> 
                             
                             <div className="card-subtitle text-muted">
-                                <button class="btn btn-white btn-raised  mr-1 mb-1" type="button">
-                                    Stoploss <span class="badge badge-light">1.2323</span>
+                                <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
+                                    Stoploss <span className="badge badge-light">1.2323</span>
                                 </button>
-                                <button class="btn btn-white btn-raised mr-1 mb-1" type="button">
-                                    TakeProfit <span class="badge badge-light">1.2323</span>
+                                <button className="btn btn-white btn-raised mr-1 mb-1" type="button">
+                                    TakeProfit <span className="badge badge-light">1.2323</span>
                                 </button>
                             </div>
                         </div>

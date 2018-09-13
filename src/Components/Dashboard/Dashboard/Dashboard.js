@@ -9,11 +9,11 @@ import TopUser from '../DashboadComponents/TopUser';
     return (
         <div>
           <CardHeader/>
-          <div class="row">
-            <div class="col-md-8">
+        <div className="row">
+          <div className="col-md-8">
               <Timeline/>
             </div>
-            <div class="col-md-4">
+          <div className="col-md-4">
               <TopUser/>
             </div>
           </div>

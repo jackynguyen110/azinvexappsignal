@@ -1,15 +1,21 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
+
 import ExpertTemplate from '../templates/ExpertTemplate';
 
-const ExpertRoute = ({component: Component, ...rest}) => {
-  return (
-    <Route {...rest} render={matchProps => (
+const ExpertRoute = ({ isAuthenticated ,component: Component, ...rest}) => {
+  console.log(isAuthenticated)
+  if (isAuthenticated){
+    return (
+      <Route {...rest} render={matchProps => (
         <ExpertTemplate>
-            <Component {...matchProps} />
+          <Component {...matchProps} />
         </ExpertTemplate>
       )} />
-  )
+    )
+  }
+
+  return <Redirect to="/login" />;
 }
 
 export default ExpertRoute

@@ -7,7 +7,7 @@ class LoadingComponent extends Component {
   render () {
     
     return (
-      <div class = {styles.centered}>
+      <div className = {styles.centered}>
         <ReactLoading type={'cubes'} color={'red'} height={667} width={375} />
       </div>
     );

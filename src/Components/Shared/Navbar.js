@@ -28,8 +28,6 @@ class Navbar extends Component {
         
         const authenticated = auth.isLoaded && !auth.isEmpty
         
-        console.log(authenticated)
-
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-faded">
                 <div className="container-fluid">
@@ -58,7 +56,7 @@ class Navbar extends Component {
                                 <p className="d-none">User Settings</p>
                             </a>
                             {authenticated && 
-                                <div ngbdropdownmenu aria-labelledby="dropdownBasic3" className="dropdown-menu dropdown-menu-right">
+                                <div ngbdropdownmenu="true" aria-labelledby="dropdownBasic3" className="dropdown-menu dropdown-menu-right">
                                     <a className="dropdown-item py-1">
                                     <i className="ft-users mr-2" />
                                     <span>{auth.displayName}</span></a>
@@ -78,7 +76,7 @@ class Navbar extends Component {
 
                             {
                                 !authenticated &&
-                                <div ngbdropdownmenu aria-labelledby="dropdownBasic3" className="dropdown-menu dropdown-menu-right">
+                                <div ngbdropdownmenu='true' aria-labelledby="dropdownBasic3" className="dropdown-menu dropdown-menu-right">
                                     <a onClick={() => this.props.history.push('/login')} className="dropdown-item py-1"><i className="ft-mail mr-2" />
                                     <span>LOGIN</span></a>
                                 </div>
