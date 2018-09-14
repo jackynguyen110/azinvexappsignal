@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Switch } from 'react-router-dom'
+import { Switch, withRouter } from 'react-router-dom'
 import ExpertRoute from '../routes/ExpertRoute';
-import Signal from '../../Components/Room/Signal';
 import Dashboard from '../../Components/Dashboard/Dashboard/Dashboard';
-import ExpertDetail from '../../Components/Experts/Experts/ExpertDetail';
+import ListExpert from '../../Components/Experts/ListExpert/ListExpert';
+import ExpertDetail from '../../Components/Experts/ExpertDetail/ExpertDetail';
 import LoginForm from '../../Components/Auth/Login/LoginForm';
 import RegisterForm from '../../Components/Auth/Register/registerForm';
 import AccountPage from '../../Components/user/Settings/AccountPage';
@@ -29,10 +29,10 @@ class App extends Component {
           />
           <Switch>
             <ExpertRoute isAuthenticated={isAuthenticated} exact component={Dashboard} path="/" />
-            <ExpertRoute isAuthenticated={isAuthenticated} exact component={Signal} path="/experts" />
+            <ExpertRoute isAuthenticated={isAuthenticated} exact component={ListExpert} path="/experts" />
             <ExpertRoute isAuthenticated={isAuthenticated} component={ExpertDetail} path="/experts/:id" />
-            <PageRoute component={LoginForm} path="/login" />
-            <PageRoute component={RegisterForm} path="/register" />
+            <PageRoute isAuthenticated={isAuthenticated}  component={LoginForm} path="/login" />
+            <PageRoute isAuthenticated={isAuthenticated}  component={RegisterForm} path="/register" />
             <ExpertRoute isAuthenticated={isAuthenticated} component={AccountPage} path="/information" />
             <ExpertRoute isAuthenticated={isAuthenticated} component={Changepass} path="/changepassword" />
             <ExpertRoute isAuthenticated={isAuthenticated} component={ManageSignal} path="/managesignal" />
@@ -59,5 +59,5 @@ const mapDispatchToProps = dispatch => {
 
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 

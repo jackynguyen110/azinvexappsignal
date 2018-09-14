@@ -8,7 +8,6 @@ export default class ExpertDetail extends Component {
     current: "SIGNAL_ROOM"
   }
 
-  
   renderSwitch = () => {
     switch(this.state.current) {
       case "SIGNAL_ROOM":

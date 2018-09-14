@@ -1,9 +1,11 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
-import ExpertTemplate from '../templates/ExpertTemplate';
+import { Route, Redirect } from 'react-router-dom'
 import PagesTemplate from '../templates/PagesTemplate';
 
-const PageRoute = ({component: Component, ...rest}) => {
+const PageRoute = ({ isAuthenticated,component: Component, ...rest}) => {
+  if (isAuthenticated){
+    return <Redirect to="/" />;
+  }
   return (
     <Route {...rest} render={matchProps => (
         <PagesTemplate>
