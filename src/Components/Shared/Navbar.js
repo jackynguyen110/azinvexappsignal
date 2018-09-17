@@ -2,7 +2,7 @@ import React,  { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { withFirebase } from 'react-redux-firebase'
-import { NavLink, Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
 const actions = ({
@@ -24,7 +24,7 @@ class Navbar extends Component {
     };
 
     render () {
-        const { auth, logout, profile } = this.props
+        const { auth } = this.props
         
         const authenticated = auth.isLoaded && !auth.isEmpty
         

@@ -1,13 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
+import { Field, reduxForm } from 'redux-form'
+import TextInputForm from '../../../app/common/form/TextInputForm';
 class FormSignal extends React.Component {
-    state = {
-    
-    }
 
-    render() {
-       
+    render() {    
     return (
       <div className="col-md-12 col-lg-4">
         <div className="card">
@@ -22,9 +18,26 @@ class FormSignal extends React.Component {
             <form className="form">
                 <div className="form-body">
                     <div className="form-group">
-                    <label htmlFor="eventRegInput1">Full Name</label>
-                    <input type="text" id="eventRegInput1" className="form-control" name="fullname" />
+                    <label htmlFor="eventRegInput1">Cặp tiền</label>
+                    <Field component={TextInputForm} name="symbol"
+                      labelText="Cặp tiền"
+                      id="eventRegInput1" className="form-control"
+                    />
                     </div>
+                  <div className="form-group">
+                    <label htmlFor="eventRegInput1">Stoploss</label>
+                    <Field component={TextInputForm} name="stoploss"
+                      labelText="Stoploss"
+                      id="eventRegInput1" className="form-control"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="eventRegInput1">Takeprofit</label>
+                    <Field component={TextInputForm} name="takeprofit"
+                      labelText="Takeprofit"
+                      id="eventRegInput1" className="form-control"
+                    />
+                  </div>
                     <div className="form-group">
                     <label htmlFor="eventRegInput2">Title</label>
                     <input type="text" id="eventRegInput2" className="form-control" name="title" />
@@ -74,15 +87,9 @@ class FormSignal extends React.Component {
 }
 
 
-const mapStateToProps = state => {
-  return {
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-   
-  };
-};
 
 
-export default connect(null, null)(FormSignal);
+
+export default reduxForm({
+  form: 'signal-form'
+})(FormSignal);

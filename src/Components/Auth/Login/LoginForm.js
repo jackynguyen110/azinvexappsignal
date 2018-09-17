@@ -4,7 +4,6 @@ import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { connect } from 'react-redux';
 import { login } from '../../Auth/authActions'
-import { toastr } from 'react-redux-toastr'
 const actions = {
     login
 }

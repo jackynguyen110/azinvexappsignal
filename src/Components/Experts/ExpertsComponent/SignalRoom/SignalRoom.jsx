@@ -40,7 +40,7 @@ class SignalRoom extends Component {
                           </thead>
                           <tbody>
                             <tr>
-                              <td><img className="media-object round-media" src="https://thumbs.gfycat.com/ImmaculateUnacceptableArizonaalligatorlizard-size_restricted.gif" alt="Generic placeholder image" style={{height: 35}} /></td>
+                              <td><img className="media-object round-media" src="https://thumbs.gfycat.com/ImmaculateUnacceptableArizonaalligatorlizard-size_restricted.gif" alt="Generic placeholder" style={{height: 35}} /></td>
                               <td>Product 1</td>
                               <td>38.9 Ounce</td>
                               <td>$9.97</td>
@@ -53,7 +53,7 @@ class SignalRoom extends Component {
                               </td>
                             </tr>
                             <tr>
-                              <td><img className="media-object round-media" src="http://pngimages.net/sites/default/files/close-flag-png-image-74376.png" alt="Generic placeholder image" style={{height: 35}} /></td>
+                              <td><img className="media-object round-media" src="http://pngimages.net/sites/default/files/close-flag-png-image-74376.png" alt="Generic placeholder" style={{height: 35}} /></td>
                               <td>Product 2</td>
                               <td>15.9 Ounce</td>
                               <td>$6.00</td>
@@ -66,7 +66,7 @@ class SignalRoom extends Component {
                               </td>
                             </tr>
                             <tr>
-                              <td><img className="media-object round-media" src="http://pngimages.net/sites/default/files/close-flag-png-image-74376.png" alt="Generic placeholder image" style={{height: 35}} /></td>
+                              <td><img className="media-object round-media" src="http://pngimages.net/sites/default/files/close-flag-png-image-74376.png" alt="Generic placeholder" style={{height: 35}} /></td>
                               <td>Product 2</td>
                               <td>15.9 Ounce</td>
                               <td>$6.00</td>

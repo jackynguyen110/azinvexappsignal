@@ -34,12 +34,12 @@ const ListExperts = () => {
         {/* Sidebar BG Image Starts*/}
         <h6 className="text-center text-bold-500 mb-3 text-uppercase">Sidebar Bg Image</h6>
         <div className="cz-bg-image row">
-            <div className="col mb-3"><img src="../app-assets/img/sidebar-bg/01.jpg" width={90} className="rounded" /></div>
-            <div className="col mb-3"><img src="../app-assets/img/sidebar-bg/02.jpg" width={90} className="rounded" /></div>
-            <div className="col mb-3"><img src="../app-assets/img/sidebar-bg/03.jpg" width={90} className="rounded" /></div>
-            <div className="col mb-3"><img src="../app-assets/img/sidebar-bg/04.jpg" width={90} className="rounded" /></div>
-            <div className="col mb-3"><img src="../app-assets/img/sidebar-bg/05.jpg" width={90} className="rounded" /></div>
-            <div className="col mb-3"><img src="../app-assets/img/sidebar-bg/06.jpg" width={90} className="rounded" /></div>
+            <div className="col mb-3"><img alt="" src="../app-assets/img/sidebar-bg/01.jpg" width={90} className="rounded" /></div>
+                  <div className="col mb-3"><img alt="" src="../app-assets/img/sidebar-bg/02.jpg" width={90} className="rounded" /></div>
+                  <div className="col mb-3"><img alt="" src="../app-assets/img/sidebar-bg/03.jpg" width={90} className="rounded" /></div>
+                  <div className="col mb-3"><img alt="" src="../app-assets/img/sidebar-bg/04.jpg" width={90} className="rounded" /></div>
+                  <div className="col mb-3"><img alt="" src="../app-assets/img/sidebar-bg/05.jpg" width={90} className="rounded" /></div>
+                  <div className="col mb-3"><img alt="" src="../app-assets/img/sidebar-bg/06.jpg" width={90} className="rounded" /></div>
         </div>
         {/* Sidebar BG Image Ends*/}
         <hr />

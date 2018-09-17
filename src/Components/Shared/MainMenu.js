@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from 'assets/img/logo.png'
-import {Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 const MainMenu = () => {
   return (
     <div data-active-color="white" data-background-color="black" data-image="https://pixinvent.com/apex-angular-4-bootstrap-admin-template/demo-1/assets/img/sidebar-bg/01.jpg" className="app-sidebar">

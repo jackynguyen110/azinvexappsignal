@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 class ListSignals extends React.Component {
  
@@ -51,11 +50,4 @@ class ListSignals extends React.Component {
 }
 
 
-const mapDispatchToProps = dispatch => {
-  return {
-   
-  };
-};
-
-
-export default connect(null, null)(ListSignals);
+export default ListSignals;

@@ -5,11 +5,6 @@ import Footer from 'Components/Shared/Footer';
 import Notification from 'Components/Shared/Notification';
 import ListExperts from 'Components/Shared/ListExperts';
 
-const state = {
-    role: 'ADMIN'
-}
-
-
 const ExpertTemplate = ({children}) => {
   return (
     <div className="wrapper nav-collapsed menu-collapsed">

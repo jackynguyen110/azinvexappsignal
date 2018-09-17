@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { connect } from 'react-redux';
-import { withFirebase } from 'react-redux-firebase'
 import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 
