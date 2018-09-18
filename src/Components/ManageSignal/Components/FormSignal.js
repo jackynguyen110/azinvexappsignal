@@ -6,8 +6,8 @@ import RadioInput from '../../../app/common/form/RadioInput';
 class FormSignal extends React.Component {
 
     render() { 
-      const { push, handleSubmit,error } = this.props   
-      console.log(this.props)
+      const { push, handleSubmit, error, isEditing, deselect, update } = this.props   
+
     return (
       <div className="col-md-12 col-lg-4">
         <div className="card">
@@ -19,24 +19,22 @@ class FormSignal extends React.Component {
           </div>
           <div className="card-body">
             <div className="px-3">
-              <form className="form" onSubmit={handleSubmit(push)}>
+              <form className="form" onSubmit={!isEditing ? handleSubmit(push) : handleSubmit(update)}>
                 <div className="form-body">
                     <div className="form-group">
                     <label htmlFor="eventRegInput1">Cặp tiền</label>
                     <Field component={TextInputForm} name="symbol"
-                    required="true"
+                      required="true"
+                      disabled
                       labelText="Cặp tiền"
                       id="eventRegInput1" className="form-control"
                     />
                     </div>
-                  <div className="form-group">
+                  {!isEditing ? <div className="form-group">
                     <label htmlFor="eventRegInput1">Loại lệnh</label>
-                    <Field name="type" component={RadioInput} options={[{ key: 0, value: "Buy" }, { key: 1, value: "Sell" }]}  />
-                    {/* <Field component={SelectInput} options={[{key:0,value:"Sell"},{key:1,value:"Buy"}]}           name="type"
-                      labelText="Cặp tiền"
-                      className="form-control"
-                    /> */}
-                  </div>
+                    <Field name="type" component={RadioInput} options={[{ key: 0, value: "Buy" }, { key: 1, value: "Sell" }]} />
+                  </div> : null}
+     
                   <div className="form-group">
                     <label htmlFor="eventRegInput1">Stoploss</label>
                     <Field component={TextInputForm} name="stoploss"
@@ -54,10 +52,14 @@ class FormSignal extends React.Component {
                   
                 </div>
                 <div className="form-actions center">
-                  
-                    <button type="submit" className="btn btn-raised btn-primary">
+                  {!isEditing ? <button type="submit" className="btn btn-raised btn-primary">
                     Bắn tín hiệu
-                    </button>
+                    </button> : <div>  <button onClick={() => deselect()} type="button" className="btn btn-raised btn-primary">
+                      Hủy
+                    </button>  <button type="submit" className="btn btn-raised btn-primary">
+                      Sửa
+                    </button></div>}
+                  
                 </div>
                 </form>
 
@@ -73,6 +75,4 @@ class FormSignal extends React.Component {
 
 
 
-export default reduxForm({
-  form: 'signal-form'
-})(FormSignal);
+export default reduxForm({ form: 'signal-form', enableReinitialize: true, destroyOnUnmount: true })(FormSignal);

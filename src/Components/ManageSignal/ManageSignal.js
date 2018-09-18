@@ -7,6 +7,10 @@ import { SubmissionError, reset } from 'redux-form'
 import axios from 'axios';
 export const API_URL = 'http://api.azinvex.com/api/';
 class ManageSignal extends React.Component {
+    state = {
+        isEditing: false,
+        initialValues: {}
+    }
     componentDidMount(){
         const { firestore, currentUser } = this.props
         firestore.onSnapshot({
@@ -29,8 +33,20 @@ class ManageSignal extends React.Component {
             storeAs: 'myActiveSignals'
         }) 
     }
+    select = (e) =>{
+        this.setState({
+            isEditing:true,
+            initialValues: e
+        })
+    }
+    deselect = () => {
+        this.setState({
+            isEditing: false,
+            initialValues: {}
+        })
+    }
+
     close = (ticket) => {
-        console.log("close")
         const { currentUser } = this.props;
         try {
             let axiosConfig = {
@@ -44,6 +60,34 @@ class ManageSignal extends React.Component {
             axios.patch(url, null, axiosConfig)
         } catch (error) {
             console.log(error)
+        }
+    }
+    update = async (creds) => {
+        console.log("update")
+        const { currentUser, dispatch } = this.props
+        const signalData = {
+            stoploss:creds.stoploss,
+            takeprofit:creds.takeprofit
+        };
+        try {
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': currentUser.stsTokenManager.accessToken
+                }
+            };
+            let url = API_URL + 'signals/' + this.state.initialValues.id;
+            axios.put(url, signalData, axiosConfig)
+                .then(response => {
+                    console.log(response)
+                    dispatch(reset('signal-form'))
+
+                })
+        } catch (error) {
+            throw new SubmissionError({
+                _error: error.message
+            })
         }
     }
     push = async (creds) => {
@@ -81,8 +125,9 @@ class ManageSignal extends React.Component {
         return (
             <section id="bordered-media-object d-flex mr-3">
                 <div className="row" matchheight="card">
-                    <FormSignal push={this.push} currentUser={currentUser} />
-                    <ListSignal close={this.close} myActiveSignals={myActiveSignals} currentUser={currentUser} />
+                    {this.set}
+                    <FormSignal update={this.update} deselect={this.deselect} isEditing={this.state.isEditing} initialValues={this.state.isEditing ? this.state.initialValues : {}} push={this.push} currentUser={currentUser} />
+                    <ListSignal select={this.select}  close={this.close} myActiveSignals={myActiveSignals} currentUser={currentUser} />
                 </div>
             </section>
         );

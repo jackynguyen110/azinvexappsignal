@@ -5,7 +5,7 @@ const TextInputForm = ({input, props, width, type, placeholder, title, meta: {to
     <div className={'form-group ' || (touched && !!error && 'issue')}>
       {title &&  <h5>{title}</h5>}
       <div className="control">
-        <input className="form-control" {...input} {...props} placeholder={placeholder} type={type}/>
+        <input className="form-control" {...input} placeholder={placeholder} type={type}/>
         {touched && error && <div className="help-block"><ul role="alert"><li>{error}</li></ul></div>}
       </div>
     </div>
