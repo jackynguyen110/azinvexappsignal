@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import FormSignal from './Components/FormSignal';
 import ListSignal from './Components/ListSignal';
 import { withFirestore } from 'react-redux-firebase';
-import { SubmissionError } from 'redux-form'
+import { SubmissionError, reset } from 'redux-form'
 import axios from 'axios';
 export const API_URL = 'http://api.azinvex.com/api/';
 class ManageSignal extends React.Component {
@@ -29,8 +29,25 @@ class ManageSignal extends React.Component {
             storeAs: 'myActiveSignals'
         }) 
     }
+    close = (ticket) => {
+        console.log("close")
+        const { currentUser } = this.props;
+        try {
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': currentUser.stsTokenManager.accessToken
+                }
+            };
+            let url = API_URL + 'signals/' + ticket;
+            axios.patch(url, null, axiosConfig)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     push = async (creds) => {
-        const { firestore, currentUser } = this.props
+        const { currentUser, dispatch } = this.props
         const { symbol, type, stoploss, takeprofit } = creds
         const signalData = {
             type,
@@ -51,7 +68,7 @@ class ManageSignal extends React.Component {
             };
             let url = API_URL + 'signals';
             axios.post(url, signalData, axiosConfig).then((ticket) => {
-               console.log(ticket)
+                dispatch(reset('signal-form'))
             })
         } catch (error) {
             throw new SubmissionError({
@@ -64,8 +81,8 @@ class ManageSignal extends React.Component {
         return (
             <section id="bordered-media-object d-flex mr-3">
                 <div className="row" matchheight="card">
-                    <FormSignal currentUser={currentUser} />
-                    <ListSignal myActiveSignals={myActiveSignals} currentUser={currentUser} />
+                    <FormSignal push={this.push} currentUser={currentUser} />
+                    <ListSignal close={this.close} myActiveSignals={myActiveSignals} currentUser={currentUser} />
                 </div>
             </section>
         );
