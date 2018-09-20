@@ -1,25 +1,56 @@
 import React, { Component } from 'react'
 import SignalRoom from '../ExpertsComponent/SignalRoom/SignalRoom';
 import Information from '../ExpertsComponent/ExpertInformation/Information';
-
-
-export default class ExpertDetail extends Component {
+import { withFirestore } from 'react-redux-firebase'
+import { connect } from 'react-redux';
+class ExpertDetail extends Component {
   state = {
     current: "SIGNAL_ROOM"
   }
+  componentDidMount() {
+    const { firestore } = this.props
+    firestore.get(
+      {
+        collection: 'users',
+        where: ['username', '==', this.props.match.params.id],
+        storeAs: 'expertDetail'
+      },
+    );
+    firestore.setListener(
+      {
+        collection: 'signals',
+        where: ['expert.username', '==', this.props.match.params.id],
+        storeAs: 'signalList'
+      },
+    )
 
+  }
+  componentWillUnmount(){
+    const { firestore } = this.props
+    firestore.unsetListener(
+      {
+        collection: 'signals',
+        where:
+          ['expert.username', '==', this.props.match.params.id]
+
+      },
+    )
+  }
   renderSwitch = () => {
+    const { expertDetail, signalList } = this.props
     switch(this.state.current) {
       case "SIGNAL_ROOM":
-        return <SignalRoom />;
+        return <SignalRoom signalList={signalList} />;
       case "INFOMARTION":
-        return <Information />;
+        return <Information expertDetail={expertDetail} />;
       default:
         return '';
     }
   }
 
   render() {
+    const { expertDetail } = this.props
+
     return (
       <div>
       <section id="user-profile">
@@ -65,7 +96,7 @@ export default class ExpertDetail extends Component {
                     </ul>
                   </div>
                   <div className="col-lg-2 col-md-2 text-center">
-                    <span className="font-medium-2 text-uppercase">Nguyễn Nhật Trung</span>
+                      <span className="font-medium-2 text-uppercase">{expertDetail.displayName}</span>
                     <p className="grey font-small-2">Chuyên Gia Forex</p>
                   </div>
                   <div className="col-lg-5 col-md-5">
@@ -89,3 +120,14 @@ export default class ExpertDetail extends Component {
     )
   }
 }
+const mapStateToProps = state => {
+  let currentExpert = {};
+  if (state.firestore.ordered.expertDetail && state.firestore.ordered.expertDetail[0]) {
+    currentExpert = state.firestore.ordered.expertDetail[0];
+  }
+  return {
+    expertDetail: currentExpert,
+    signalList: state.firestore.ordered.signalList ? state.firestore.ordered.signalList : []
+  }
+}
+export default connect(mapStateToProps, null)(withFirestore(ExpertDetail))

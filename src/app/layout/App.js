@@ -30,7 +30,7 @@ class App extends Component {
           <Switch>
             <ExpertRoute isAuthenticated={isAuthenticated} exact component={Dashboard} path="/" />
             <ExpertRoute isAuthenticated={isAuthenticated} exact component={ListExpert} path="/experts" />
-            <ExpertRoute isAuthenticated={isAuthenticated} component={ExpertDetail} path="/experts/:id" />
+            <ExpertRoute isAuthenticated={isAuthenticated} component={ExpertDetail} path="/expert/:id" />
             <PageRoute isAuthenticated={isAuthenticated}  component={LoginForm} path="/login" />
             <PageRoute isAuthenticated={isAuthenticated}  component={RegisterForm} path="/register" />
             <ExpertRoute isAuthenticated={isAuthenticated} component={AccountPage} path="/information" />
