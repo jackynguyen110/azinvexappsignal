@@ -12,11 +12,12 @@ class ManageSignal extends React.Component {
         initialValues: {}
     }
     componentDidMount(){
-        const { firestore, currentUser } = this.props
+        const { firestore, currentUser, profileUser } = this.props
+        console.log(profileUser)
         firestore.onSnapshot({
             collection: 'signals',
             where: [
-                ['user', '==', currentUser.uid],
+                ['expert.id', '==', currentUser.uid],
                 ['status', '==', "active"]
             ],
             storeAs: 'myActiveSignals'
@@ -138,6 +139,7 @@ class ManageSignal extends React.Component {
 const mapStateToProps = state => {
     return {
         currentUser: state.firebase.auth,
+        profileUser: state.firebase.profile,
         myActiveSignals: state.firestore.ordered.myActiveSignals
     };
 };
