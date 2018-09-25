@@ -64,7 +64,7 @@ class ExpertDetail extends Component {
     firestore.unsetListener(
       {
         collection: 'relationships',
-        doc: `${currentUser.uid}_${expertDetail.docs[0].id}`
+        doc: `${currentUser.uid}_${expertDetail.id}`
       },
     )
     firestore.unsetListener(
