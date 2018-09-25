@@ -19,6 +19,14 @@ class ExpertDetail extends Component {
     )
 
     if (doc.docs[0] && doc.docs[0].exists) {
+      firestore.setListener(
+        {
+          collection: 'relationships',
+          doc: `${currentUser.uid}_${doc.docs[0].id}`,
+          storeAs: 'isFollowed'
+        },
+      )
+  
       const relationships = await firestore.get({ collection: 'relationships', doc: `${currentUser.uid}_${doc.docs[0].id}` })
       this.setState({ isFollowed: relationships.exists })
     }
@@ -148,7 +156,8 @@ const mapStateToProps = state => {
   return {
     expertDetail: currentExpert,
     currentUser: state.firebase.auth,
-    signalList: state.firestore.ordered.signalList ? state.firestore.ordered.signalList : []
+    signalList: state.firestore.ordered.signalList ? state.firestore.ordered.signalList : [],
+    isFollowed: state.firestore.ordered.isFollowed ? true : false
   }
 }
 export default connect(mapStateToProps, null)(withFirestore(ExpertDetail))
