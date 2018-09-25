@@ -26,9 +26,6 @@ class ExpertDetail extends Component {
           storeAs: 'isFollowed'
         },
       )
-  
-      const relationships = await firestore.get({ collection: 'relationships', doc: `${currentUser.uid}_${doc.docs[0].id}` })
-      this.setState({ isFollowed: relationships.exists })
     }
 
 
@@ -52,14 +49,29 @@ class ExpertDetail extends Component {
     )
 
   }
+  follow(followedId) {
+    const { firestore, currentUser } = this.props
+    firestore.set({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` }, { followedId, followerId: currentUser.uid, createdAt: firestore.FieldValue.serverTimestamp() })
+    this.setState({ isFollowed: true })
+  }
+  unfollow(followedId) {
+    const { firestore, currentUser } = this.props
+    firestore.delete({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` })
+    this.setState({ isFollowed: false })
+  }
   componentWillUnmount() {
-    const { firestore } = this.props
+    const { firestore, currentUser, expertDetail } = this.props
+    firestore.unsetListener(
+      {
+        collection: 'relationships',
+        doc: `${currentUser.uid}_${expertDetail.docs[0].id}`
+      },
+    )
     firestore.unsetListener(
       {
         collection: 'signals',
         where:
           ['expert.username', '==', this.props.match.params.id]
-
       },
     )
   }
@@ -76,8 +88,7 @@ class ExpertDetail extends Component {
   }
 
   render() {
-    const { expertDetail } = this.props
-    console.log(this.state.isFollowed)
+    const { expertDetail, isFollowed} = this.props
     return (
       <div>
         <section id="user-profile">
@@ -105,7 +116,7 @@ class ExpertDetail extends Component {
                   <div className="profile-cover-buttons">
                     <div className="media-body halfway-fab align-self-end">
                       <div className="text-right d-none d-sm-none d-md-none d-lg-block">
-                        {this.state.isFollowed !== null ? (this.state.isFollowed ? <button onClick={() => this.unfollow(expertDetail.id)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expertDetail.id)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>) : null}
+                        {isFollowed !== null ? (isFollowed ? <button onClick={() => this.unfollow(expertDetail.id)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expertDetail.id)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>) : null}
                         {/* <button type="button" className="btn btn-primary btn-raised mr-2"><i className="fa fa-plus" /> Theo Dõi</button> */}
                       </div>
                     </div>
@@ -157,7 +168,7 @@ const mapStateToProps = state => {
     expertDetail: currentExpert,
     currentUser: state.firebase.auth,
     signalList: state.firestore.ordered.signalList ? state.firestore.ordered.signalList : [],
-    isFollowed: state.firestore.ordered.isFollowed ? true : false
+    isFollowed: state.firestore.ordered.isFollowed ? (state.firestore.ordered.isFollowed[0] ? true:false) : null 
   }
 }
 export default connect(mapStateToProps, null)(withFirestore(ExpertDetail))
