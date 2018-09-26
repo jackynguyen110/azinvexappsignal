@@ -5,6 +5,7 @@ import TopUser from '../DashboadComponents/TopUser';
 import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
  class Dashboard extends Component {
+
    componentDidMount() {
      const { firestore, currentUser } = this.props
      firestore.setListener({
@@ -18,8 +19,9 @@ import { connect } from 'react-redux';
        where: ['uid', '==', currentUser.uid],
      })
    }
+
   render() {
-    const { timelineContent, topExpert } = this.props
+    const { timelineContent, topExpert, currentUser } = this.props
     return (
         <div>
           <CardHeader/>
@@ -28,7 +30,7 @@ import { connect } from 'react-redux';
             <Timeline timelineContent={timelineContent}/>
             </div>
           <div className="col-md-4">
-            <TopUser topExpert={topExpert}/>
+            <TopUser currentUser={currentUser} topExpert={topExpert}/>
             </div>
           </div>
         </div>
