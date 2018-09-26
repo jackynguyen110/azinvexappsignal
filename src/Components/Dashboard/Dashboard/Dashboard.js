@@ -17,7 +17,11 @@ import { connect } from 'react-redux';
      firestore.setListener({
        collection: 'notifications',
        where: ['uid', '==', currentUser.uid],
-       orderBy: ['createdAt', 'asc'],
+       orderBy: ['createdAt', 'desc'],
+     })
+     firestore.setListener({
+       collection: 'statistics',
+       doc: 'website'
      })
    }
 componentWillUnmount(){
@@ -29,10 +33,10 @@ componentWillUnmount(){
   })
 }
   render() {
-    const { timelineContent, topExpert, currentUser } = this.props
+    const { timelineContent, topExpert, currentUser, statistics } = this.props
     return (
         <div>
-          <CardHeader/>
+        <CardHeader statistics={statistics}/>
         <div className="row">
           <div className="col-md-8">
             <Timeline timelineContent={timelineContent}/>
@@ -49,6 +53,7 @@ const mapStateToProps = (state) => {
   return ({
     topExpert: state.firestore.ordered.topExpert,
     currentUser: state.firebase.auth,
+    statistics: state.firestore.ordered.statistics ? state.firestore.ordered.statistics[0] : {activeSignal:0,experts:0,pips:0,users:0},
     timelineContent: state.firestore.ordered.notifications,
   })
 };

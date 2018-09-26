@@ -44,6 +44,7 @@ import moment from 'moment';
                                        <span className="badge badge-warning mr-1 mb-1">{item.symbol}</span>
                                         {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Open Price : {item.openPrice}</span>}
                                         {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Close Price : {item.closePrice}</span>}
+                                        {item.type == 3 && (item.profit >= 0 ? <span className="badge badge-success mr-1 mb-1">Profit : +{item.profit} pips</span> : <span className="badge badge-danger mr-1 mb-1">Profit : {item.profit} pips</span> )}
                                         {item.type == 2 ? <div className="card-subtitle text-muted">
                                             <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
                                                 Stoploss <span className="badge badge-danger">{item.stoploss}</span>
@@ -83,6 +84,7 @@ import moment from 'moment';
                                     <span className="badge badge-warning mr-1 mb-1">{item.symbol}</span>
                                     {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Open Price : {item.openPrice}</span>}
                                     {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Close Price : {item.closePrice}</span>}
+                                    {item.type == 3 && (item.profit >= 0 ? <span className="badge badge-success mr-1 mb-1">Profit : +{item.profit} pips</span> : <span className="badge badge-danger mr-1 mb-1">Profit : {item.profit} pips</span>)}
                                     {item.type == 2 ? <div className="card-subtitle text-muted">
                                         <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
                                             Stoploss <span className="badge badge-danger">{item.stoploss}</span>

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
  class CardHeader extends Component {
  
   render() {
+    const { statistics } = this.props
     return (
         <div className="row">
         <div className="col-xl-3 col-lg-6 col-md-6 col-12">
@@ -11,7 +12,7 @@ import React, { Component } from 'react'
               <div className="card-block pt-2">
                 <div className="media">
                   <div className="media-body white text-left">
-                    <h3 className="font-large-1 mb-0">60</h3>
+                    <h3 className="font-large-1 mb-0">{statistics.activeSignals}</h3>
                     <span>Lệnh Đang Hoạt Động</span>
                   </div>
                   <div className="media-right white text-right">
@@ -28,7 +29,7 @@ import React, { Component } from 'react'
               <div className="card-block pt-2">
                 <div className="media">
                   <div className="media-body white text-left">
-                    <h3 className="font-large-1 mb-0">1200</h3>
+                    <h3 className="font-large-1 mb-0">{statistics.pips}</h3>
                     <span>Tổng Số Pips</span>
                   </div>
                   <div className="media-right white text-right">
@@ -46,7 +47,7 @@ import React, { Component } from 'react'
               <div className="card-block pt-2">
                 <div className="media">
                   <div className="media-body white text-left">
-                    <h3 className="font-large-1 mb-0">12.000</h3>
+                    <h3 className="font-large-1 mb-0">{statistics.users}</h3>
                     <span>Người Dùng Hoạt Động</span>
                   </div>
                   <div className="media-right white text-right">
@@ -64,7 +65,7 @@ import React, { Component } from 'react'
               <div className="card-block pt-2">
                 <div className="media">
                   <div className="media-body white text-left">
-                    <h3 className="font-large-1 mb-0">23</h3>
+                    <h3 className="font-large-1 mb-0">{statistics.experts}</h3>
                     <span>Chuyên Gia</span>
                   </div>
                   <div className="media-right white text-right">
