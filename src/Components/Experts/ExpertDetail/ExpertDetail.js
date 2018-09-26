@@ -3,6 +3,11 @@ import SignalRoom from '../ExpertsComponent/SignalRoom/SignalRoom';
 import Information from '../ExpertsComponent/ExpertInformation/Information';
 import { withFirestore } from 'react-redux-firebase'
 import { connect } from 'react-redux';
+const currentTime = new Date(Date.now());
+const day = currentTime.getDate();
+const month = currentTime.getMonth();
+const year = currentTime.getFullYear();
+const date = new Date(year, month, day);
 class ExpertDetail extends Component {
   state = {
     current: "SIGNAL_ROOM",
@@ -40,24 +45,21 @@ class ExpertDetail extends Component {
         storeAs: 'expertDetail'
       },
     );
+
     firestore.setListener(
       {
         collection: 'signals',
-        where: ['expert.username', '==', this.props.match.params.id],
-        storeAs: 'signalList'
+        where: [['expert.username', '==', this.props.match.params.id], ['closeAt', '>=', date.getTime()]],
+        storeAs: 'todayList'
       },
     )
-
-  }
-  follow(followedId) {
-    const { firestore, currentUser } = this.props
-    firestore.set({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` }, { followedId, followerId: currentUser.uid, createdAt: firestore.FieldValue.serverTimestamp() })
-    this.setState({ isFollowed: true })
-  }
-  unfollow(followedId) {
-    const { firestore, currentUser } = this.props
-    firestore.delete({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` })
-    this.setState({ isFollowed: false })
+    firestore.setListener(
+      {
+        collection: 'signals',
+        where: [['expert.username', '==', this.props.match.params.id], ['status', '==', "active"]],
+        storeAs: 'activeList'
+      },
+    )
   }
   componentWillUnmount() {
     const { firestore, currentUser, expertDetail } = this.props
@@ -70,16 +72,32 @@ class ExpertDetail extends Component {
     firestore.unsetListener(
       {
         collection: 'signals',
-        where:
-          ['expert.username', '==', this.props.match.params.id]
+        where: [['expert.username', '==', this.props.match.params.id], ['status', '==', "active"]],
+      },
+    )
+    firestore.unsetListener(
+      {
+        collection: 'signals',
+        where: [['expert.username', '==', this.props.match.params.id], ['closeAt', '>=', date.getTime()]],
       },
     )
   }
+  follow(followedId) {
+    const { firestore, currentUser } = this.props
+    firestore.set({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` }, { followedId, followerId: currentUser.uid, createdAt: firestore.FieldValue.serverTimestamp() })
+    this.setState({ isFollowed: true })
+  }
+  unfollow(followedId) {
+    const { firestore, currentUser } = this.props
+    firestore.delete({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` })
+    this.setState({ isFollowed: false })
+  }
+
   renderSwitch = () => {
-    const { expertDetail, signalList } = this.props
+    const { expertDetail, todayList, activeList } = this.props
     switch (this.state.current) {
       case "SIGNAL_ROOM":
-        return <SignalRoom signalList={signalList} />;
+        return <SignalRoom activeList={activeList} todayList={todayList} />;
       case "INFOMARTION":
         return <Information expertDetail={expertDetail} />;
       default:
@@ -167,7 +185,8 @@ const mapStateToProps = state => {
   return {
     expertDetail: currentExpert,
     currentUser: state.firebase.auth,
-    signalList: state.firestore.ordered.signalList ? state.firestore.ordered.signalList : [],
+    activeList: state.firestore.ordered.activeList ? state.firestore.ordered.activeList : [],
+    todayList: state.firestore.ordered.todayList ? state.firestore.ordered.todayList : [],
     isFollowed: state.firestore.ordered.isFollowed ? (state.firestore.ordered.isFollowed[0] ? true:false) : null 
   }
 }

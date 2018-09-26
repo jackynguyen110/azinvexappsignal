@@ -13,7 +13,7 @@ import ExpertCard from '../DashboadComponents/ExpertCard';
                 <div className="card-block">
                 
                     {topExpert && topExpert.map((e,index)=>{
-                        return (<ExpertCard expert={e} />)
+                        return (<ExpertCard key={index} expert={e} />)
                     })}
             
                 </div>

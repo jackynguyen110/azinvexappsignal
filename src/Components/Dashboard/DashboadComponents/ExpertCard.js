@@ -25,7 +25,6 @@ class ExpertCard extends Component {
   }
   render() {
     const { expert } = this.props
-    console.log(expert)
     return (
       <div className="media mb-3">
         <img alt="96x96" className="media-object d-flex mr-3 align-self-center bg-danger height-50 rounded-circle" src={expert.photoURL} />

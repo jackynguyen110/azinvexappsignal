@@ -35,7 +35,7 @@ class ListSignals extends React.Component {
                       <td>
                         <b>Stoploss : </b> {e.stoploss} <br /><b>Takeprofit : </b>{e.takeprofit}
                         </td>
-                      <td>{moment(e.startAt).format('HH:mm DD/MM/YY')}</td>
+                      <td>{moment(e.startAt.seconds*1000).format('HH:mm DD/MM/YYYY')}</td>
                       <td><img src="https://thumbs.gfycat.com/ImmaculateUnacceptableArizonaalligatorlizard-size_restricted.gif" alt="" height="40px" width="40px" /></td>
                       <td><a onClick={() => select(e)} className="btn btn-raised btn-warning mr-1" type="button"> <i className="ft-edit" /> Sửa Lệnh </a>
                         <a onClick={() => close(e.id)} className="btn btn-raised btn-danger mr-1" type="button"> <i className="ft-x" /> Tắt Lệnh </a>

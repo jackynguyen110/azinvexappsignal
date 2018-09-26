@@ -17,9 +17,17 @@ import { connect } from 'react-redux';
      firestore.setListener({
        collection: 'notifications',
        where: ['uid', '==', currentUser.uid],
+       orderBy: ['createdAt', 'asc'],
      })
    }
-
+componentWillUnmount(){
+  const { firestore, currentUser } = this.props
+  firestore.unsetListener({
+    collection: 'users',
+    orderBy: ['totalpips'],
+    limit: 5
+  })
+}
   render() {
     const { timelineContent, topExpert, currentUser } = this.props
     return (

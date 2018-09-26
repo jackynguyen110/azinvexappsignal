@@ -4,15 +4,7 @@ import Chat from './Chat'
 class SignalRoom extends Component {
 
   render() {
-    const { signalList } = this.props
-    const currentTime = new Date(Date.now());
-    const day = currentTime.getDate();
-    const month = currentTime.getMonth();
-    const year = currentTime.getFullYear();
-    const date = new Date(year, month, day);
-    const activeList = signalList.filter(e => e.status === "active")
-    const todayList = signalList.filter(e => (e.startAt >= date.getTime() && e.status === "closed"))
-
+    const { todayList, activeList } = this.props
     return (
       <div>
       <section id="about">

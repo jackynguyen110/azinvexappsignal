@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import moment from 'moment';
  class Timeline extends Component {
  
   render() {
@@ -36,27 +36,37 @@ import React, { Component } from 'react'
                                 <div className="card-header">
                                         <span className="badge badge-primary mr-1 mb-1">Ticket : {item.ticket}</span>
                                         <span className="badge badge-info mr-1 mb-1">{item.expert.username}</span>
-                                        <span className="badge badge-success mr-1 mb-1">{item.type == 1 ? "Mở lệnh" : (item.type == 2 ? "Thay đổi lệnh" : "Đóng lệnh")}</span>
-                                        <span className="badge badge-dark mr-1 mb-1">{item.createdAt.seconds}</span>
+                                        {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Mở lệnh</span>}
+                                        {item.type == 2 && <span className="badge badge-info mr-1 mb-1">Thay đổi lệnh</span>}
+                                        {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Đóng lệnh</span>}
+                                        <span className="badge badge-dark mr-1 mb-1">{moment(item.createdAt.seconds* 1000).format('HH:mm DD/MM/YYYY')}</span>
                                         {item.typeSignal ? <span className="badge badge-danger mr-1 mb-1"> SELL </span> : <span className="badge badge-success mr-1 mb-1"> BUY </span>}
                                        <span className="badge badge-warning mr-1 mb-1">{item.symbol}</span>
-
-
-                                    <div className="card-subtitle text-muted">
-                                        <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
-                                                Stoploss <span className="badge badge-light">{item.stoploss}</span>
-                                        </button>
-                                        <button className="btn btn-white btn-raised mr-1 mb-1" type="button">
-                                                TakeProfit <span className="badge badge-light">{item.takeprofit} </span>
-                                        </button>
-                                    </div>
+                                        {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Open Price : {item.openPrice}</span>}
+                                        {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Close Price : {item.closePrice}</span>}
+                                        {item.type == 2 ? <div className="card-subtitle text-muted">
+                                            <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
+                                                Stoploss <span className="badge badge-danger">{item.stoploss}</span>
+                                            </button>
+                                            <button className="btn btn-white btn-raised mr-1 mb-1" type="button">
+                                                TakeProfit <span className="badge badge-danger">{item.takeprofit} </span>
+                                            </button>
+                                        </div> : <div className="card-subtitle text-muted">
+                                                <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
+                                                    Stoploss <span className="badge badge-light">{item.stoploss}</span>
+                                                </button>
+                                                <button className="btn btn-white btn-raised mr-1 mb-1" type="button">
+                                                    TakeProfit <span className="badge badge-light">{item.takeprofit} </span>
+                                                </button>
+                        </div> }
+                                
                                 </div>
                             </div>
                         </li>)
                     }else{
                         return (<li key={index}  className="timeline-item mt-5">
                             <div className="timeline-badge">
-                                <span className="avatar avatar-online" data-toggle="tooltip" data-placement="left" title="Expert : Nguyễn Nhật Trung">
+                                <span className="avatar avatar-online" data-toggle="tooltip" data-placement="left" title={"Expert: " + item.expert.username}>
                                     <img src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" className="rounded-circle" alt="avatar" width={40} />
                                 </span>
                             </div>
@@ -64,20 +74,30 @@ import React, { Component } from 'react'
                                 <div className="card-header">
                                     <span className="badge badge-primary mr-1 mb-1">Ticket : {item.ticket}</span>
                                     <span className="badge badge-info mr-1 mb-1">{item.expert.username}</span>
-                                    <span className="badge badge-success mr-1 mb-1">{item.type == 1 ? "Mở lệnh" : (item.type == 2 ? "Thay đổi lệnh" : "Đóng lệnh")}</span>
-                                    <span className="badge badge-dark mr-1 mb-1">{item.createdAt.seconds}</span>
+                                    {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Mở lệnh</span> }
+                                    {item.type == 2 && <span className="badge badge-info mr-1 mb-1">Thay đổi lệnh</span>}
+                                    {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Đóng lệnh</span>}
+                                
+                                    <span className="badge badge-dark mr-1 mb-1">{moment(item.createdAt.seconds * 1000).format('HH:mm DD/MM/YYYY')}</span>
                                     {item.typeSignal ? <span className="badge badge-danger mr-1 mb-1"> SELL </span> : <span className="badge badge-success mr-1 mb-1"> BUY </span>}
                                     <span className="badge badge-warning mr-1 mb-1">{item.symbol}</span>
-
-
-                                    <div className="card-subtitle text-muted">
+                                    {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Open Price : {item.openPrice}</span>}
+                                    {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Close Price : {item.closePrice}</span>}
+                                    {item.type == 2 ? <div className="card-subtitle text-muted">
                                         <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
-                                            Stoploss <span className="badge badge-light">{item.stoploss}</span>
+                                            Stoploss <span className="badge badge-danger">{item.stoploss}</span>
                                         </button>
                                         <button className="btn btn-white btn-raised mr-1 mb-1" type="button">
-                                            TakeProfit <span className="badge badge-light">{item.takeprofit} </span>
+                                            TakeProfit <span className="badge badge-danger">{item.takeprofit} </span>
                                         </button>
-                                    </div>
+                                    </div> : <div className="card-subtitle text-muted">
+                                            <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
+                                                Stoploss <span className="badge badge-light">{item.stoploss}</span>
+                                            </button>
+                                            <button className="btn btn-white btn-raised mr-1 mb-1" type="button">
+                                                TakeProfit <span className="badge badge-light">{item.takeprofit} </span>
+                                            </button>
+                                        </div>}
                                 </div>
                             </div>
                         </li>)
