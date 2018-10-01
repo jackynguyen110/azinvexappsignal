@@ -1,14 +1,15 @@
 import React from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
 class ListSignals extends React.Component {
  
   render() {
-    const { myActiveSignals, close, select } = this.props
+    const { myActiveSignals, close, select, loading } = this.props
     return (
       <div className="col-md-12 col-lg-8">
-        <div className="card">
+        <div  className="card" style={loading ? {opacity:0.5} : {opacity:1}}>
           <div className="card-header">
-            <h4 className="card-title">Các Lệnh Đang Chạy</h4>
+            <h4 className="card-title">Các Lệnh Đang Chạy  {loading? 'Hide' : 'Show'}</h4>
           </div>
           <div className="card-body">
             <div className="card-block">
@@ -53,5 +54,16 @@ class ListSignals extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    loading: state.async.loading,
+  };
 
-export default ListSignals;
+}
+
+const actions = {
+
+};
+
+
+export default connect(mapStateToProps, actions)(ListSignals);

@@ -12,8 +12,8 @@ class ManageSignal extends React.Component {
         initialValues: {}
     }
     componentDidMount(){
-        const { firestore, currentUser, profileUser } = this.props
-        console.log(profileUser)
+        const { firestore, currentUser } = this.props
+    
         firestore.onSnapshot({
             collection: 'signals',
             where: [

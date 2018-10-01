@@ -2,11 +2,25 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import RadioInput from '../../../app/common/form/RadioInput';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import Button from 'react-bootstrap-button-loader';
+import { createSignal, updateSignal } from '../signalActions'
 // import SelectInput from '../../../app/common/form/SelectInput';
 class FormSignal extends React.Component {
 
+    onFormSubmit = (values) => {
+      console.log(values)
+      if (this.props.initialValues.id) {
+        this.props.updateSignal(this.props.currentUser, values);
+      } else {
+        this.props.createSignal(this.props.currentUser, values);
+      }
+    };
+
+
     render() { 
-      const { push, handleSubmit, error, isEditing, deselect, update } = this.props   
+      const { push, handleSubmit, error, isEditing, deselect, update, loading } = this.props   
 
     return (
       <div className="col-md-12 col-lg-4">
@@ -19,32 +33,35 @@ class FormSignal extends React.Component {
           </div>
           <div className="card-body">
             <div className="px-3">
-              <form className="form" onSubmit={!isEditing ? handleSubmit(push) : handleSubmit(update)}>
+              <form className="form" onSubmit={handleSubmit(this.onFormSubmit)}>
                 <div className="form-body">
                     <div className="form-group">
                     <label htmlFor="eventRegInput1">Cặp tiền</label>
                     <Field component={TextInputForm} name="symbol"
                       required="true"
-                      disabled
+                      disabled={loading} 
                       labelText="Cặp tiền"
                       id="eventRegInput1" className="form-control"
                     />
                     </div>
-                  {!isEditing ? <div className="form-group">
+                  {/* {!isEditing ? <div className="form-group">
                     <label htmlFor="eventRegInput1">Loại lệnh</label>
                     <Field name="type" component={RadioInput} options={[{ key: 0, value: "Buy" }, { key: 1, value: "Sell" }]} />
                   </div> : null}
-     
+      */}
+
+                  <label htmlFor="eventRegInput1">Loại lệnh</label>
+                    <Field name="type" component={RadioInput} options={[{ key: 0, value: "Buy" }, { key: 1, value: "Sell" }]} />
                   <div className="form-group">
                     <label htmlFor="eventRegInput1">Stoploss</label>
-                    <Field component={TextInputForm} name="stoploss"
+                    <Field disabled={loading} component={TextInputForm} name="stoploss"
                       labelText="Stoploss"
                       id="eventRegInput1" className="form-control"
                     />
                   </div>
                   <div className="form-group">
                     <label htmlFor="eventRegInput1">Takeprofit</label>
-                    <Field component={TextInputForm} name="takeprofit"
+                    <Field disabled={loading} component={TextInputForm} name="takeprofit"
                       labelText="Takeprofit"
                       id="eventRegInput1" className="form-control"
                     />
@@ -52,14 +69,16 @@ class FormSignal extends React.Component {
                   
                 </div>
                 <div className="form-actions center">
-                  {!isEditing ? <button type="submit" className="btn btn-raised btn-primary">
+                  {/* {!isEditing ? <button type="submit" className="btn btn-raised btn-primary">
                     Bắn tín hiệu
                     </button> : <div>  <button onClick={() => deselect()} type="button" className="btn btn-raised btn-primary">
                       Hủy
                     </button>  <button type="submit" className="btn btn-raised btn-primary">
                       Sửa
-                    </button></div>}
-                  
+                    </button></div>} */}
+                    <Button loading={loading} type="submit" className="btn btn-raised btn-primary">
+                    Bắn tín hiệu
+                    </Button>
                 </div>
                 </form>
 
@@ -74,5 +93,30 @@ class FormSignal extends React.Component {
 
 
 
+const mapStateToProps = (state) => {
+  let signal = {};
 
-export default reduxForm({ form: 'signal-form', enableReinitialize: true, destroyOnUnmount: true })(FormSignal);
+  if (state.signal.selectedSignal) {
+    signal = state.signal.selectedSignal;
+  }
+
+  return {
+    initialValues: signal,
+    loading: state.async.loading,
+    currentUser: state.firebase.auth,
+  };
+
+}
+
+const actions = {
+  createSignal,
+  updateSignal
+};
+
+
+
+export default 
+compose (
+  connect(mapStateToProps, actions),
+  reduxForm({ form: 'signal-form', enableReinitialize: true, destroyOnUnmount: true })
+)(FormSignal);
