@@ -2,8 +2,8 @@ import React,  { Component } from 'react'
 
 import Logo from 'assets/img/logo.png'
 import { NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
 
+import 'assets/js/app-sidebar'
 import $ from 'jquery'
 
 class MainMenu extends Component {
@@ -12,7 +12,9 @@ class MainMenu extends Component {
         var $wrapper = $('.wrapper');
 
         var $sidebar = $('.app-sidebar'),
-        $sidebar_content = $('.sidebar-content')
+        $sidebar_content = $('.sidebar-content'),
+        $sidebar_img = $sidebar.data('image'),
+        $sidebar_img_container = $('.sidebar-background')
 
         $('.nav-toggle').on('click',function(){
             var $this = $(this),
@@ -149,98 +151,8 @@ class MainMenu extends Component {
             $sidebar.addClass('hide-sidebar');
         });
     }
-
-    expertRouter = () => (
-        <div>
-            <NavLink to="/manageSignal" >
-                <i className="ft-home" />
-                <span data-i18n className="menu-title">Trang Cá Nhân</span>
-            </NavLink>
-            <li className="nav-item">
-                <NavLink to="/manageSignal" >
-                    <i className="ft-home" />
-                    <span data-i18n className="menu-title">Phòng Tín Hiệu</span>
-                </NavLink>
-                <NavLink to="/manageSignal" >
-                    <i className="ft-home" />
-                    <span data-i18n className="menu-title">Quản Lý Subcribles</span>
-                </NavLink>
-               
-            </li>
-        </div>
-    )
-
-    memberRouter = () => (
-        <div>
-            <li className="nav-item">
-                <NavLink to="/" >
-                    <i className="ft-home" />
-                    <span data-i18n className="menu-title">Dashboard</span>
-                </NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink to="/experts" >
-                    <i className="ft-home" />
-                    <span data-i18n className="menu-title">Danh Sách Chuyên Gia</span>
-                </NavLink>
-            </li>
-            <li className="nav-item has-sub">
-                <a>
-                    <i className="ft-edit" />
-                    <span data-i18n className="menu-title">Quản Lý</span>
-                </a>
-                <ul className="menu-content">
-                    <li>
-                        <NavLink to="/information" href="validation-forms.html" className="menu-item">Thông Tin Cá Nhân</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/changepassword" className="menu-item">Đổi Mật Khẩu</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/account" className="menu-item">Thông Tin Tài Khoản</NavLink>
-                    </li>
-                </ul>
-            </li>
-            <li className=" nav-item">
-                <NavLink to="/help">
-                    <i className="ft-book" />
-                    <span data-i18n className="menu-title">Hướng Dẫn Sử Dụng</span>
-                </NavLink>
-            </li>
-            <li className=" nav-item"><NavLink to="/tours"><i className="ft-life-buoy" /><span data-i18n className="menu-title">Hỗ Trợ</span></NavLink>
-            </li>
-        </div>
-    );
-
-    AnonymousRouter = () => (
-        <div>
-            <li className="nav-item">
-                <NavLink to="/" >
-                    <i className="ft-home" />
-                    <span data-i18n className="menu-title">Dashboard</span>
-                </NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink to="/experts" >
-                    <i className="ft-home" />
-                    <span data-i18n className="menu-title">Danh Sách Chuyên Gia</span>
-                </NavLink>
-            </li>
-           
-            <li className=" nav-item">
-                <NavLink to="/help">
-                    <i className="ft-book" />
-                    <span data-i18n className="menu-title">Hướng Dẫn Sử Dụng</span>
-                </NavLink>
-            </li>
-            <li className=" nav-item"><NavLink to="/tours"><i className="ft-life-buoy" /><span data-i18n className="menu-title">Hỗ Trợ</span></NavLink>
-            </li>
-        </div>
-    )
   
     render () {
-
-        const { profileUser } = this.props
         return (
             <div data-active-color="white" data-background-color="black" data-image="https://pixinvent.com/apex-angular-4-bootstrap-admin-template/demo-1/assets/img/sidebar-bg/01.jpg" className="app-sidebar">
                 <div className="sidebar-header">
@@ -250,14 +162,33 @@ class MainMenu extends Component {
                 <div className="sidebar-content">
                 <div className="nav-container">
                     <ul id="main-menu-navigation" data-menu="menu-navigation" className="navigation navigation-main">
-                        
-                        {profileUser && profileUser.role === 'experts' && this.AnonymousRouter}  
-                        {profileUser && profileUser.role === 'members' && this.memberRouter} 
-                        {!profileUser && this.AnonymousRouter} 
-                        
+                    <li className="nav-item"><NavLink to="/" ><i className="ft-home" /><span data-i18n className="menu-title">Room Tín Hiệu</span></NavLink>
+                    </li>
+                    <li className="nav-item"><NavLink to="/experts" ><i className="ft-home" /><span data-i18n className="menu-title">Danh Sách Chuyên Gia</span></NavLink>
+                    </li>
+                    <li onClick={this.checkClass} className="nav-item has-sub">
+                        <a>
+                            <i className="ft-edit" />
+                            <span data-i18n className="menu-title">Quản Lý</span>
+                        </a>
+                        <ul className="menu-content">
+                            <li>
+                                <NavLink to="/information" href="validation-forms.html" className="menu-item">Thông Tin Cá Nhân</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/changepassword" className="menu-item">Đổi Mật Khẩu</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/account" className="menu-item">Thông Tin Tài Khoản</NavLink>
+                            </li>
+                        </ul>
+                    </li>
         
-                        
-                        
+                    <li className=" nav-item"><NavLink to="/help"><i className="ft-book" /><span data-i18n className="menu-title">Hướng Dẫn Sử Dụng</span></NavLink>
+                    </li>
+                    <li className=" nav-item"><NavLink to="/tours"><i className="ft-life-buoy" /><span data-i18n className="menu-title">Hỗ Trợ</span></NavLink>
+                    </li>
+                    
                     </ul>
                 </div>
                 </div>
@@ -269,8 +200,4 @@ class MainMenu extends Component {
    
 }
 
-const mapState = state => ({
-    profileUser : state.auth.profileUser
-})
-
-export default connect(mapState, null)(MainMenu)
+export default MainMenu
