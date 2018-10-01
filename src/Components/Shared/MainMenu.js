@@ -2,8 +2,6 @@ import React,  { Component } from 'react'
 
 import Logo from 'assets/img/logo.png'
 import { NavLink } from 'react-router-dom'
-
-import 'assets/js/app-sidebar'
 import $ from 'jquery'
 
 class MainMenu extends Component {

@@ -4,13 +4,27 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import {  firestoreConnect } from 'react-redux-firebase';
 import { objectToArray } from '../../../app/common/util/helper';
-
+import { withFirestore } from 'react-redux-firebase';
 class UserManager extends Component {
-
-    changRole = () => {
-
+    setExpert = (uid) => {
+        const { firestore } = this.props
+        const itemUpdates = {
+            role: 'expert',
+            updatedAt: firestore.FieldValue.serverTimestamp()
+        }
+        firestore.update({ collection: 'users', doc: uid }, itemUpdates)
     }
-    
+    unsetExpert = (uid) => {
+        const { firestore } = this.props
+        const itemUpdates = {
+            role: 'member',
+            signalLoss: firestore.FieldValue.delete(),
+            signalWin: firestore.FieldValue.delete(),
+            totalpips: firestore.FieldValue.delete(),
+            updatedAt: firestore.FieldValue.serverTimestamp()
+        }
+        firestore.update({ collection: 'users', doc: uid }, itemUpdates)
+    }
     render() {
         const { users } = this.props;
         return (
@@ -29,25 +43,27 @@ class UserManager extends Component {
                                     <tr>
                                     <th></th>
                                     <th>email</th>
-                                    <th>tên hiển thị</th>
+                                    <th>username</th>
                                     <th>Quyền</th>
                                     <th>Hành Động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {
-                                    users && users.map(user =>        
-                                            <tr>
+                                    users && users.map((user) =>{
+                                        console.log(user)
+                                      return(
+                                            <tr key={user.id}>
                                                 <td><img className="media-object round-media" src={user.avatar} alt="Generic placeholder image" style={{height: 75}} /></td>
                                                 <td>{user.email}</td>
-                                                <td>{user.displayname}</td>
+                                                <td>{user.username}</td>
                                                 <td>{user.role}</td>
                                                
                                                 <td>
-                                                    <button onClick={this.changRole} class="btn btn-success btn-raised">Experts</button>
+                                                  {user.role == "member" ? <button onClick={() => this.setExpert(user.id)} className="btn btn-success btn-raised">Set Expert</button> : <button onClick={() => this.unsetExpert(user.id)} className="btn btn-success btn-raised">Unset Expert</button>}
                                                 </td>
-                                            </tr>
-                                        )
+                                            </tr>)
+                                        })
                                 }
                               
                                 </tbody>
@@ -69,4 +85,4 @@ const mapState = (state) => ({
 export default compose (
     connect(mapState, null),
     firestoreConnect(['users']),
-)(UserManager);
+)(withFirestore(UserManager));
