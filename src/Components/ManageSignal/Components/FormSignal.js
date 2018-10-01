@@ -20,8 +20,8 @@ class FormSignal extends React.Component {
 
 
     render() { 
-      const { push, handleSubmit, error, isEditing, deselect, update, loading } = this.props   
-
+      const { handleSubmit, error, loading } = this.props   
+      console.log(this.props.initialValues)
     return (
       <div className="col-md-12 col-lg-4">
         <div className="card">

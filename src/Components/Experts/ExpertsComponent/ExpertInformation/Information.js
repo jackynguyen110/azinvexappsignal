@@ -21,7 +21,7 @@ class Information extends Component {
               <div className="card-block">
                 <div className="mb-3">
                   <span className="text-bold-500 primary">About Me:</span>
-                    <span className="display-block overflow-hidden">{expertDetail.information.about}
+                    <span className="display-block overflow-hidden">{expertDetail.information && expertDetail.information.about}
                   </span>
                 </div>
                 <hr />
@@ -30,15 +30,15 @@ class Information extends Component {
                     <ul className="no-list-style">
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="icon-present font-small-3" /> Birthday:</a></span>
-                          <span className="display-block overflow-hidden">{new Date(expertDetail.information.birthday.seconds * 1000).toLocaleDateString('en-GB')}</span>
+                          <span className="display-block overflow-hidden">{expertDetail.information && new Date(expertDetail.information.birthday.seconds * 1000).toLocaleDateString('en-GB')}</span>
                       </li>
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-map-pin font-small-3" /> Birthplace:</a></span>
-                          <span className="display-block overflow-hidden">{expertDetail.information.birthplace}</span>
+                          <span className="display-block overflow-hidden">{expertDetail.information && expertDetail.information.birthplace}</span>
                       </li>
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-globe font-small-3" /> Lives in:</a></span>
-                          <span className="display-block overflow-hidden">{expertDetail.information.address}</span>
+                          <span className="display-block overflow-hidden">{expertDetail.information && expertDetail.information.address}</span>
                       </li>
                     </ul>
                   </div>
@@ -46,7 +46,7 @@ class Information extends Component {
                     <ul className="no-list-style">
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-user font-small-3" /> Gender:</a></span>
-                          <span className="display-block overflow-hidden">{expertDetail.information.sex ? "Male" : "Female"}</span>
+                          <span className="display-block overflow-hidden">{expertDetail.information && expertDetail.information.sex ? "Male" : "Female"}</span>
                       </li>
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-mail font-small-3" /> Email:</a></span>
@@ -54,7 +54,7 @@ class Information extends Component {
                       </li>
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-monitor font-small-3" /> Website:</a></span>
-                          <a className="display-block overflow-hidden">{expertDetail.information.website}</a>
+                          <a className="display-block overflow-hidden">{expertDetail.information && expertDetail.information.website}</a>
                       </li>
                     </ul>
                   </div>
@@ -62,15 +62,15 @@ class Information extends Component {
                     <ul className="no-list-style">
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-smartphone font-small-3" /> Phone Number:</a></span>
-                          <span className="display-block overflow-hidden">{expertDetail.information.phone}</span>
+                          <span className="display-block overflow-hidden">{expertDetail.information && expertDetail.information.phone}</span>
                       </li>
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-briefcase font-small-3" /> Occupation:</a></span>
-                          <span className="display-block overflow-hidden">{expertDetail.information.occupation}</span>
+                          <span className="display-block overflow-hidden">{expertDetail.information && expertDetail.information.occupation}</span>
                       </li>
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-book font-small-3" /> Joined:</a></span>
-                          <span className="display-block overflow-hidden">{new Date(expertDetail.joined.seconds * 1000).toLocaleDateString('en-GB')}</span>
+                          <span className="display-block overflow-hidden">{expertDetail.joined&&new Date(expertDetail.joined.seconds * 1000).toLocaleDateString('en-GB')}</span>
                       </li>
                     </ul>
                   </div>

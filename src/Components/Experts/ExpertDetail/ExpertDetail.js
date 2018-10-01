@@ -15,25 +15,13 @@ class ExpertDetail extends Component {
   }
   async isFollowed() {
     const { currentUser, firestore } = this.props
-    const doc = await firestore.get(
-      {
-        collection: 'users',
-        where: ['username', '==', this.props.match.params.id],
-        storeAs: 'expertDetail'
-      },
-    )
-
-    if (doc.docs[0] && doc.docs[0].exists) {
       firestore.setListener(
         {
           collection: 'relationships',
-          doc: `${currentUser.uid}_${doc.docs[0].id}`,
+          doc: `${currentUser.uid}_${this.props.match.params.id}`,
           storeAs: 'isFollowed'
         },
       )
-    }
-
-
   }
   componentDidMount() {
     this.isFollowed()
@@ -41,7 +29,7 @@ class ExpertDetail extends Component {
     firestore.get(
       {
         collection: 'users',
-        where: ['username', '==', this.props.match.params.id],
+        doc: this.props.match.params.id,
         storeAs: 'expertDetail'
       },
     );
@@ -49,14 +37,14 @@ class ExpertDetail extends Component {
     firestore.setListener(
       {
         collection: 'signals',
-        where: [['expert.username', '==', this.props.match.params.id], ['closeAt', '>=', date.getTime()]],
+        where: [['expert.id', '==', this.props.match.params.id], ['closeAt', '>=', date.getTime()]],
         storeAs: 'todayList'
       },
     )
     firestore.setListener(
       {
         collection: 'signals',
-        where: [['expert.username', '==', this.props.match.params.id], ['status', '==', "active"]],
+        where: [['expert.id', '==', this.props.match.params.id], ['status', '==', "active"]],
         storeAs: 'activeList'
       },
     )
