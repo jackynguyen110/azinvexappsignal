@@ -6,6 +6,7 @@ import  { reducer as FormReducer } from 'redux-form';
 
 import authReducer from '../../Components/Auth/authReducer';
 import asyncReducer from '../../Components/async/asyncReducer';
+import SignalReducers from '../../Components/ManageSignal/SignalReducers';
 
 const rootReducer = combineReducers({
   firebase : firebaseReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   form : FormReducer,
   auth : authReducer,
   async : asyncReducer,
-  toastr: toastrReducer
+  toastr: toastrReducer,
+  signal: SignalReducers
 })
 
 export default rootReducer
