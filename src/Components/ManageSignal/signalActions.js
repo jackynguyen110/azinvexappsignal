@@ -1,9 +1,10 @@
 import { toastr } from 'react-redux-toastr';
 import { asyncActionStart, asyncActionFinish, asyncActionError } from '../async/asyncActions';
-
+import { SELECTED_SIGNAL } from './signalConstants'
 import moment from 'moment';
 import axios from 'axios';
 export const API_URL = 'http://api.azinvex.com/api/';
+const delay = require('delay');
 
 export const createSignal = (currentUser, signal) => {
   return async (dispatch, getState, { getFirestore }) => {
@@ -29,7 +30,7 @@ export const createSignal = (currentUser, signal) => {
         axios.post(url, signalData, axiosConfig).then((ticket) => {
             //dispatch(reset('signal-form'))
             dispatch(asyncActionFinish());
-            toastr.success('Success', 'Event has been created');
+            toastr.success('Success', 'Signal mới khởi tạo thành công');
         })
     } catch (error) {
         dispatch(asyncActionError());
@@ -38,38 +39,72 @@ export const createSignal = (currentUser, signal) => {
   };
 };
 
-export const updateSignal = event => {
+export const selectedSignal = signal => {
+  return async(dispatch, getState) => {
+    dispatch(asyncActionStart());
+    dispatch({ type: SELECTED_SIGNAL, payload : {signal} });
+    try {
+      dispatch(asyncActionFinish());
+    } catch (error) {
+      dispatch(asyncActionError());
+      toastr.error('Oops', 'Something went wrong');
+    }
+  }
+}
+
+export const updateSignal = (currentUser, id, signal) => {
   return async (dispatch, getState) => {
     dispatch(asyncActionStart());
-    // const firestore = firebase.firestore();
-    // if (event.date !== getState().firestore.ordered.events[0].date) {
-    //   event.date = moment(event.date).toDate();
-    // }
+    const signalData = {
+        stoploss:signal.stoploss,
+        takeprofit:signal.takeprofit
+    };
+  
     try {
-    //   let eventDocRef = firestore.collection('events').doc(event.id);
-    //   let dateEqual = compareAsc(getState().firestore.ordered.events[0].date.toDate(), event.date);
-    //   if (dateEqual !== 0) {
-    //     let batch = firestore.batch();
-    //     await batch.update(eventDocRef, event);
+      let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+            'Authorization': currentUser.stsTokenManager.accessToken
+        }
+    };
+    let url = API_URL + 'signals/' + id;
+    axios.put(url, signalData, axiosConfig)
+        .then(response => {
+            console.log(response)
 
-    //     let eventAttendeeRef = firestore.collection('event_attendee');
-    //     let eventAttendeeQuery = await eventAttendeeRef.where('eventId', '==', event.id);
-    //     let eventAttendeeQuerySnap = await eventAttendeeQuery.get();
-
-    //     for (let i = 0; i < eventAttendeeQuerySnap.docs.length; i++) {
-    //       let eventAttendeeDocRef = await firestore.collection('event_attendee').doc(eventAttendeeQuerySnap.docs[i].id);
-    //       await batch.update(eventAttendeeDocRef, {
-    //         eventDate: event.date
-    //       })
-    //     }
-    //     await batch.commit();
-    //   } else {
-    //     await eventDocRef.update(event);
-    //   }
+        })
       dispatch(asyncActionFinish());
+      dispatch({ type: SELECTED_SIGNAL, payload : {} });
       toastr.success('Success', 'Event has been updated');
     } catch (error) {
       console.log(error);
+      dispatch(asyncActionError());
+      toastr.error('Oops', 'Something went wrong');
+    }
+  };
+};
+
+
+export const closeSignal = (currentUser, ticket) => {
+  return async (dispatch, getState) => {
+    dispatch(asyncActionStart());
+    try {
+      let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+            'Authorization': currentUser.stsTokenManager.accessToken
+        }
+    };
+    let url = API_URL + 'signals/' + ticket;
+    axios.patch(url, null, axiosConfig)
+      await delay(1000);
+      dispatch(asyncActionFinish());
+      toastr.success('Success', 'Đóng Signal thành công');
+    } catch (error) {
+      console.log(error);
+     
       dispatch(asyncActionError());
       toastr.error('Oops', 'Something went wrong');
     }

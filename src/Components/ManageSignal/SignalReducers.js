@@ -1,10 +1,14 @@
 import { createReducer } from '../../app/common/util/reducerUtil';
-import { CREATE_SIGNAL, DELETE_SIGNAL, UPDATE_SIGNAL, FETCH_SIGNAL } from './signalConstants';
+import { CREATE_SIGNAL, DELETE_SIGNAL, UPDATE_SIGNAL, FETCH_SIGNAL, SELECTED_SIGNAL } from './signalConstants';
 
- const initialState = [];
-
+ const initialState = []
 export const createSignal = (state, payload) => {
   return [...state, Object.assign({}, payload.event)]
+}
+
+export const selectedSignal = (state, payload) => {
+  console.log(payload)
+  return {selectedSignal: payload}
 }
 
 export const updateSignal = (state, payload) => {
@@ -28,5 +32,6 @@ export default createReducer(initialState, {
   [CREATE_SIGNAL]: createSignal,
   [DELETE_SIGNAL]: updateSignal,
   [UPDATE_SIGNAL]: closeSignal,
-  [FETCH_SIGNAL]: fetchSignals
+  [FETCH_SIGNAL]: fetchSignals,
+  [SELECTED_SIGNAL] : selectedSignal
 })
