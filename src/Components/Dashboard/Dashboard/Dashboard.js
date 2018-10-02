@@ -4,9 +4,24 @@ import Timeline from '../DashboadComponents/Timeline';
 import TopUser from '../DashboadComponents/TopUser';
 import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
- class Dashboard extends Component {
+import Button from 'react-bootstrap-button-loader';
+import { getEventsForDashboard } from '../notificationActions';
 
-   componentDidMount() {
+ class Dashboard extends Component {
+   state = {
+     moreEvents: false,
+     loadingInitial: true,
+     loadedEvents: [],
+     contextRef: {}
+   }
+   async componentDidMount() {
+     let next = await this.props.getEventsForDashboard(currentUser);
+     if (next && next.docs && next.docs.length > 1) {
+       this.setState({
+         moreEvents: true,
+         loadingInitial: false
+       });
+     }
      const { firestore, currentUser } = this.props
      firestore.setListener({
          collection: 'users',
@@ -15,14 +30,16 @@ import { connect } from 'react-redux';
          limit: 5
        })
      firestore.setListener({
-       collection: 'notifications',
-       where: ['uid', '==', currentUser.uid],
-       orderBy: ['createdAt', 'desc'],
-     })
-     firestore.setListener({
        collection: 'statistics',
        doc: 'website'
      })
+   }
+   componentWillReceiveProps(nextProps) {
+     if (this.props.timelineContent !== nextProps.timelineContent) {
+       this.setState({
+         loadedEvents: [...this.state.loadedEvents, ...nextProps.timelineContent]
+       });
+     }
    }
 componentWillUnmount(){
   const { firestore, currentUser } = this.props
@@ -32,14 +49,29 @@ componentWillUnmount(){
     limit: 5
   })
 }
+   getNextEvents = async () => {
+     const { timelineContent } = this.props;
+     let lastEvent = timelineContent && timelineContent[timelineContent.length - 1];
+     let next = await this.props.getEventsForDashboard(lastEvent);
+     console.log(next)
+     if (next && next.docs && next.docs.length <= 1) {
+       this.setState({
+         moreEvents: false
+       });
+     }
+   };
+
   render() {
-    const { timelineContent, topExpert, currentUser, statistics } = this.props
+    const { timelineContent, topExpert, currentUser, statistics, loading } = this.props
     return (
         <div>
         <CardHeader statistics={statistics}/>
         <div className="row">
           <div className="col-md-8">
-            <Timeline timelineContent={timelineContent}/>
+            <Timeline timelineContent={this.state.loadedEvents}/>
+            <Button disable={!this.state.moreEvents} loading={loading} onClick={this.getNextEvents} className="btn btn-raised btn-primary mr-1">
+              More
+                        </Button>
             </div>
           <div className="col-md-4">
             <TopUser currentUser={currentUser} topExpert={topExpert}/>
@@ -54,7 +86,11 @@ const mapStateToProps = (state) => {
     topExpert: state.firestore.ordered.topExpert,
     currentUser: state.firebase.auth,
     statistics: state.firestore.ordered.statistics ? state.firestore.ordered.statistics[0] : {activeSignal:0,experts:0,pips:0,users:0},
-    timelineContent: state.firestore.ordered.notifications,
+    loading: state.async.loading,
+    timelineContent: state.events,
   })
 };
-export default connect(mapStateToProps, null)(withFirestore(Dashboard));
+const actions = {
+  getEventsForDashboard
+};
+export default connect(mapStateToProps, actions)(withFirestore(Dashboard));
