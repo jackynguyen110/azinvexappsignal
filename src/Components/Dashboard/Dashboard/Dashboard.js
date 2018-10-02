@@ -63,12 +63,16 @@ componentWillUnmount(){
 
   render() {
     const { timelineContent, topExpert, currentUser, statistics, loading } = this.props
+    const { moreEvents, loadedEvents } = this.state;
     return (
         <div>
         <CardHeader statistics={statistics}/>
         <div className="row">
           <div className="col-md-8">
-            <Timeline timelineContent={this.state.loadedEvents}/>
+            <Timeline loading={loading}
+              moreEvents={moreEvents}
+              timelineContent={loadedEvents}
+              getNextEvents={this.getNextEvents} />
             <Button disable={!this.state.moreEvents} loading={loading} onClick={this.getNextEvents} className="btn btn-raised btn-primary mr-1">
               More
                         </Button>
