@@ -32,7 +32,6 @@ class FormSignal extends React.Component {
 
 
     render() { 
-      console.log(this.props.myActiveSignals)
       const { handleSubmit, error ,loading,signal, selectedSignal } = this.props   
     return (
       <div className="col-md-12 col-lg-4">

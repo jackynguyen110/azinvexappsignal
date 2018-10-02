@@ -7,7 +7,9 @@ export const API_URL = 'http://api.azinvex.com/api/';
 const delay = require('delay');
 
 export const createSignal = (currentUser, signal) => {
-  return async (dispatch, getState, { getFirestore }) => {
+  return async (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase();
+    let token = await firebase.auth().currentUser.getIdToken(true)
     dispatch(asyncActionStart());
     const { symbol, type, stoploss, takeprofit } = signal
     try {
@@ -23,7 +25,7 @@ export const createSignal = (currentUser, signal) => {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
                 "Access-Control-Allow-Origin": "*",
-                'Authorization': currentUser.stsTokenManager.accessToken,
+              'Authorization': token,
             }
         };
         let url = API_URL + 'signals';
@@ -53,7 +55,9 @@ export const selectedSignal = signal => {
 }
 
 export const updateSignal = (currentUser, id, signal) => {
-  return async (dispatch, getState) => {
+  return async (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+    let token = await firebase.auth().currentUser.getIdToken(true)
     dispatch(asyncActionStart());
     const signalData = {
         stoploss:signal.stoploss,
@@ -65,7 +69,7 @@ export const updateSignal = (currentUser, id, signal) => {
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
             "Access-Control-Allow-Origin": "*",
-            'Authorization': currentUser.stsTokenManager.accessToken
+            'Authorization': token
         }
     };
     let url = API_URL + 'signals/' + id;
@@ -87,14 +91,16 @@ export const updateSignal = (currentUser, id, signal) => {
 
 
 export const closeSignal = (currentUser, ticket) => {
-  return async (dispatch, getState) => {
+  return async (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+    let token = await firebase.auth().currentUser.getIdToken(true)
     dispatch(asyncActionStart());
     try {
       let axiosConfig = {
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
             "Access-Control-Allow-Origin": "*",
-            'Authorization': currentUser.stsTokenManager.accessToken
+            'Authorization': token
         }
     };
     let url = API_URL + 'signals/' + ticket;
