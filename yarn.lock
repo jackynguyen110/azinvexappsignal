@@ -2377,6 +2377,10 @@ del@^3.0.0:
     pify "^3.0.0"
     rimraf "^2.2.8"
 
+delay@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/delay/-/delay-4.0.1.tgz#052120e49bc3617a92e9a6cd9556be2cf23397a0"
+
 delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
@@ -7407,6 +7411,13 @@ retry@^0.10.0:
 retry@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/retry/-/retry-0.12.0.tgz#1b42a6266a21f07421d1b0b54b7dc167b01c013b"
+
+revalidate@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/revalidate/-/revalidate-1.2.0.tgz#dffdd52a92e0158de79a5a85ce01b65815f55c5d"
+  dependencies:
+    lodash "^4.15.0"
+    object-assign "^4.1.0"
 
 right-align@^0.1.1:
   version "0.1.3"

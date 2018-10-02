@@ -32,14 +32,8 @@ class FormSignal extends React.Component {
 
 
     render() { 
-<<<<<<< HEAD
-      const { handleSubmit, error, loading } = this.props   
-      console.log(this.props.initialValues)
-=======
       console.log(this.props.myActiveSignals)
       const { handleSubmit, error ,loading,signal, selectedSignal } = this.props   
-
->>>>>>> 24facd5e04112da5f1ca63122014fdb4d88f6e65
     return (
       <div className="col-md-12 col-lg-4">
         <div className="card">

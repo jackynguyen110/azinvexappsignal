@@ -9,13 +9,11 @@ const mapState = (state) => ({
     currentUser: state.firebase.auth
 })
 class AccountPage extends React.Component {
-    onFormSubmit(creds){
+    onFormSubmit = (creds) => {
         const { firestore, currentUser } = this.props;
-        // console.log(this.props)
         firestore.update({ collection: 'users', doc: currentUser.uid }, creds)
     }
     render(){
-        console.log(this.props.initialValues)
         const { handleSubmit } = this.props
         return(<section id="accoutPage">
 
@@ -45,10 +43,6 @@ class AccountPage extends React.Component {
                                             <div className="form-group col-md-6 mb-2">
                                                 <label htmlFor="userinput1">Tên Đầy Đủ</label>
                                                 <Field component={TextInputForm} type="text" id="displayName" className="form-control border-primary" placeholder="Tên Đầy Đủ" name="displayName" />
-                                            </div>
-                                            <div className="form-group col-md-6 mb-2">
-                                                <label htmlFor="userinput2">Nick Name</label>
-                                                <Field component={TextInputForm} type="text" id="username" className="form-control border-primary" placeholder="username" name="username" />
                                             </div>
                                         </div>
 
