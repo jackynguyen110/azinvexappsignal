@@ -71,14 +71,14 @@ class ExpertDetail extends Component {
       },
     )
   }
-  follow(followedId) {
+  follow(expert) {
     const { firestore, currentUser } = this.props
-    firestore.set({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` }, { followedId, followerId: currentUser.uid, createdAt: firestore.FieldValue.serverTimestamp() })
+    firestore.set({ collection: 'relationships', doc: `${currentUser.uid}_${expert.id}` }, { followedId: expert.id, followerId: currentUser.uid, createdAt: firestore.FieldValue.serverTimestamp(), displayName: expert.displayName, photoURL: expert.photoURL, })
     this.setState({ isFollowed: true })
   }
-  unfollow(followedId) {
+  unfollow(expert) {
     const { firestore, currentUser } = this.props
-    firestore.delete({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` })
+    firestore.delete({ collection: 'relationships', doc: `${currentUser.uid}_${expert.id}` })
     this.setState({ isFollowed: false })
   }
 
@@ -125,7 +125,7 @@ class ExpertDetail extends Component {
                   <div className="profile-cover-buttons">
                     <div className="media-body halfway-fab align-self-end">
                       <div className="text-right d-none d-sm-none d-md-none d-lg-block">
-                        {isFollowed !== null ? (isFollowed ? <button onClick={() => this.unfollow(expertDetail.id)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expertDetail.id)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>) : null}
+                        {isFollowed !== null ? (isFollowed ? <button onClick={() => this.unfollow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>) : null}
                         {/* <button type="button" className="btn btn-primary btn-raised mr-2"><i className="fa fa-plus" /> Theo Dõi</button> */}
                       </div>
                     </div>

@@ -1,7 +1,56 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { withFirestore } from 'react-redux-firebase'
+import moment from 'moment';
 class followSignal extends Component {
+    state={
+      selectedExpert: undefined
+    }
+    componentDidMount(){
+      const { firestore, currentUser } = this.props;
+      firestore.get(
+        {
+          collection: 'relationships',
+          where: ['followerId', '==', currentUser.uid],
+          storeAs: 'followedExpert'
+        },
+      )
+    }
+    componentWillUnmount(){
+      const { firestore } = this.props;
+      firestore.unsetListener(
+        {
+          collection: 'signals',
+          where: ['expert.id', '==', this.state.selectedExpert],
+          storeAs: 'activeSignals'
+        },
+      )
+    }
+    isSelected = (expertId) =>{
+      return this.state.selectedExpert === expertId
+    }
+    selectExpert = async (expertId)=>{
+      const { firestore, currentUser } = this.props;
+    if (this.state.selectedExpert){
+      firestore.unsetListener(
+        {
+          collection: 'signals',
+          where: ['expert.id', '==', this.state.selectedExpert],
+          storeAs: 'activeSignals'
+        },
+      )
+    }
+      firestore.setListener(
+        {
+          collection: 'signals',
+          where: ['expert.id', '==', expertId],
+          storeAs: 'activeSignals'
+        },
+      )
+      this.setState({ selectedExpert: expertId})
+    }
     render() {
+      const { followedExpert, activeSignals} = this.props
         return (
             <div className="row match-height">
             <div className="col-xl-4 col-lg-12">
@@ -11,41 +60,15 @@ class followSignal extends Component {
                 </div>
                 <div className="card-body">
                   <div className="card-block">
-                    <div className="media mb-3">
-                      <img alt="96x96" className="media-object d-flex mr-3 align-self-center bg-primary height-50 rounded-circle" src="../app-assets/img/portrait/small/avatar-s-12.png" />
+                    {followedExpert&&followedExpert.map(e => <div key={e.id} className="media mb-3">
+                      <img alt="96x96" className="media-object d-flex mr-3 align-self-center bg-primary height-50 rounded-circle" src={e.photoURL} />
                       <div className="media-body">
-                        <h4 className="font-medium-1 mt-2 mb-0">Jessica Rice</h4>
+                        <h4 className="font-medium-1 mt-2 mb-0">{e.displayName}</h4>
                       </div>
-                      <a className="d-flex ml-3 btn btn-raised btn-round gradient-blackberry py-2 width-150 justify-content-center white">Following</a>
-                    </div>
-                    <div className="media mb-3">
-                      <img alt="96x96" className="media-object d-flex mr-3 align-self-center bg-danger height-50 rounded-circle" src="../app-assets/img/portrait/small/avatar-s-11.png" />
-                      <div className="media-body">
-                        <h4 className="font-medium-1 mt-2 mb-0">Jacob Rios</h4>
-                      </div>
-                      <a className="d-flex ml-3 btn btn-raised btn-round btn-outline-grey py-2 width-150 justify-content-center">Follow</a>
-                    </div>
-                    <div className="media mb-3">
-                      <img alt="96x96" className="media-object d-flex mr-3 align-self-center bg-success height-50 rounded-circle" src="../app-assets/img/portrait/small/avatar-s-3.png" />
-                      <div className="media-body">
-                        <h4 className="font-medium-1 mt-2 mb-0">Russell Diaz</h4>
-                      </div>
-                      <a className="d-flex ml-3 btn btn-raised btn-round btn-outline-grey py-2 width-150 justify-content-center">Follow</a>
-                    </div>
-                    <div className="media mb-3">
-                      <img alt="96x96" className="media-object d-flex mr-3 align-self-center bg-warning height-50 rounded-circle" src="../app-assets/img/portrait/small/avatar-s-6.png" />
-                      <div className="media-body">
-                        <h4 className="font-medium-1 mt-2 mb-0">Sara Bell</h4>
-                      </div>
-                      <a className="d-flex ml-3 btn btn-raised btn-round gradient-blackberry py-2 width-150 justify-content-center white">Following</a>
-                    </div>
-                    <div className="media mb-3">
-                      <img alt="96x96" className="media-object d-flex mr-3 align-self-center bg-info height-50 rounded-circle" src="../app-assets/img/portrait/small/avatar-s-18.png" />
-                      <div className="media-body">
-                        <h4 className="font-medium-1 mt-2 mb-0">Janet Lucas</h4>
-                      </div>
-                      <a className="d-flex ml-3 btn btn-raised btn-round btn-outline-grey py-2 width-150 justify-content-center">Follow</a>
-                    </div>
+                      {!this.isSelected(e.followedId) ? <a onClick={() => this.selectExpert(e.followedId)} className="d-flex ml-3 btn btn-raised btn-round btn-outline-grey py-2 width-150 justify-content-center">View</a> : <a className="d-flex ml-3 btn btn-raised btn-round gradient-blackberry py-2 width-150 justify-content-center white">Viewing</a>}
+                      
+                    </div>)}
+                  
                   </div>
                 </div>
               </div>
@@ -61,28 +84,31 @@ class followSignal extends Component {
                           <thead>
                             <tr>
                               <th></th>
+                          <th>Ticket</th>
                               <th>Cặp Tiền</th>
                               <th>Stoploss</th>
                               <th>TakeProfit</th>
                               <th>Thời Gian mở</th>
                               <th>Giá mở cửa</th>
-                              <th>Kết Quả</th>
+                              {/* <th>Kết Quả</th> */}
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                                <td><img className="media-object round-media" src="https://thumbs.gfycat.com/ImmaculateUnacceptableArizonaalligatorlizard-size_restricted.gif" alt="Generic placeholder" style={{ height: 35 }} /></td>
-                                <td>324234</td>
-                                <td>234234</td>
-                                <td>234234</td>
-                                <td>
-                                 
-                                </td>
-                                <td>234234</td>
-                                <td>
-                                  <button type="button" className="btn btn-raised btn-info btn-min-width mr-1 mb-1">Running...</button>
-                                </td>
-                              </tr>
+                        {activeSignals && activeSignals.map(e =>
+                          <tr>
+                            <td><img className="media-object round-media" src="https://thumbs.gfycat.com/ImmaculateUnacceptableArizonaalligatorlizard-size_restricted.gif" alt="Generic placeholder" style={{ height: 35 }} /></td>
+                            <td>{e.ticket}</td>
+                            <td>{e.symbol}</td>
+                            <td>{e.stoploss}</td>
+                            <td>{e.takeprofit}</td>
+                            <td>{moment(e.startAt.seconds*1000).format('HH:mm DD/MM/YYYY')}</td>
+                            <td>{e.openPrice}</td>
+                            {/* <td>
+                              <button type="button" className="btn btn-raised btn-info btn-min-width mr-1 mb-1">Running...</button>
+                            </td> */}
+                          </tr>
+                        )}
+                      
                       
                           </tbody>
                         </table>
@@ -95,5 +121,10 @@ class followSignal extends Component {
         );
     }
 }
+const mapState = (state) => ({
+  currentUser: state.firebase.auth,
+  followedExpert: state.firestore.ordered.followedExpert,
+  activeSignals: state.firestore.ordered.activeSignals,
+});
 
-export default followSignal;
+export default connect(mapState, null)(withFirestore(followSignal));

@@ -26,7 +26,6 @@ export const getEventsForDashboard = lastEvent => async (dispatch, getState) => 
         .orderBy('createdAt', 'desc')
         .limit(5));
     let querySnap = await query.get();
-    console.log(querySnap)
     if (querySnap.docs.length === 0) {
       dispatch(asyncActionFinish());
       return querySnap;

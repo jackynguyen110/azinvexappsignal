@@ -15,14 +15,14 @@ class ExpertCard extends Component {
     const doc = await firestore.get({ collection: 'relationships', doc: `${currentUser.uid}_${expert.id}` })
     this.setState({ isFollowed: doc.exists})
   }
-  follow(followedId) {
+  follow(expert) {
     const { firestore, currentUser } = this.props
-    firestore.set({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` }, { followedId, followerId: currentUser.uid, createdAt: firestore.FieldValue.serverTimestamp() })
+    firestore.set({ collection: 'relationships', doc: `${currentUser.uid}_${expert.id}` }, { followedId: expert.id, followerId: currentUser.uid, displayName: expert.displayName, photoURL: expert.photoURL, createdAt: firestore.FieldValue.serverTimestamp() })
     this.setState({ isFollowed: true })
   }
-  unfollow(followedId) {
+  unfollow(expert) {
     const { firestore, currentUser } = this.props
-    firestore.delete({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` })
+    firestore.delete({ collection: 'relationships', doc: `${currentUser.uid}_${expert.id}` })
     this.setState({ isFollowed: false })
   }
   render(){
@@ -41,7 +41,7 @@ class ExpertCard extends Component {
                   <h4 className="card-title mt-3">{expert.displayName}</h4>
                   <p className="card-text">{expert.information ? expert.information.about : ''}</p>
                   <button  type="button" className="btn btn-raised btn-secondary btn-min-width mr-1 mb-1"><Link to={`/expert/${expert.id}`}>Chi Tiết</Link></button>
-                  {this.state.isFollowed !== null ? (this.state.isFollowed ? <button onClick={() => this.unfollow(expert.id)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expert.id)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>):null}
+                  {this.state.isFollowed !== null ? (this.state.isFollowed ? <button onClick={() => this.unfollow(expert)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expert)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>):null}
             
 
                   <ul className="no-list-style">

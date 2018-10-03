@@ -35,6 +35,7 @@ export const registerUser = (user) =>
       // create a new profile in firestore
       let newUser = {
         displayName: user.displayName,
+        role: "member",
         createdAt: firestore.FieldValue.serverTimestamp()
       }
       await firestore.set(`users/${createdUser.uid}`, {...newUser})
@@ -60,6 +61,7 @@ export const socialLogin = (selectedProvider) =>
         await firestore.set(`users/${user.user.uid}`, {
           displayName: user.profile.displayName,
           photoURL: user.profile.avatarUrl,
+          role: "member",
           createdAt: firestore.FieldValue.serverTimestamp()
         })
       }

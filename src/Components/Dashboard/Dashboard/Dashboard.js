@@ -25,6 +25,7 @@ import { getEventsForDashboard } from '../notificationActions';
      const { firestore, currentUser } = this.props
      firestore.setListener({
          collection: 'users',
+          where: ['role', '==', 'expert'],
          orderBy: ['totalpips'],
          storeAs: 'topExpert',
          limit: 5
@@ -53,7 +54,6 @@ componentWillUnmount(){
      const { timelineContent } = this.props;
      let lastEvent = timelineContent && timelineContent[timelineContent.length - 1];
      let next = await this.props.getEventsForDashboard(lastEvent);
-     console.log(next)
      if (next && next.docs && next.docs.length <= 1) {
        this.setState({
          moreEvents: false

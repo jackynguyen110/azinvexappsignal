@@ -38,14 +38,14 @@ class Timeline extends Component {
                                     return (
                                         <li key={index} className="timeline-item">
                                             <div className="timeline-badge">
-                                                <span className="avatar avatar-online" data-toggle="tooltip" data-placement="left" title={"Expert: " + item.expert.username}>
+                                                <span className="avatar avatar-online" data-toggle="tooltip" data-placement="left" title={"Expert: " + item.expert.displayName}>
                                                     <img src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" className="rounded-circle" alt="avatar" width={40} />
                                                 </span>
                                             </div>
                                             <div className="timeline-card card border-grey border-lighten-2">
                                                 <div className="card-header">
                                                     <span className="badge badge-primary mr-1 mb-1">Ticket : {item.ticket}</span>
-                                                    <span className="badge badge-info mr-1 mb-1">{item.expert.username}</span>
+                                                    <span className="badge badge-info mr-1 mb-1">{item.expert.displayName}</span>
                                                     {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Mở lệnh</span>}
                                                     {item.type == 2 && <span className="badge badge-info mr-1 mb-1">Thay đổi lệnh</span>}
                                                     {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Đóng lệnh</span>}
