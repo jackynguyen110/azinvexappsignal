@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 import moment from 'moment';
 import Chat from './Chat'
+import { connect } from 'react-redux';
+import { withFirestore, firebaseConnect, isEmpty } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { objectToArray, createDataTree } from '../../../../app/common/util/helper';
+import { addEventComment } from '../../expertsActions'
+
 class SignalRoom extends Component {
 
   render() {
-    const { todayList, activeList } = this.props
+    console.log(this.props)
+    const { todayList, activeList, expertDetail, expertChat } = this.props
     return (
       <div>
       <section id="about">
@@ -74,6 +81,7 @@ class SignalRoom extends Component {
                         </table>
                       </div>
                     </div>
+                 
                       {/* <div className="tab-pane" id="tabIcon2" aria-labelledby="baseIcon-tab2">
                       <p>Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels. Jelly-o pie cupcake.</p>
                     </div> */}
@@ -84,9 +92,29 @@ class SignalRoom extends Component {
           </div>
           </div>
       </section>
-      <Chat />
+      <Chat expertChat={expertChat}  expertId={expertDetail.id} />
       </div>
     )
   }
 }
-export default SignalRoom
+
+
+const mapState = (state, ownProps) => {
+  return {
+    loading: state.async.loading,
+    expertChat: !isEmpty(state.firebase.data.expert_chat) &&
+     objectToArray(state.firebase.data.expert_chat[ownProps.expertDetail.id])
+  }
+};
+
+const actions = {
+  addEventComment
+};
+
+
+
+export default compose(
+  withFirestore,
+  connect(mapState, actions),
+  firebaseConnect(props => [`expert_chat/${props.expertDetail.id}`])
+)(SignalRoom);

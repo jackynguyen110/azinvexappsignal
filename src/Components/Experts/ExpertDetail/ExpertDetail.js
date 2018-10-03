@@ -24,6 +24,7 @@ class ExpertDetail extends Component {
       )
   }
   componentDidMount() {
+    
     this.isFollowed()
     const { firestore } = this.props
     firestore.get(
@@ -85,7 +86,7 @@ class ExpertDetail extends Component {
     const { expertDetail, todayList, activeList } = this.props
     switch (this.state.current) {
       case "SIGNAL_ROOM":
-        return <SignalRoom activeList={activeList} todayList={todayList} />;
+        return <SignalRoom expertDetail={expertDetail}  activeList={activeList} todayList={todayList} />;
       case "INFOMARTION":
         return <Information expertDetail={expertDetail} />;
       default:
@@ -94,7 +95,9 @@ class ExpertDetail extends Component {
   }
 
   render() {
+    
     const { expertDetail, isFollowed} = this.props
+  
     return (
       <div>
         <section id="user-profile">
