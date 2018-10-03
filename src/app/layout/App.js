@@ -14,6 +14,7 @@ import PageRoute from '../routes/PageRoute';
 import { connect } from 'react-redux';
 import LoadingComponent from './Loading/LoadingComponent'
 import UserManager from '../../Components/admin/UserManager/UserManager';
+import followSignal from '../../Components/FollowSignal/followSignal';
 class App extends Component {
   
   render () {
@@ -37,7 +38,8 @@ class App extends Component {
             <ExpertRoute isAuthenticated={isAuthenticated} component={AccountPage} path="/information" />
             <ExpertRoute isAuthenticated={isAuthenticated} component={Changepass} path="/changepassword" />
             <ExpertRoute isAuthenticated={isAuthenticated} component={ManageSignal} path="/managesignal" />
-            <ExpertRoute isAuthenticated={UserManager} component={UserManager} path="/admin/users" />
+            <ExpertRoute isAuthenticated={isAuthenticated} component={UserManager} path="/admin/users" />
+            <ExpertRoute isAuthenticated={isAuthenticated} component={followSignal} path="/signals" />
           </Switch>
         </div>
       );
