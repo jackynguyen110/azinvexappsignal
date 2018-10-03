@@ -1,5 +1,5 @@
 import React,  { Component } from 'react'
-
+import { connect } from "react-redux";
 import Logo from 'assets/img/logo.png'
 import { NavLink } from 'react-router-dom'
 import $ from 'jquery'
@@ -151,6 +151,8 @@ class MainMenu extends Component {
     }
   
     render () {
+      const { profileUser } = this.props;
+      console.log(profileUser);
         return (
             <div data-active-color="white" data-background-color="black" data-image="https://pixinvent.com/apex-angular-4-bootstrap-admin-template/demo-1/assets/img/sidebar-bg/01.jpg" className="app-sidebar">
                 <div className="sidebar-header">
@@ -160,32 +162,35 @@ class MainMenu extends Component {
                 <div className="sidebar-content">
                 <div className="nav-container">
                     <ul id="main-menu-navigation" data-menu="menu-navigation" className="navigation navigation-main">
-                    <li className="nav-item"><NavLink to="/" ><i className="ft-home" /><span data-i18n className="menu-title">Room Tín Hiệu</span></NavLink>
-                    </li>
-                    <li className="nav-item"><NavLink to="/experts" ><i className="ft-home" /><span data-i18n className="menu-title">Danh Sách Chuyên Gia</span></NavLink>
-                    </li>
-                    <li onClick={this.checkClass} className="nav-item has-sub">
-                        <a>
-                            <i className="ft-edit" />
-                            <span data-i18n className="menu-title">Quản Lý</span>
-                        </a>
-                        <ul className="menu-content">
-                            <li>
-                                <NavLink to="/information" href="validation-forms.html" className="menu-item">Thông Tin Cá Nhân</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/changepassword" className="menu-item">Đổi Mật Khẩu</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/account" className="menu-item">Thông Tin Tài Khoản</NavLink>
-                            </li>
-                        </ul>
-                    </li>
-        
-                    <li className=" nav-item"><NavLink to="/help"><i className="ft-book" /><span data-i18n className="menu-title">Hướng Dẫn Sử Dụng</span></NavLink>
-                    </li>
-                    <li className=" nav-item"><NavLink to="/tours"><i className="ft-life-buoy" /><span data-i18n className="menu-title">Hỗ Trợ</span></NavLink>
-                    </li>
+                      {(profileUser.role && profileUser.role === 'expert') &&
+                        <li className="nav-item"><NavLink to="/managesignal" ><i className="ft-home" /><span data-i18n className="menu-title">Manage Signal</span></NavLink></li>
+                      }
+                      {(profileUser.role && profileUser.role === 'member') &&
+                        <li className="nav-item"><NavLink to="/" ><i className="ft-home" /><span data-i18n className="menu-title">Room Tín Hiệu</span></NavLink></li>
+                      }
+                      {(profileUser.role && profileUser.role === 'member') &&
+                        <li className="nav-item"><NavLink to="/experts" ><i className="ft-home" /><span data-i18n className="menu-title">Danh Sách Chuyên Gia</span></NavLink></li>
+                      }
+                      <li onClick={this.checkClass} className="nav-item has-sub">
+                          <a>
+                              <i className="ft-edit" />
+                              <span data-i18n className="menu-title">Quản Lý</span>
+                          </a>
+                          <ul className="menu-content">
+                              <li>
+                                  <NavLink to="/information" href="validation-forms.html" className="menu-item">Thông Tin Cá Nhân</NavLink>
+                              </li>
+                              <li>
+                                  <NavLink to="/changepassword" className="menu-item">Đổi Mật Khẩu</NavLink>
+                              </li>
+                              <li>
+                                  <NavLink to="/account" className="menu-item">Thông Tin Tài Khoản</NavLink>
+                              </li>
+                          </ul>
+                      </li>
+
+                      <li className=" nav-item"><NavLink to="/help"><i className="ft-book" /><span data-i18n className="menu-title">Hướng Dẫn Sử Dụng</span></NavLink></li>
+                      <li className=" nav-item"><NavLink to="/tours"><i className="ft-life-buoy" /><span data-i18n className="menu-title">Hỗ Trợ</span></NavLink></li>
                     
                     </ul>
                 </div>
@@ -198,4 +203,11 @@ class MainMenu extends Component {
    
 }
 
-export default MainMenu
+export default connect(
+  state => ({
+    profileUser: state.firebase.profile
+  }),
+  {
+   // action
+  }
+)(MainMenu);

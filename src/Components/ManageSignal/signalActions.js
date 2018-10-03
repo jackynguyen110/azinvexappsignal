@@ -4,7 +4,7 @@ import { SELECTED_SIGNAL } from './signalConstants'
 import moment from 'moment';
 import axios from 'axios';
 export const API_URL = 'http://api.azinvex.com/api/';
-const delay = require('delay');
+// const delay = require('delay');
 
 export const createSignal = (currentUser, signal) => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -104,8 +104,12 @@ export const closeSignal = (currentUser, ticket) => {
         }
     };
     let url = API_URL + 'signals/' + ticket;
+    const wait = ms => {
+      return new Promise(r => setTimeout(r, ms))
+    }
     axios.patch(url, null, axiosConfig)
-      await delay(1000);
+      // await delay(1000);
+      await wait(1000)
       dispatch(asyncActionFinish());
       toastr.success('Success', 'Đóng Signal thành công');
     } catch (error) {
