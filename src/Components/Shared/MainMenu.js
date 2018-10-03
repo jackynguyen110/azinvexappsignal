@@ -152,7 +152,6 @@ class MainMenu extends Component {
   
     render () {
       const { profileUser } = this.props;
-      console.log(profileUser);
         return (
             <div data-active-color="white" data-background-color="black" data-image="https://pixinvent.com/apex-angular-4-bootstrap-admin-template/demo-1/assets/img/sidebar-bg/01.jpg" className="app-sidebar">
                 <div className="sidebar-header">
