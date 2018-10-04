@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import Avatar from 'assets/img/elements/01.png'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import {  firestoreConnect } from 'react-redux-firebase';
-import { objectToArray } from '../../../app/common/util/helper';
 import { withFirestore } from 'react-redux-firebase';
 class UserManager extends Component {
     setExpert = (uid) => {
         const { firestore } = this.props
         const itemUpdates = {
             role: 'expert',
+            totalpips : 0,
+            signalWin: 0,
+            signalLoss: 0,
             updatedAt: firestore.FieldValue.serverTimestamp()
         }
         firestore.update({ collection: 'users', doc: uid }, itemUpdates)
@@ -54,13 +55,13 @@ class UserManager extends Component {
                                         console.log(user)
                                       return(
                                             <tr key={user.id}>
-                                                <td><img className="media-object round-media" src={user.avatar} alt="Generic placeholder image" style={{height: 75}} /></td>
+                                                <td><img className="media-object round-media" src={user.avatar} alt="Generic placeholder" style={{height: 75}} /></td>
                                                 <td>{user.email}</td>
                                                 <td>{user.username}</td>
                                                 <td>{user.role}</td>
                                                
                                                 <td>
-                                                  {user.role == "member" ? <button onClick={() => this.setExpert(user.id)} className="btn btn-success btn-raised">Set Expert</button> : <button onClick={() => this.unsetExpert(user.id)} className="btn btn-success btn-raised">Unset Expert</button>}
+                                                  {user.role === "member" ? <button onClick={() => this.setExpert(user.id)} className="btn btn-success btn-raised">Set Expert</button> : <button onClick={() => this.unsetExpert(user.id)} className="btn btn-success btn-raised">Unset Expert</button>}
                                                 </td>
                                             </tr>)
                                         })

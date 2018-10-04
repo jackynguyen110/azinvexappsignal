@@ -7,10 +7,8 @@ import { connect } from 'react-redux';
 import Button from 'react-bootstrap-button-loader';
 import { createSignal, updateSignal, selectedSignal} from '../signalActions'
 import {
-  composeValidators,
   combineValidators,
   isRequired,
-  hasLengthGreaterThan
 } from 'revalidate';
 // import SelectInput from '../../../app/common/form/SelectInput';
 

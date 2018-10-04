@@ -30,7 +30,7 @@ class followSignal extends Component {
       return this.state.selectedExpert === expertId
     }
     selectExpert = async (expertId)=>{
-      const { firestore, currentUser } = this.props;
+      const { firestore } = this.props;
     if (this.state.selectedExpert){
       firestore.unsetListener(
         {

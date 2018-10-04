@@ -46,16 +46,16 @@ class Timeline extends Component {
                                                 <div className="card-header">
                                                     <span className="badge badge-primary mr-1 mb-1">Ticket : {item.ticket}</span>
                                                     <span className="badge badge-info mr-1 mb-1">{item.expert.displayName}</span>
-                                                    {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Mở lệnh</span>}
-                                                    {item.type == 2 && <span className="badge badge-info mr-1 mb-1">Thay đổi lệnh</span>}
-                                                    {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Đóng lệnh</span>}
+                                                    {item.type === 1 && <span className="badge badge-success mr-1 mb-1">Mở lệnh</span>}
+                                                    {item.type === 2 && <span className="badge badge-info mr-1 mb-1">Thay đổi lệnh</span>}
+                                                    {item.type === 3 && <span className="badge badge-danger mr-1 mb-1">Đóng lệnh</span>}
                                                     <span className="badge badge-dark mr-1 mb-1">{moment(item.createdAt.seconds * 1000).format('HH:mm DD/MM/YYYY')}</span>
                                                     {item.typeSignal ? <span className="badge badge-danger mr-1 mb-1"> SELL </span> : <span className="badge badge-success mr-1 mb-1"> BUY </span>}
                                                     <span className="badge badge-warning mr-1 mb-1">{item.symbol}</span>
-                                                    {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Open Price : {item.openPrice}</span>}
-                                                    {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Close Price : {item.closePrice}</span>}
-                                                    {item.type == 3 && (item.profit >= 0 ? <span className="badge badge-success mr-1 mb-1">Profit : +{item.profit} pips</span> : <span className="badge badge-danger mr-1 mb-1">Profit : {item.profit} pips</span>)}
-                                                    {item.type == 2 ? <div className="card-subtitle text-muted">
+                                                    {item.type === 1 && <span className="badge badge-success mr-1 mb-1">Open Price : {item.openPrice}</span>}
+                                                    {item.type === 3 && <span className="badge badge-danger mr-1 mb-1">Close Price : {item.closePrice}</span>}
+                                                    {item.type === 3 && (item.profit >= 0 ? <span className="badge badge-success mr-1 mb-1">Profit : +{item.profit} pips</span> : <span className="badge badge-danger mr-1 mb-1">Profit : {item.profit} pips</span>)}
+                                                    {item.type === 2 ? <div className="card-subtitle text-muted">
                                                         <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
                                                             Stoploss <span className="badge badge-danger">{item.stoploss}</span>
                                                         </button>
@@ -85,17 +85,17 @@ class Timeline extends Component {
                                             <div className="card-header">
                                                 <span className="badge badge-primary mr-1 mb-1">Ticket : {item.ticket}</span>
                                                 <span className="badge badge-info mr-1 mb-1">{item.expert.username}</span>
-                                                {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Mở lệnh</span>}
-                                                {item.type == 2 && <span className="badge badge-info mr-1 mb-1">Thay đổi lệnh</span>}
-                                                {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Đóng lệnh</span>}
+                                                {item.type === 1 && <span className="badge badge-success mr-1 mb-1">Mở lệnh</span>}
+                                                {item.type === 2 && <span className="badge badge-info mr-1 mb-1">Thay đổi lệnh</span>}
+                                                {item.type === 3 && <span className="badge badge-danger mr-1 mb-1">Đóng lệnh</span>}
 
                                                 <span className="badge badge-dark mr-1 mb-1">{moment(item.createdAt.seconds * 1000).format('HH:mm DD/MM/YYYY')}</span>
                                                 {item.typeSignal ? <span className="badge badge-danger mr-1 mb-1"> SELL </span> : <span className="badge badge-success mr-1 mb-1"> BUY </span>}
                                                 <span className="badge badge-warning mr-1 mb-1">{item.symbol}</span>
-                                                {item.type == 1 && <span className="badge badge-success mr-1 mb-1">Open Price : {item.openPrice}</span>}
-                                                {item.type == 3 && <span className="badge badge-danger mr-1 mb-1">Close Price : {item.closePrice}</span>}
-                                                {item.type == 3 && (item.profit >= 0 ? <span className="badge badge-success mr-1 mb-1">Profit : +{item.profit} pips</span> : <span className="badge badge-danger mr-1 mb-1">Profit : {item.profit} pips</span>)}
-                                                {item.type == 2 ? <div className="card-subtitle text-muted">
+                                                {item.type === 1 && <span className="badge badge-success mr-1 mb-1">Open Price : {item.openPrice}</span>}
+                                                {item.type === 3 && <span className="badge badge-danger mr-1 mb-1">Close Price : {item.closePrice}</span>}
+                                                {item.type === 3 && (item.profit >= 0 ? <span className="badge badge-success mr-1 mb-1">Profit : +{item.profit} pips</span> : <span className="badge badge-danger mr-1 mb-1">Profit : {item.profit} pips</span>)}
+                                                {item.type === 2 ? <div className="card-subtitle text-muted">
                                                     <button className="btn btn-white btn-raised  mr-1 mb-1" type="button">
                                                         Stoploss <span className="badge badge-danger">{item.stoploss}</span>
                                                     </button>

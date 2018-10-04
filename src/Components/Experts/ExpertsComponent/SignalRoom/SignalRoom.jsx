@@ -4,13 +4,12 @@ import Chat from './Chat'
 import { connect } from 'react-redux';
 import { withFirestore, firebaseConnect, isEmpty } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { objectToArray, createDataTree } from '../../../../app/common/util/helper';
+import { objectToArray } from '../../../../app/common/util/helper';
 import { addEventComment } from '../../expertsActions'
 
 class SignalRoom extends Component {
 
   render() {
-    console.log(this.props)
     const { todayList, activeList, expertDetail, expertChat } = this.props
     return (
       <div>

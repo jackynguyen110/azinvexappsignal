@@ -4,7 +4,6 @@ import Timeline from '../DashboadComponents/Timeline';
 import TopUser from '../DashboadComponents/TopUser';
 import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
-import Button from 'react-bootstrap-button-loader';
 import { getEventsForDashboard } from '../notificationActions';
 
  class Dashboard extends Component {
@@ -15,14 +14,14 @@ import { getEventsForDashboard } from '../notificationActions';
      contextRef: {}
    }
    async componentDidMount() {
-     let next = await this.props.getEventsForDashboard(currentUser);
+     const { firestore } = this.props
+     let next = await this.props.getEventsForDashboard();
      if (next && next.docs && next.docs.length > 1) {
        this.setState({
          moreEvents: true,
          loadingInitial: false
        });
      }
-     const { firestore, currentUser } = this.props
      firestore.setListener({
          collection: 'users',
           where: ['role', '==', 'expert'],
@@ -43,7 +42,7 @@ import { getEventsForDashboard } from '../notificationActions';
      }
    }
 componentWillUnmount(){
-  const { firestore, currentUser } = this.props
+  const { firestore } = this.props
   firestore.unsetListener({
     collection: 'users',
     orderBy: ['totalpips'],
@@ -62,7 +61,7 @@ componentWillUnmount(){
    };
 
   render() {
-    const { timelineContent, topExpert, currentUser, statistics, loading } = this.props
+    const { topExpert, currentUser, statistics, loading } = this.props
     const { moreEvents, loadedEvents } = this.state;
     return (
         <div>
@@ -73,9 +72,6 @@ componentWillUnmount(){
               moreEvents={moreEvents}
               timelineContent={loadedEvents}
               getNextEvents={this.getNextEvents} />
-            <Button disable={!this.state.moreEvents} loading={loading} onClick={this.getNextEvents} className="btn btn-raised btn-primary mr-1">
-              More
-                        </Button>
             </div>
           <div className="col-md-4">
             <TopUser currentUser={currentUser} topExpert={topExpert}/>

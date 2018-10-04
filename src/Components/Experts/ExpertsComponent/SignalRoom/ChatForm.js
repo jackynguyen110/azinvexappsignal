@@ -9,7 +9,7 @@ class ChatForm extends Component {
         
     handleSubmitForm = values => {
         console.log(this.props.expertId)
-        const { expertId, addEventComment, reset, closeForm, form } = this.props;
+        const { expertId, addEventComment, reset } = this.props;
         addEventComment(expertId, values)
         reset()
         
@@ -47,5 +47,4 @@ const actions = {
   };
 export default compose(
     connect(null, actions),
-    reduxForm({ form: 'chatForm', enableReinitialize: true }))
-    (ChatForm);
+    reduxForm({ form: 'chatForm', enableReinitialize: true }))(ChatForm);

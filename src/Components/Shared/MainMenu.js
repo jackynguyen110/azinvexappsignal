@@ -10,9 +10,9 @@ class MainMenu extends Component {
         var $wrapper = $('.wrapper');
 
         var $sidebar = $('.app-sidebar'),
-        $sidebar_content = $('.sidebar-content'),
-        $sidebar_img = $sidebar.data('image'),
-        $sidebar_img_container = $('.sidebar-background')
+        $sidebar_content = $('.sidebar-content')
+        // $sidebar_img = $sidebar.data('image'),
+        // $sidebar_img_container = $('.sidebar-background')
 
         $('.nav-toggle').on('click',function(){
             var $this = $(this),
@@ -156,7 +156,7 @@ class MainMenu extends Component {
             <div data-active-color="white" data-background-color="black" data-image="https://pixinvent.com/apex-angular-4-bootstrap-admin-template/demo-1/assets/img/sidebar-bg/01.jpg" className="app-sidebar">
                 <div className="sidebar-header">
                 <div className="logo clearfix"><a href="https://azinvex.com" className="logo-text float-left">
-                    <div className="logo-img"><img src={Logo} alt="" /></div><span className="text align-middle">AZINVEX</span></a><a id="sidebarToggle" href="javascript:;" className="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="collapsed" className="ft-toggle-left toggle-icon" /></a><a id="sidebarClose" href="javascript:;" className="nav-close d-block d-md-block d-lg-none d-xl-none"><i className="ft-x" /></a></div>
+                    <div className="logo-img"><img src={Logo} alt="" /></div><span className="text align-middle">AZINVEX</span></a><a id="sidebarToggle" className="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="collapsed" className="ft-toggle-left toggle-icon" /></a><a id="sidebarClose" className="nav-close d-block d-md-block d-lg-none d-xl-none"><i className="ft-x" /></a></div>
                 </div>
                 <div className="sidebar-content">
                 <div className="nav-container">

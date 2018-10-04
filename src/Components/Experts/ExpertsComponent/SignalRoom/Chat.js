@@ -1,23 +1,21 @@
 import React, {Component} from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { objectToArray } from 'app/common/util/helper';
 import ChatForm from './ChatForm';
-import { withFirestore, firebaseConnect, isEmpty } from 'react-redux-firebase';
 
 class Chat extends Component {
     render () {
-        const {expertChat, addEventComment, currentUser} = this.props
+        const {expertChat, currentUser} = this.props
         return (
             <div className="chat-application" style={{height: '700px'}}>
                 <section className="chat-app-window">
                 {expertChat &&
                     expertChat.map(Chat => (
-                        <div className="chats">
+                        <div key={Chat.id} className="chats">
                             <div className="chats">
                                 <div className={`chat ${Chat.uid !== currentUser.uid ? 'chat-left' : '' }`}>
                                     <div className="chat-avatar">
-                                        <a className="avatar" data-toggle="tooltip" href="#" data-placement="right" title data-original-title>
+                                        <a className="avatar" data-toggle="tooltip" data-placement="right" title="true" data-original-title>
                                         <img src={Chat.photoURL} className="width-50 rounded-circle" alt="avatar" />
                                         </a>
                                     </div>

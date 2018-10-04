@@ -20,49 +20,49 @@ const Notification = () => {
                         <li className="timeline-line" />
                         <li className="timeline-item">
                             <div className="timeline-badge"><span data-toggle="tooltip" data-placement="right" title="Portfolio project work" className="bg-purple bg-lighten-1"><i className="ft-shopping-cart" /></span></div>
-                            <div className="col s9 recent-activity-list-text"><a href="#" className="deep-purple-text medium-small">just now</a>
+                            <div className="col s9 recent-activity-list-text"><a className="deep-purple-text medium-small">just now</a>
                             <p className="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Jim Doe Purchased new equipments for zonal office.</p>
                             </div>
                         </li>
                         <li className="timeline-item">
                             <div className="timeline-badge"><span data-toggle="tooltip" data-placement="right" title="Portfolio project work" className="bg-info bg-lighten-1"><i className="fa fa-plane" /></span></div>
-                            <div className="col s9 recent-activity-list-text"><a href="#" className="cyan-text medium-small">Yesterday</a>
+                            <div className="col s9 recent-activity-list-text"><a className="cyan-text medium-small">Yesterday</a>
                             <p className="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Your Next flight for USA will be on 15th August 2015.</p>
                             </div>
                         </li>
                         <li className="timeline-item">
                             <div className="timeline-badge"><span data-toggle="tooltip" data-placement="right" title="Portfolio project work" className="bg-success bg-lighten-1"><i className="ft-mic" /></span></div>
-                            <div className="col s9 recent-activity-list-text"><a href="#" className="green-text medium-small">5 Days Ago</a>
+                            <div className="col s9 recent-activity-list-text"><a className="green-text medium-small">5 Days Ago</a>
                             <p className="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Natalya Parker Send you a voice mail for next conference.</p>
                             </div>
                         </li>
                         <li className="timeline-item">
                             <div className="timeline-badge"><span data-toggle="tooltip" data-placement="right" title="Portfolio project work" className="bg-warning bg-lighten-1"><i className="ft-map-pin" /></span></div>
-                            <div className="col s9 recent-activity-list-text"><a href="#" className="amber-text medium-small">1 Week Ago</a>
+                            <div className="col s9 recent-activity-list-text"><a className="amber-text medium-small">1 Week Ago</a>
                             <p className="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Jessy Jay open a new store at S.G Road.</p>
                             </div>
                         </li>
                         <li className="timeline-item">
                             <div className="timeline-badge"><span data-toggle="tooltip" data-placement="right" title="Portfolio project work" className="bg-red bg-lighten-1"><i className="ft-inbox" /></span></div>
-                            <div className="col s9 recent-activity-list-text"><a href="#" className="deep-orange-text medium-small">2 Week Ago</a>
+                            <div className="col s9 recent-activity-list-text"><a className="deep-orange-text medium-small">2 Week Ago</a>
                             <p className="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">voice mail for conference.</p>
                             </div>
                         </li>
                         <li className="timeline-item">
                             <div className="timeline-badge"><span data-toggle="tooltip" data-placement="right" title="Portfolio project work" className="bg-cyan bg-lighten-1"><i className="ft-mic" /></span></div>
-                            <div className="col s9 recent-activity-list-text"><a href="#" className="brown-text medium-small">1 Month Ago</a>
+                            <div className="col s9 recent-activity-list-text"><a className="brown-text medium-small">1 Month Ago</a>
                             <p className="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Natalya Parker Send you a voice mail for next conference.</p>
                             </div>
                         </li>
                         <li className="timeline-item">
                             <div className="timeline-badge"><span data-toggle="tooltip" data-placement="right" title="Portfolio project work" className="bg-amber bg-lighten-1"><i className="ft-map-pin" /></span></div>
-                            <div className="col s9 recent-activity-list-text"><a href="#" className="deep-purple-text medium-small">3 Month Ago</a>
+                            <div className="col s9 recent-activity-list-text"><a className="deep-purple-text medium-small">3 Month Ago</a>
                             <p className="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Jessy Jay open a new store at S.G Road.</p>
                             </div>
                         </li>
                         <li className="timeline-item">
                             <div className="timeline-badge"><span data-toggle="tooltip" data-placement="right" title="Portfolio project work" className="bg-grey bg-lighten-1"><i className="ft-inbox" /></span></div>
-                            <div className="col s9 recent-activity-list-text"><a href="#" className="grey-text medium-small">1 Year Ago</a>
+                            <div className="col s9 recent-activity-list-text"><a className="grey-text medium-small">1 Year Ago</a>
                             <p className="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">voice mail for conference.</p>
                             </div>
                         </li>

@@ -1,9 +1,4 @@
-import { toastr } from 'react-redux-toastr';
-import { asyncActionStart, asyncActionFinish, asyncActionError } from '../async/asyncActions';
-import { SELECTED_SIGNAL } from './expertsConstants'
-import moment from 'moment';
-
-export const addEventComment = (expertId, values) => async (dispatch, getState, { getFirebase }) => {
+export const addEventComment = (expertId, values) => async ( getState, { getFirebase }) => {
   const firebase = getFirebase();
   const profile = getState().firebase.profile;
   const user = firebase.auth().currentUser;

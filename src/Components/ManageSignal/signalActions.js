@@ -1,7 +1,6 @@
 import { toastr } from 'react-redux-toastr';
 import { asyncActionStart, asyncActionFinish, asyncActionError } from '../async/asyncActions';
 import { SELECTED_SIGNAL } from './signalConstants'
-import moment from 'moment';
 import axios from 'axios';
 export const API_URL = 'http://api.azinvex.com/api/';
 // const delay = require('delay');

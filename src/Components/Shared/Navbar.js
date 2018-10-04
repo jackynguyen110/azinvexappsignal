@@ -44,14 +44,14 @@ class Navbar extends Component {
                     <div id="navbarSupportedContent" className="collapse navbar-collapse">
                     <ul className="navbar-nav">
                         
-                        <li className="dropdown nav-item"><a id="dropdownBasic2" href="#" data-toggle="dropdown" className="nav-link position-relative dropdown-toggle"><i className="ft-bell font-medium-3 blue-grey darken-4" /><span className="notification badge badge-pill badge-danger">4</span>
+                                <li className="dropdown nav-item"><a id="dropdownBasic2" role="button" data-toggle="dropdown" className="nav-link position-relative dropdown-toggle"><i className="ft-bell font-medium-3 blue-grey darken-4" /><span className="notification badge badge-pill badge-danger">4</span>
                             <p className="d-none">Notifications</p></a>
                         <div className="notification-dropdown dropdown-menu dropdown-menu-right">
                             <div className="noti-list"><a className="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4"><i className="ft-bell info float-left d-block font-large-1 mt-1 mr-2" /><span className="noti-wrapper"><span className="noti-title line-height-1 d-block text-bold-400 info">New Order Received</span><span className="noti-text">Lorem ipsum dolor sit ametitaque in, et!</span></span></a><a className="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4"><i className="ft-bell warning float-left d-block font-large-1 mt-1 mr-2" /><span className="noti-wrapper"><span className="noti-title line-height-1 d-block text-bold-400 warning">New User Registered</span><span className="noti-text">Lorem ipsum dolor sit ametitaque in </span></span></a><a className="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4"><i className="ft-bell danger float-left d-block font-large-1 mt-1 mr-2" /><span className="noti-wrapper"><span className="noti-title line-height-1 d-block text-bold-400 danger">New Order Received</span><span className="noti-text">Lorem ipsum dolor sit ametest?</span></span></a><a className="dropdown-item noti-container py-3"><i className="ft-bell success float-left d-block font-large-1 mt-1 mr-2" /><span className="noti-wrapper"><span className="noti-title line-height-1 d-block text-bold-400 success">New User Registered</span><span className="noti-text">Lorem ipsum dolor sit ametnatus aut.</span></span></a></div><a className="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>
                         </div>
                         </li>
                         <li className="dropdown nav-item">
-                            <a id="dropdownBasic3" href="#" data-toggle="dropdown" className="nav-link position-relative dropdown-toggle">
+                            <a id="dropdownBasic3" data-toggle="dropdown" className="nav-link position-relative dropdown-toggle">
                                 <i className="ft-user font-medium-3 blue-grey darken-4" />
                                 <p className="d-none">User Settings</p>
                             </a>
@@ -84,7 +84,7 @@ class Navbar extends Component {
 
                         </li>
                         <li className="nav-item">
-                            <a href="javascript:;" className="nav-link position-relative notification-sidebar-toggle">
+                            <a className="nav-link position-relative notification-sidebar-toggle">
                                 <i className="ft-align-left font-medium-3 blue-grey darken-4" />
                                 <p className="d-none">Notifications Sidebar</p>
                             </a>
