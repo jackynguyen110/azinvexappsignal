@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import LoadingComponent from './Loading/LoadingComponent'
 import UserManager from '../../Components/admin/UserManager/UserManager';
 import followSignal from '../../Components/FollowSignal/followSignal';
+import LandingPage from '../../Components/LandingPage/Landing/Landing';
 class App extends Component {
   
   render () {
@@ -30,7 +31,8 @@ class App extends Component {
             transitionOut='fadeOut'
           />
           <Switch>
-            <ExpertRoute role={role} isAuthenticated={isAuthenticated} exact component={Dashboard} path="/" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} exact component={LandingPage} path="/" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} exact component={Dashboard} path="/dashboard" />
             <ExpertRoute role={role} isAuthenticated={isAuthenticated} exact component={ListExpert} path="/experts" />
             <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={ExpertDetail} path="/expert/:id" />
             <PageRoute isAuthenticated={isAuthenticated}  component={LoginForm} path="/login" />

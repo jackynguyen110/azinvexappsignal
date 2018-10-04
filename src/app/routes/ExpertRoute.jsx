@@ -7,7 +7,7 @@ const ExpertRoute = ({ isAuthenticated, role, path, noMatch, component: Componen
   if (isAuthenticated){
     if(noMatch) {
       return <Route path="*" render={() => (<div>NOT FOUND PAGE</div>)} />
-    } else if(role === 'expert' && (path === '/' || path === '/experts' || path === '/expert/:id' )) {
+    } else if(role === 'expert' && (path === '/dashboard' || path === '/experts' || path === '/expert/:id' )) {
       return <Route path={path} render={() => (<div>NO ACCESS TO PAGE</div>)} />
     } else if(role === 'member' && (path === '/managesignal' )) {
       return <Route path={path} render={() => (<div>NO ACCESS TO PAGE</div>)} />
