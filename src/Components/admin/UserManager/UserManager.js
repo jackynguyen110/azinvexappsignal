@@ -52,7 +52,7 @@ class UserManager extends Component {
                                 <tbody>
                                 {
                                     users && users.map((user) =>{
-                                        console.log(user)
+                                    if(user.role!=="admin")
                                       return(
                                             <tr key={user.id}>
                                                 <td><img className="media-object round-media" src={user.avatar} alt="Generic placeholder" style={{height: 75}} /></td>
@@ -61,9 +61,10 @@ class UserManager extends Component {
                                                 <td>{user.role}</td>
                                                
                                                 <td>
-                                                  {user.role === "member" ? <button onClick={() => this.setExpert(user.id)} className="btn btn-success btn-raised">Set Expert</button> : <button onClick={() => this.unsetExpert(user.id)} className="btn btn-success btn-raised">Unset Expert</button>}
+                                                  {user.role === "member" ? <button onClick={() => this.setExpert(user.id)} className="btn btn-success btn-raised">Set Expert</button> : <button onClick={() => this.unsetExpert(user.id)} className="btn btn-danger btn-raised">Unset Expert</button>}
                                                 </td>
                                             </tr>)
+                                            return(true)
                                         })
                                 }
                               
