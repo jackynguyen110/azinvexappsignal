@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, withRouter } from 'react-router-dom'
+import { Switch, withRouter, Route } from 'react-router-dom'
 import ExpertRoute from '../routes/ExpertRoute';
 import Dashboard from '../../Components/Dashboard/Dashboard/Dashboard';
 import ListExpert from '../../Components/Experts/ListExpert/ListExpert';
@@ -19,7 +19,7 @@ class App extends Component {
   
   render () {
     
-    const { isLoaded } = this.props.profileUser
+    const { isLoaded, role } = this.props.profileUser
     const { isAuthenticated } = this.props
     if (isLoaded) {
       return (
@@ -30,16 +30,17 @@ class App extends Component {
             transitionOut='fadeOut'
           />
           <Switch>
-            <ExpertRoute isAuthenticated={isAuthenticated} exact component={Dashboard} path="/" />
-            <ExpertRoute isAuthenticated={isAuthenticated} exact component={ListExpert} path="/experts" />
-            <ExpertRoute isAuthenticated={isAuthenticated} component={ExpertDetail} path="/expert/:id" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} exact component={Dashboard} path="/" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} exact component={ListExpert} path="/experts" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={ExpertDetail} path="/expert/:id" />
             <PageRoute isAuthenticated={isAuthenticated}  component={LoginForm} path="/login" />
             <PageRoute isAuthenticated={isAuthenticated}  component={RegisterForm} path="/register" />
-            <ExpertRoute isAuthenticated={isAuthenticated} component={AccountPage} path="/information" />
-            <ExpertRoute isAuthenticated={isAuthenticated} component={Changepass} path="/changepassword" />
-            <ExpertRoute isAuthenticated={isAuthenticated} component={ManageSignal} path="/managesignal" />
-            <ExpertRoute isAuthenticated={isAuthenticated} component={UserManager} path="/admin/users" />
-            <ExpertRoute isAuthenticated={isAuthenticated} component={followSignal} path="/signals" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={AccountPage} path="/information" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={Changepass} path="/changepassword" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={ManageSignal} path="/managesignal" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={UserManager} path="/admin/users" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={followSignal} path="/signals" />
+            <ExpertRoute noMatch={true} isAuthenticated={isAuthenticated} component={followSignal} path="*" />
           </Switch>
         </div>
       );
