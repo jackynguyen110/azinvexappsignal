@@ -54,7 +54,7 @@ class SignalRoom extends Component {
                                 <td>{e.stoploss}</td>
                                 <td>{e.takeprofit}</td>
                                 <td>
-                                  {moment(e.startAt.seconds).format('HH:mm DD/MM/YY')}
+                                  {moment(e.startAt.seconds*1000).format('HH:mm DD/MM/YYYY')}
                                 </td>
                                 <td> {e.openPrice} </td>
                                 <td>

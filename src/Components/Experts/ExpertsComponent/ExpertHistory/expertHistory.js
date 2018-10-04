@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
-
+import { withFirestore } from 'react-redux-firebase'
+import { connect } from 'react-redux';
+import moment from 'moment'
 class expertHistory extends Component {
+    state={
+        query:null
+    }
+    
+    componentDidMount(){
+        const { firestore, expertDetail } = this.props
+        firestore.get({
+            collection: 'signals',
+            where: [
+                ['expert.id', '==', expertDetail.id],
+                ['status', '==', "closed"]
+            ],
+            storeAs: 'closedSignals'
+        })
+    }
     render() {
+        const { expertDetail, closedSignals } = this.props
         return (
             <div className="row match-height">
                 <div className="col-md-4">
@@ -13,16 +31,16 @@ class expertHistory extends Component {
                         </div>
                         <ul className="no-list-style">
                             <li className="mb-2">
-                                <span className="text-bold-500 primary"><a><i className="ft-user font-small-3" /> Tổng Số Lệnh:</a></span>
-                                <span className="overflow-hidden"> ssssss</span>
+                                <span className="text-bold-500 primary"><a><i className="ft-user font-small-3" /> Tổng Số Pips: </a></span>
+                                    <span className="overflow-hidden">{expertDetail.totalpips}</span>
                             </li>
                             <li className="mb-2">
-                                <span className="text-bold-500 primary"><a><i className="ft-mail font-small-3" /> Số lệnh Thắng:</a></span>
-                                <a className="overflow-hidden">sssss</a>
+                                <span className="text-bold-500 primary"><a><i className="ft-mail font-small-3" /> Số lệnh Thắng: </a></span>
+                                    <a className="overflow-hidden">{expertDetail.signalWin}</a>
                             </li>
                             <li className="mb-2">
-                                <span className="text-bold-500 primary"><a><i className="ft-monitor font-small-3" /> Số Lệnh Thua:</a></span>
-                                <a className="overflow-hidden">123</a>
+                                <span className="text-bold-500 primary"><a><i className="ft-monitor font-small-3" /> Số Lệnh Thua: </a></span>
+                                    <a className="overflow-hidden">{expertDetail.signalLoss}</a>
                             </li>
                         </ul>
                     </div>
@@ -44,11 +62,7 @@ class expertHistory extends Component {
                             <div className="row">
                                 <div className="form-group col-12 mb-2">
                                 <label htmlFor="issueinput5">Cặp Tiền</label>
-                                <select id="issueinput5" name="priority" className="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Priority">
-                                    <option value="low">Low</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="high">High</option>
-                                </select>
+                                <input type="text" id="issueinput4" className="form-control" name="datefixed" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed" />
                                 </div>
                             </div>
                             
@@ -81,40 +95,35 @@ class expertHistory extends Component {
                     <table className="table table-responsive-md text-center">
                           <thead>
                             <tr>
-                              
+                              <th>Ticket</th>
                               <th>Cặp Tiền</th>
-                              <th>Stoploss</th>
-                              <th>TakeProfit</th>
-                              <th>Thời Gian mở</th>
                               <th>Giá mở cửa</th>
+                              <th>Stoploss</th>
+                              <th>Takeprofit</th>
+                              <th>Thời gian mở</th>
+                              <th>Giá đóng cửa</th>
+                               <th>Thời gian đóng</th>
                               <th>Kết Quả</th>
                             </tr>
                           </thead>
                           <tbody>
-                                <tr key=''> 
-                                    <td>EURUSD</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>
-                                    0
-                                    </td>
-                                    <td> 0 </td>
-                                    <td>
-                                    <button type="button" className="btn btn-raised btn-success btn-min-width mr-1 mb-1">WIN</button>
-                                    </td>
-                              </tr>
-                              <tr key=''> 
-                                    <td>EURUSD</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>
-                                    0
-                                    </td>
-                                    <td> 0 </td>
-                                    <td>
-                                    <button type="button" className="btn btn-raised btn-danger btn-min-width mr-1 mb-1">LOSE</button>
-                                    </td>
-                              </tr>
+                                    {closedSignals && closedSignals.map((e,i)=>
+                                        <tr key={i}>
+                                            <td>{e.ticket}</td>
+                                            <td>{e.symbol}</td>
+                                            <td>{e.openPrice}</td>
+                                            <td>{e.stoploss}</td>
+                                            <td>{e.takeprofit}</td>
+                                            <td>{moment(e.startAt.seconds*1000).format('HH:mm DD/MM/YY')}</td>
+                                            <td>{e.closePrice}</td>
+                                            <td>{moment(e.closeAt).format('HH:mm DD/MM/YY')}</td>
+                                            <td>
+                                                {e.profit >= 0 ? <button type="button" className="btn btn-raised btn-success btn-min-width mr-1 mb-1">+{e.profit} pips</button> : <button type="button" className="btn btn-raised btn-danger btn-min-width mr-1 mb-1">{e.profit} pips</button>}
+                                                
+                                            </td>
+                                        </tr>
+                                        )}
+                              
                           </tbody>
                         </table>
                     </div>
@@ -125,5 +134,7 @@ class expertHistory extends Component {
         );
     }
 }
-
-export default expertHistory;
+const mapState = (state) => ({
+    closedSignals: state.firestore.ordered.closedSignals
+})
+export default connect(mapState, null)(withFirestore(expertHistory));

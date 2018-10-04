@@ -112,15 +112,13 @@ class ExpertDetail extends Component {
                 <div className="media profil-cover-details row">
                   <div className="col-5">
                     <div className="align-self-start halfway-fab pl-3 pt-2">
-                      <div className="text-left">
-                        <h3 className="card-title white">Jose Diaz</h3>
-                      </div>
+       
                     </div>
                   </div>
                   <div className="col-2">
                     <div className="align-self-center halfway-fab text-center">
                       <a className="profile-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCm8Eib1xz1oZ5WO3bSMRlNVzj-YdQfNPfIs1-pnVVR0ngn4Uf4Q" className="rounded-circle img-border gradient-summer width-100 height-100" alt="Cardimage" />
+                        <img src={expertDetail.photoURL} className="rounded-circle img-border gradient-summer width-100 height-100" alt="Cardimage" />
                       </a>
                     </div>
                   </div>
