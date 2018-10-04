@@ -3,6 +3,8 @@ import SignalRoom from '../ExpertsComponent/SignalRoom/SignalRoom';
 import Information from '../ExpertsComponent/ExpertInformation/Information';
 import { withFirestore } from 'react-redux-firebase'
 import { connect } from 'react-redux';
+import ExpertHistory from '../ExpertsComponent/ExpertHistory/expertHistory';
+
 const currentTime = new Date(Date.now());
 const day = currentTime.getDate();
 const month = currentTime.getMonth();
@@ -89,6 +91,8 @@ class ExpertDetail extends Component {
         return <SignalRoom expertDetail={expertDetail}  activeList={activeList} todayList={todayList} />;
       case "INFOMARTION":
         return <Information expertDetail={expertDetail} />;
+      case "HISTORY":
+        return <ExpertHistory expertDetail={expertDetail} />;
       default:
         return '';
     }
@@ -141,6 +145,7 @@ class ExpertDetail extends Component {
                         <li>
                           <a onClick={() => this.setState({ current: 'INFOMARTION' })} className="primary font-medium-2 font-weight-600">Thông Tin</a>
                         </li>
+                      
                       </ul>
                     </div>
                     <div className="col-lg-2 col-md-2 text-center">
@@ -150,10 +155,10 @@ class ExpertDetail extends Component {
                     <div className="col-lg-5 col-md-5">
                       <ul className="profile-menu no-list-style">
                         <li>
-                          <a href="#friends" className="primary font-medium-2 font-weight-600">Lịch Sử</a>
+                          <a onClick={() => this.setState({ current: 'HISTORY' })}  className="primary font-medium-2 font-weight-600">Lịch Sử</a>
                         </li>
                         <li>
-                          <a href="#photos" className="primary font-medium-2 font-weight-600">Photos</a>
+                          <a onClick={() => this.setState({ current: 'HISTORY' })} href="#photos" className="primary font-medium-2 font-weight-600">Photos</a>
                         </li>
                       </ul>
                     </div>
