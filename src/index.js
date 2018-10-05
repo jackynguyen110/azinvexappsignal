@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './app/layout/App'
-import { BrowserRouter } from 'react-router-dom'
+import App from './App';
+import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
 import { configureStore } from './app/store/configureStore';
@@ -14,9 +14,9 @@ const store = configureStore()
 let render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter basename="/">
           <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>,
     rootEl
   );

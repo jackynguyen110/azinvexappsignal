@@ -17,9 +17,9 @@ class AccountPage extends React.Component {
         const { handleSubmit } = this.props
         return(<section id="accoutPage">
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="content-header">Chỉnh Sửa Thông Tin Cá Nhân</div>
+            <div className="row">
+                <div className="col-sm-12">
+                    <div className="content-header">Chỉnh Sửa Thông Tin Cá Nhân</div>
 
                 </div>
                 <div className="col-md-9">

@@ -7,7 +7,7 @@ export const login = (creds) => {
     const firebase = getFirebase();
     try {
       await firebase.auth().signInWithEmailAndPassword(creds.email, creds.password);
-      
+      window.location.href = '#/';
       //dispatch(closeModal())
     } catch (error) {
       console.log(error);
