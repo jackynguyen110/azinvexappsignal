@@ -161,7 +161,7 @@ class MainMenu extends Component {
                 <div className="sidebar-content">
                 <div className="nav-container">
                     <ul id="main-menu-navigation" data-menu="menu-navigation" className="navigation navigation-main">
-                      <li className="nav-item"><NavLink to="/" ><i className="ft-home" /><span data-i18n className="menu-title">Home</span></NavLink></li>
+                      <li className="nav-item"><NavLink to="/home" ><i className="ft-home" /><span data-i18n className="menu-title">Home</span></NavLink></li>
                       {(profileUser.role && profileUser.role === 'expert') &&
                         <li className="nav-item"><NavLink to="/managesignal" ><i className="ft-home" /><span data-i18n className="menu-title">Manage Signal</span></NavLink></li>
                       }

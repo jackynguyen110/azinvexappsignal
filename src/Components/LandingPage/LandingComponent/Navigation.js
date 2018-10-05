@@ -1,6 +1,6 @@
 import React, { } from 'react';
 
-const Navigation = () => {
+const Navigation = props => {
   return (
     <nav className="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg "
          color-on-scroll="100" id="sectionsNav">
@@ -68,41 +68,35 @@ const Navigation = () => {
                 <i className="material-icons">view_carousel</i> Examples
               </a>
               <div className="dropdown-menu dropdown-with-icons">
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">account_balance</i> About Us
+                {props.role === 'expert' &&
+                  <a href="#/managesignal" className="dropdown-item">
+                    <i className="material-icons">account_balance</i> Manage Signal
+                  </a>
+                }
+                {props.role === 'member' &&
+                  <a href="#/dashboard" className="dropdown-item">
+                    <i className="material-icons">art_track</i> Room Tín Hiệu
+                  </a>
+                }
+                {props.role === 'member' &&
+                  <a href="#/experts" className="dropdown-item">
+                    <i className="material-icons">view_quilt</i> Danh Sách Chuyên Gia
+                  </a>
+                }
+                <a href="#/information" className="dropdown-item">
+                  <i className="material-icons">location_on</i> Thông Tin Cá Nhân
                 </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">art_track</i> Blog Post
+                <a href="#/changepassword" className="dropdown-item">
+                  <i className="material-icons">view_day</i> Đổi Mật Khẩu
                 </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">view_quilt</i> Blog Posts
+                <a href="#/account" className="dropdown-item">
+                  <i className="material-icons">fingerprint</i> Thông Tin Tài Khoản
                 </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">location_on</i> Contact Us
+                <a href="#/help" className="dropdown-item">
+                  <i className="material-icons">shopping_basket</i> Hướng Dẫn Sử Dụng
                 </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">view_day</i> Landing Page
-                </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">fingerprint</i> Login Page
-                </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">attach_money</i> Pricing Page
-                </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">shopping_basket</i> Shopping Cart
-                </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">store</i> Ecommerce Page
-                </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">shopping_cart</i> Product Page
-                </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">account_circle</i> Profile Page
-                </a>
-                <a href="#/" className="dropdown-item">
-                  <i className="material-icons">person_add</i> Signup Page
+                <a href="#/tours" className="dropdown-item">
+                  <i className="material-icons">attach_money</i> Hỗ Trợ
                 </a>
               </div>
             </li>

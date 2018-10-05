@@ -42,7 +42,7 @@ const checkRole = (role, pathname) => {
 class Routes extends Component {
   
   render () {
-    const { isLoaded, role } = this.props.profileUser
+    const { isLoaded, role } = this.props.profileUser;
     const { isAuthenticated, location } = this.props;
     if (isLoaded) {
       if (isAuthenticated && location.pathname === '/home') {

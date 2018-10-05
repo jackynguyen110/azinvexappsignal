@@ -24,9 +24,10 @@ class Landing extends Component {
   }
 
   render() {
+    const { profileUser } = this.props;
     return (
       <div className="landing-page sidebar-collapse">
-        <Navigation />
+        <Navigation role={profileUser.role} />
         <HeaderContent />
         <MainContent />
         <Footer />
