@@ -65,7 +65,7 @@ const Navigation = props => {
             </li>
             <li className="dropdown nav-item">
               <a href="#/" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                <i className="material-icons">view_carousel</i> Examples
+                <i className="material-icons">view_carousel</i> Menu
               </a>
               <div className="dropdown-menu dropdown-with-icons">
                 {props.role === 'expert' &&
