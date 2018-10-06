@@ -45,7 +45,7 @@ class Routes extends Component {
     const { isLoaded, role } = this.props.profileUser;
     const { isAuthenticated, location } = this.props;
     if (isLoaded) {
-      if (isAuthenticated && location.pathname === '/home') {
+      if (location.pathname === '/home') {
         const oldlink = document.getElementsByTagName("link").item(17);
         const newlink = document.createElement("link");
         newlink.setAttribute("rel", "stylesheet");

@@ -67,7 +67,7 @@ class Navbar extends Component {
                                     </a>
                                     <div className="dropdown-divider" />
                                 
-                                    <a href="#/login" onClick={this.handleSignOut} className="dropdown-item">
+                                    <a href="#/home" onClick={this.handleSignOut} className="dropdown-item">
                                         <i className="ft-power mr-2" /><span>Logout</span>
                                     </a>
                                 </div>

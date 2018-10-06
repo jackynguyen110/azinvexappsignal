@@ -45,7 +45,7 @@ const Navigation = props => {
             {props.isAuthenticated && <li>Xin chào {props.profileUser.displayName}&nbsp;</li>}
             <li className="button-container nav-item iframe-extern">
               {props.isAuthenticated ?
-                <a href="#/login" style={{ padding: '.375rem .75rem'}} className="btn btn-rose btn-round btn-block" onClick={handleSignOut}>Logout</a> :
+                <a href="#/home" style={{ padding: '.375rem .75rem'}} className="btn btn-rose btn-round btn-block" onClick={handleSignOut}>Logout</a> :
                 <a href="#/login" style={{ padding: '.375rem .75rem'}} className="btn btn-rose btn-round btn-block">login</a>
               }
             </li>
