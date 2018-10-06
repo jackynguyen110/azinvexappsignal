@@ -15,8 +15,7 @@ class Landing extends Component {
   }
 
   checkScrollForTransparentNavbar = () => {
-    console.log('test');
-    if ($(document).scrollTop() > 500) {
+    if ($(document).scrollTop() > 300) {
       $('.navbar-color-on-scroll').removeClass('navbar-transparent');
     } else {
       $('.navbar-color-on-scroll').addClass('navbar-transparent');
@@ -27,7 +26,7 @@ class Landing extends Component {
     const { profileUser } = this.props;
     return (
       <div className="landing-page sidebar-collapse">
-        <Navigation role={profileUser.role} />
+        <Navigation />
         <HeaderContent />
         <MainContent />
         <Footer />

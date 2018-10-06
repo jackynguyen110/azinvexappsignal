@@ -1,5 +1,6 @@
-export const addEventComment = (expertId, values) => async ( getState, { getFirebase }) => {
+export const addEventComment = (expertId, values) => async (dispatch, getState, { getFirebase }) => {
   const firebase = getFirebase();
+  console.log(firebase);
   const profile = getState().firebase.profile;
   const user = firebase.auth().currentUser;
   let newComment = {

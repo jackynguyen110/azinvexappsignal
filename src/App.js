@@ -10,7 +10,7 @@ class App extends Component {
     const { location } = this.props;
     if (location.pathname === '/home') return <Routes />
     return (
-      <div className="wrapper nav-collapsed menu-collapsed" style={{ width: '100vw' }}>
+      <div className="wrapper nav-collapsed menu-collapsed">
         <div className="main-panel">
           <div className="main-content">
             <div className="content-wrapper">
