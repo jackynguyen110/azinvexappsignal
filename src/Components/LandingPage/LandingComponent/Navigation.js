@@ -40,6 +40,43 @@ const Navigation = props => {
                 Contact Us
               </a>
             </li>
+            <li className="dropdown nav-item">
+              <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
+                <i className="material-icons">apps</i> Menu
+              </a>
+              <div className="dropdown-menu dropdown-with-icons">
+                {props.profileUser.role === 'expert' &&
+                <a href="#/managesignal" className="dropdown-item">
+                  <i className="material-icons">account_balance</i> Manage Signal
+                </a>
+                }
+                {props.profileUser.role === 'member' &&
+                <a href="#/dashboard" className="dropdown-item">
+                  <i className="material-icons">art_track</i> Room Tín Hiệu
+                </a>
+                }
+                {props.profileUser.role === 'member' &&
+                <a href="#/experts" className="dropdown-item">
+                  <i className="material-icons">view_quilt</i> Danh Sách Chuyên Gia
+                </a>
+                }
+                <a href="#/information" className="dropdown-item">
+                  <i className="material-icons">location_on</i> Thông Tin Cá Nhân
+                </a>
+                <a href="#/changepassword" className="dropdown-item">
+                  <i className="material-icons">view_day</i> Đổi Mật Khẩu
+                </a>
+                <a href="#/account" className="dropdown-item">
+                  <i className="material-icons">fingerprint</i> Thông Tin Tài Khoản
+                </a>
+                <a href="#/help" className="dropdown-item">
+                  <i className="material-icons">shopping_basket</i> Hướng Dẫn Sử Dụng
+                </a>
+                <a href="#/tours" className="dropdown-item">
+                  <i className="material-icons">attach_money</i> Hỗ Trợ
+                </a>
+              </div>
+            </li>
           </ul>
           <ul className="navbar-nav ml-auto">
             {props.isAuthenticated && <li>Xin chào {props.profileUser.displayName}&nbsp;</li>}
