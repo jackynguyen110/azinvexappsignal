@@ -1,6 +1,10 @@
 import React, { } from 'react';
 
 const Navigation = props => {
+  const handleSignOut = () => {
+    props.firebase.logout();
+  };
+  console.log(props.profileUser);
   return (
     <nav className="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg">
       <div className="container">
@@ -38,10 +42,12 @@ const Navigation = props => {
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <a href="#/login" className="nav-link">
-                Login
-              </a>
+            {props.isAuthenticated && <li>Xin chào {props.profileUser.displayName}&nbsp;</li>}
+            <li className="button-container nav-item iframe-extern">
+              {props.isAuthenticated ?
+                <a href="#/login" style={{ padding: '.375rem .75rem'}} className="btn btn-rose btn-round btn-block" onClick={handleSignOut}>Logout</a> :
+                <a href="#/login" style={{ padding: '.375rem .75rem'}} className="btn btn-rose btn-round btn-block">login</a>
+              }
             </li>
           </ul>
         </div>

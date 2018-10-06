@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { withRouter } from "react-router-dom";
+import { withFirebase } from "react-redux-firebase";
 import { connect } from 'react-redux';
 import $ from 'jquery';
 
@@ -23,10 +25,14 @@ class Landing extends Component {
   }
 
   render() {
-    const { profileUser } = this.props;
+    const { profileUser, isAuthenticated } = this.props;
     return (
       <div className="landing-page sidebar-collapse">
-        <Navigation />
+        <Navigation
+          profileUser={profileUser}
+          isAuthenticated={isAuthenticated}
+          firebase={this.props.firebase}
+        />
         <HeaderContent />
         <MainContent />
         <Footer />
@@ -34,11 +40,14 @@ class Landing extends Component {
     )
   }
 }
-export default connect(
+
+export default withRouter(withFirebase(connect(
   state => ({
+    auth: state.firebase.auth,
+    isAuthenticated: !state.firebase.auth.isEmpty,
     profileUser: state.firebase.profile
   }),
   {
     // action
   }
-)(Landing);
+)(Landing)));

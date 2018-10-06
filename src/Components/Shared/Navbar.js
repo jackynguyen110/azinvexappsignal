@@ -25,7 +25,7 @@ class Navbar extends Component {
     render () {
         const { auth } = this.props
         
-        const authenticated = auth.isLoaded && !auth.isEmpty
+        const authenticated = auth.isLoaded && !auth.isEmpty;
         
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-faded">
@@ -67,7 +67,7 @@ class Navbar extends Component {
                                     </a>
                                     <div className="dropdown-divider" />
                                 
-                                    <a onClick={this.handleSignOut} className="dropdown-item">
+                                    <a href="#/login" onClick={this.handleSignOut} className="dropdown-item">
                                         <i className="ft-power mr-2" /><span>Logout</span>
                                     </a>
                                 </div>

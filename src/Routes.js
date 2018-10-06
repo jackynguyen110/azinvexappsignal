@@ -28,8 +28,8 @@ const Layout = (props) => {
       </div>
       : <Redirect to="/403" />
     )
-    : <Redirect to="/login" />
-}
+    : <Redirect to="/home" />
+};
 
 const checkRole = (role, pathname) => {
   if((role === 'expert' && (pathname === '/dashboard' || pathname === '/experts' || pathname === '/expert/:id' ))
@@ -37,7 +37,7 @@ const checkRole = (role, pathname) => {
     return true;
   }
   return false;
-}
+};
 
 class Routes extends Component {
   
