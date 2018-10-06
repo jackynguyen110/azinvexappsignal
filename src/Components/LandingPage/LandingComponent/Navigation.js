@@ -72,7 +72,7 @@ const Navigation = props => {
                 <a href="#/help" className="dropdown-item">
                   <i className="material-icons">shopping_basket</i> Hướng Dẫn Sử Dụng
                 </a>
-                <a href="#/tours" className="dropdown-item">
+                <a href="#/support" className="dropdown-item">
                   <i className="material-icons">attach_money</i> Hỗ Trợ
                 </a>
               </div>
