@@ -190,7 +190,7 @@ class MainMenu extends Component {
                       </li>
 
                       <li className=" nav-item"><NavLink to="/help"><i className="ft-book" /><span data-i18n className="menu-title">Hướng Dẫn Sử Dụng</span></NavLink></li>
-                      <li className=" nav-item"><NavLink to="/tours"><i className="ft-life-buoy" /><span data-i18n className="menu-title">Hỗ Trợ</span></NavLink></li>
+                      <li className=" nav-item"><NavLink to="/support"><i className="ft-life-buoy" /><span data-i18n className="menu-title">Hỗ Trợ</span></NavLink></li>
                     
                     </ul>
                 </div>
