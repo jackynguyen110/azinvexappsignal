@@ -13,12 +13,7 @@ const HeaderContent = () => {
               Vậy, liệu thông tin đó có được xác thực và tính minh bạch của họ như thế nào?</h4>
             <br />
           </div>
-          <div className="col-md-5 ml-auto">
-            <div className="iframe-container">
-              <iframe height="250" src="https://www.youtube.com/embed/IN6QnLpVEPI" frameBorder="0" gesture="media"
-                      allow="encrypted-media" allowFullScreen></iframe>
-            </div>
-          </div>
+        
         </div>
       </div>
     </div>

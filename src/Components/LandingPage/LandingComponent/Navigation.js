@@ -8,7 +8,9 @@ const Navigation = props => {
     <nav className="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg">
       <div className="container">
         <div className="navbar-translate">
-          <a className="navbar-brand" href="http://www.creative-tim.com">Creative Tim</a>
+          <a className="navbar-brand" href="/">
+            <img src="https://azinvex.com/images/Logo-Az-invex.png" height="61px" width="243px" />
+          </a>
           <button type="button" className="ml-auto navbar-toggler" data-toggle="collapse"
                   data-target="#navigation-example4">
             <span className="sr-only">Toggle navigation</span>
@@ -21,27 +23,23 @@ const Navigation = props => {
           <ul className="navbar-nav navbar-center ml-auto">
             <li className="nav-item">
               <a href="#/home" className="nav-link">
-                Home
+                Trang Chủ
               </a>
             </li>
             <li className="nav-item">
               <a href="#/home" className="nav-link">
-                About Us
+                Về Chúng Tôi
               </a>
             </li>
+          
             <li className="nav-item">
-              <a href="#/home" className="nav-link">
-                Products
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="#/home" className="nav-link">
-                Contact Us
+              <a href="#/contact" className="nav-link">
+                Liên Hệ
               </a>
             </li>
             <li className="dropdown nav-item">
               <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                <i className="material-icons">apps</i> Menu
+                <i className="material-icons">apps</i> Danh Mục
               </a>
               <div className="dropdown-menu dropdown-with-icons">
                 {props.profileUser.role === 'expert' &&
