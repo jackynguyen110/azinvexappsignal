@@ -32,6 +32,12 @@ export const createSignal = (currentUser, signal) => {
             //dispatch(reset('signal-form'))
             dispatch(asyncActionFinish());
             toastr.success('Success', 'Signal mới khởi tạo thành công');
+        }).catch(error => {
+          dispatch(asyncActionError());
+          if(error.response.data.message[0]) {
+            toastr.error('Lỗi Xảy Ra', error.response.data.message[0]);
+          }
+          
         })
     } catch (error) {
         dispatch(asyncActionError());
@@ -74,12 +80,17 @@ export const updateSignal = (currentUser, id, signal) => {
     let url = API_URL + 'signals/' + id;
     axios.put(url, signalData, axiosConfig)
         .then(response => {
-            console.log(response)
-
+          dispatch(asyncActionFinish());
+          dispatch({ type: SELECTED_SIGNAL, payload : {} });
+          toastr.success('Success', 'Event has been updated');
+        }).catch(error => {
+          dispatch(asyncActionError());
+          if(error.response.data.message[0]) {
+            toastr.error('Lỗi Xảy Ra', error.response.data.message[0]);
+          }
+          
         })
-      dispatch(asyncActionFinish());
-      dispatch({ type: SELECTED_SIGNAL, payload : {} });
-      toastr.success('Success', 'Event has been updated');
+     
     } catch (error) {
       console.log(error);
       dispatch(asyncActionError());
