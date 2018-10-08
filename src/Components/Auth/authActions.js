@@ -28,13 +28,12 @@ export const registerUser = (user) =>
       //console.log(createdUser);
       // update the auth profile
       let createdUser = firebase.auth().currentUser;
-      console.log(createdUser)
       await createdUser.updateProfile({
-        displayName: user.displayName
+        displayName: user.name
       })
       // create a new profile in firestore
       let newUser = {
-        displayName: user.displayName,
+        displayName: user.name,
         role: "member",
         createdAt: firestore.FieldValue.serverTimestamp()
       }
