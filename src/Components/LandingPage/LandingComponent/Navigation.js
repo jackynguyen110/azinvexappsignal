@@ -9,7 +9,7 @@ const Navigation = props => {
       <div className="container">
         <div className="navbar-translate">
           <a className="navbar-brand" href="/">
-            <img src="https://azinvex.com/images/Logo-Az-invex.png" height="61px" width="243px" />
+            <img alt="" style={{'margin-top': '-20px'}} src="https://azinvex.com/images/Logo-Az-invex.png" height="61px" width="243px" />
           </a>
           <button type="button" className="ml-auto navbar-toggler" data-toggle="collapse"
                   data-target="#navigation-example4">
