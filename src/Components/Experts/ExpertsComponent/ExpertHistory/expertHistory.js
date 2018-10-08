@@ -5,7 +5,55 @@ import moment from 'moment'
 import { getSignalHistoryForDashboard } from './expertHistoryActions';
 import InfiniteScroll from 'react-infinite-scroller';
 class expertHistory extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+    async handleSubmit(event) {
+        event.preventDefault();
+        console.log(this.props)
+        const { firestore, expertDetail } = this.props
+        let start,end;
+        start = new Date(this.state.dateopened);
+        end = new Date(this.state.datefixed);
+        if (!this.state.dateopened) start = new Date('1980-01-01');
+        if (!this.state.datefixed) end = new Date(Date.now());
+        const signalHistoryRef = firestore.collection('signals');
+        const query = signalHistoryRef
+            .where('expert.id', '==', expertDetail.id)
+            .where('status', '==', 'closed')
+            .where('symbol', '==', this.state.symbol)
+            .where('startAt', '>', start)
+            .where('startAt', '<', end)
+        let querySnap = await query.get();
+        let signalHistory = [];
+        for (let i = 0; i < querySnap.docs.length; i++) {
+            let evt = { ...querySnap.docs[i].data(), id: querySnap.docs[i].id };
+            signalHistory.push(evt);
+        }
+        this.setState({ isFilter: true, filterSignals: signalHistory})
+        // this.afs.collection('invoices', ref => ref
+        //     .where('dueDate', '>', start)
+        //     .where('dueDate', '<', end)
+        // );
+
+    
+    }
+
     state = {
+        isFilter:false,
+        filterSignals: [],
         moreEvents: false,
         loadingInitial: true,
         loadedEvents: [],
@@ -40,9 +88,12 @@ class expertHistory extends Component {
             });
         }
     };
+    cancelFilter = () => {
+        this.setState({ isFilter: false, filterSignals: [] })
+    }
     render() {
         const { expertDetail, loading } = this.props;
-        const { moreEvents, loadedEvents } = this.state;
+        const { moreEvents, loadedEvents, filterSignals } = this.state;
         return (
             <div className="row match-height">
                 <div className="col-md-4">
@@ -69,35 +120,39 @@ class expertHistory extends Component {
                         </div>
                         <div className="card-body">
                             <div className="px-3">
-                                <form className="form">
+                                <form className="form" onSubmit={this.handleSubmit}>
                                     <div className="form-body">
 
                                         <div className="row">
                                             <div className="form-group col-md-6 mb-2">
-                                                <label htmlFor="issueinput3">Date Opened</label>
-                                                <input type="date" id="issueinput3" className="form-control" name="dateopened" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
+                                                <label htmlFor="issueinput3">From</label>
+                                                <input type="date" id="issueinput4" className="form-control" name="dateopened" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed" value={this.state.dateopened}
+                                                    onChange={this.handleInputChange} />
                                             </div>
                                             <div className="form-group col-md-6 mb-2">
-                                                <label htmlFor="issueinput4">Date Fixed</label>
-                                                <input type="date" id="issueinput4" className="form-control" name="datefixed" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed" />
+                                                <label htmlFor="issueinput4">To</label>
+                                                <input type="date" id="issueinput4" className="form-control" name="datefixed" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed" value={this.state.datefixed}
+                                                    onChange={this.handleInputChange} />
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="form-group col-12 mb-2">
                                                 <label htmlFor="issueinput5">Cặp Tiền</label>
-                                                <input type="text" id="issueinput4" className="form-control" name="datefixed" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed" />
+                                                <input type="text" id="issueinput4" className="form-control" name="symbol" required data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed" value={this.state.symbol}
+                                                    onChange={this.handleInputChange} />
                                             </div>
                                         </div>
 
                                     </div>
                                     <div className="form-actions">
-                                        <button type="button" className="btn btn-raised btn-warning mr-1">
+                                        <button onClick={() => this.cancelFilter()} type="button" className="btn btn-raised btn-warning mr-1">
                                             <i className="ft-x" /> Reset
                                         </button>
-                                        <button type="button" className="btn btn-raised btn-primary">
+                                        <button type="button" type="submit" className="btn btn-raised btn-primary">
                                             <i className="fa fa-check-square-o" /> Tìm Kiếm
                                         </button>
                                     </div>
+                        
                                 </form>
                             </div>
                         </div>
@@ -115,14 +170,52 @@ class expertHistory extends Component {
                         <code>.right</code> class to align the form action buttons to right.</p>
                         </div>
                         <div className="card-body">
-                        {loadedEvents && loadedEvents.length !== 0 && (
+                            {!this.state.isFilter ? (loadedEvents && loadedEvents.length !== 0 && (
                                 <InfiniteScroll
-                                pageStart={0}
-                                loadMore={this.getNextEvents}
-                                hasMore={!loading && moreEvents}
-                                initialLoad={false}
-                            >
-                            <table className="table table-responsive-md text-center">
+                                    pageStart={0}
+                                    loadMore={this.getNextEvents}
+                                    hasMore={!loading && moreEvents}
+                                    initialLoad={false}
+                                ><table className="table table-responsive-md text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Ticket</th>
+                                                <th>Cặp Tiền</th>
+                                                <th>Giá mở cửa</th>
+                                                <th>Stoploss</th>
+                                                <th>Takeprofit</th>
+                                                <th>Thời gian mở</th>
+                                                <th>Giá đóng cửa</th>
+                                                <th>Thời gian đóng</th>
+                                                <th>Kết Quả</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        <tbody>  {loadedEvents && loadedEvents.map((e, i) =>
+                                            <tr key={i}>
+                                                <td>{e.ticket}</td>
+                                                <td>{e.symbol}</td>
+                                                <td>{e.openPrice}</td>
+                                                <td>{e.stoploss}</td>
+                                                <td>{e.takeprofit}</td>
+                                                <td>{moment(e.startAt.seconds * 1000).format('HH:mm DD/MM/YY')}</td>
+                                                <td>{e.closePrice}</td>
+                                                <td>{moment(e.closeAt).format('HH:mm DD/MM/YY')}</td>
+                                                <td>
+                                                    {e.profit >= 0 ? <button type="button" className="btn btn-raised btn-success btn-min-width mr-1 mb-1">+{e.profit} pips</button> : <button type="button" className="btn btn-raised btn-danger btn-min-width mr-1 mb-1">{e.profit} pips</button>}
+
+                                                </td>
+                                            </tr>
+                                        )}
+
+                                        </tbody>
+
+
+                                    </table>
+                                </InfiniteScroll>
+                            )
+                            ) : (<table className="table table-responsive-md text-center">
                                 <thead>
                                     <tr>
                                         <th>Ticket</th>
@@ -136,33 +229,34 @@ class expertHistory extends Component {
                                         <th>Kết Quả</th>
                                     </tr>
                                 </thead>
-                                
-                                
-                                        <tbody>
 
-                                            {loadedEvents && loadedEvents.map((e, i) =>
-                                                <tr key={i}>
-                                                    <td>{e.ticket}</td>
-                                                    <td>{e.symbol}</td>
-                                                    <td>{e.openPrice}</td>
-                                                    <td>{e.stoploss}</td>
-                                                    <td>{e.takeprofit}</td>
-                                                    <td>{moment(e.startAt.seconds * 1000).format('HH:mm DD/MM/YY')}</td>
-                                                    <td>{e.closePrice}</td>
-                                                    <td>{moment(e.closeAt).format('HH:mm DD/MM/YY')}</td>
-                                                    <td>
-                                                        {e.profit >= 0 ? <button type="button" className="btn btn-raised btn-success btn-min-width mr-1 mb-1">+{e.profit} pips</button> : <button type="button" className="btn btn-raised btn-danger btn-min-width mr-1 mb-1">{e.profit} pips</button>}
 
-                                                    </td>
-                                                </tr>
-                                            )}
+                                    <tbody>  {filterSignals && filterSignals.map((e, i) =>
+                                    <tr key={i}>
+                                        <td>{e.ticket}</td>
+                                        <td>{e.symbol}</td>
+                                        <td>{e.openPrice}</td>
+                                        <td>{e.stoploss}</td>
+                                        <td>{e.takeprofit}</td>
+                                        <td>{moment(e.startAt.seconds * 1000).format('HH:mm DD/MM/YY')}</td>
+                                        <td>{e.closePrice}</td>
+                                        <td>{moment(e.closeAt).format('HH:mm DD/MM/YY')}</td>
+                                        <td>
+                                            {e.profit >= 0 ? <button type="button" className="btn btn-raised btn-success btn-min-width mr-1 mb-1">+{e.profit} pips</button> : <button type="button" className="btn btn-raised btn-danger btn-min-width mr-1 mb-1">{e.profit} pips</button>}
 
-                                        </tbody>
-                                  
-                                
-                            </table>
-                              </InfiniteScroll>
-                            )}
+                                        </td>
+                                    </tr>
+                                )}
+
+                                </tbody>
+
+
+                            </table>)}
+                        
+                            
+                            
+
+                                          
                         </div>
                     </div>
                 </div>

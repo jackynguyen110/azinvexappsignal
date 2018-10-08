@@ -19,12 +19,12 @@ export const getSignalHistoryForDashboard = (lastSignalHistory,eid) => async (di
         .where('status', '==', 'closed')
         .orderBy('startAt', 'asc')
         .startAfter(startAfter)
-        .limit(5))
+        .limit(2))
       : (query = signalHistoryRef
         .where('expert.id', '==', eid)
         .where('status', '==', 'closed')
         .orderBy('startAt', 'asc')
-        .limit(5));
+        .limit(2));
     let querySnap = await query.get();
     if (querySnap.docs.length === 0) {
       dispatch(asyncActionFinish());
