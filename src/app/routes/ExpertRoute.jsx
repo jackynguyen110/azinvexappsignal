@@ -4,11 +4,11 @@ import { Route, Redirect } from 'react-router-dom'
 import ExpertTemplate from '../templates/ExpertTemplate';
 import LandingPage from '../../Components/LandingPage/Landing/Landing';
 
-const ExpertRoute = ({ isAuthenticated, role, path, noMatch, component: Component, ...rest}) => {
+const ExpertRoute = ({ uid,isAuthenticated, role, path, noMatch, component: Component, ...rest}) => {
   if (isAuthenticated){
     if(noMatch) {
       return <Route path="*" render={() => (<div>NOT FOUND PAGE</div>)} />
-    } else if(role === 'expert' && (path === '/dashboard' || path === '/experts' || path === '/expert/:id' )) {
+    } else if(role === 'expert' && (path === '/dashboard' || path === '/experts' )) {
       return <Route path={path} render={() => (<div>NO ACCESS TO PAGE</div>)} />
     } else if(role === 'member' && (path === '/managesignal' )) {
       return <Route path={path} render={() => (<div>NO ACCESS TO PAGE</div>)} />

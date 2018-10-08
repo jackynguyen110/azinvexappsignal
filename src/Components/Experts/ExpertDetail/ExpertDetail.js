@@ -100,8 +100,10 @@ class ExpertDetail extends Component {
 
   render() {
     
-    const { expertDetail, isFollowed} = this.props
-  
+    const { expertDetail, isFollowed, currentUser} = this.props
+    if (currentUser.uid !== this.props.match.params.id){
+      return (<div>NO ACCESS TO PAGE</div>)
+    }
     return (
       <div>
         <section id="user-profile">
