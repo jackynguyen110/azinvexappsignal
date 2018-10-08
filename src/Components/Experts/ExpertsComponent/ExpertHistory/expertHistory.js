@@ -93,10 +93,10 @@ class expertHistory extends Component {
                                     <div className="form-actions">
                                         <button type="button" className="btn btn-raised btn-warning mr-1">
                                             <i className="ft-x" /> Reset
-                            </button>
+                                        </button>
                                         <button type="button" className="btn btn-raised btn-primary">
                                             <i className="fa fa-check-square-o" /> Tìm Kiếm
-                            </button>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -115,6 +115,13 @@ class expertHistory extends Component {
                         <code>.right</code> class to align the form action buttons to right.</p>
                         </div>
                         <div className="card-body">
+                        {loadedEvents && loadedEvents.length !== 0 && (
+                                <InfiniteScroll
+                                pageStart={0}
+                                loadMore={this.getNextEvents}
+                                hasMore={!loading && moreEvents}
+                                initialLoad={false}
+                            >
                             <table className="table table-responsive-md text-center">
                                 <thead>
                                     <tr>
@@ -129,13 +136,8 @@ class expertHistory extends Component {
                                         <th>Kết Quả</th>
                                     </tr>
                                 </thead>
-                                {loadedEvents && loadedEvents.length !== 0 && (
-                                    <InfiniteScroll
-                                        pageStart={0}
-                                        loadMore={this.getNextEvents}
-                                        hasMore={!loading && moreEvents}
-                                        initialLoad={false}
-                                    >
+                                
+                                
                                         <tbody>
 
                                             {loadedEvents && loadedEvents.map((e, i) =>
@@ -156,9 +158,11 @@ class expertHistory extends Component {
                                             )}
 
                                         </tbody>
-                                    </InfiniteScroll>
-                                )}
+                                  
+                                
                             </table>
+                              </InfiniteScroll>
+                            )}
                         </div>
                     </div>
                 </div>

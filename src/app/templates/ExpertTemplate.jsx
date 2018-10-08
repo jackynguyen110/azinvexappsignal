@@ -18,8 +18,7 @@ const ExpertTemplate = ({children}) => {
             </div>
             <Footer/>
         </div>
-        <Notification/>
-        <ListExperts/>
+       
     </div>
   )
 }
