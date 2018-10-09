@@ -36,6 +36,7 @@ export const registerUser = (user) =>
         displayName: user.name,
         role: "member",
         email: user.email,
+        photoURL: null,
         createdAt: firestore.FieldValue.serverTimestamp()
       }
       await firestore.set(`users/${createdUser.uid}`, {...newUser})
