@@ -9,10 +9,14 @@ class MainMenu extends Component {
     componentDidMount = () => {
         var $wrapper = $('.wrapper');
 
-        var $sidebar = $('.app-sidebar'),
-        $sidebar_content = $('.sidebar-content')
-        // $sidebar_img = $sidebar.data('image'),
-        // $sidebar_img_container = $('.sidebar-background')
+        var $sidebar = $('.app-sidebar')
+        var $sidebar_content = $('.sidebar-content')
+        var $sidebar_img = $sidebar.data('image')
+        var  $sidebar_img_container = $('.sidebar-background')
+
+        if( $sidebar_img_container.length !== 0 && $sidebar_img !== undefined ){
+            $sidebar_img_container.css('background-image','url("' + $sidebar_img + '")');
+        }
 
         $('.nav-toggle').on('click',function(){
             var $this = $(this),
@@ -153,7 +157,7 @@ class MainMenu extends Component {
     render () {
       const { profileUser } = this.props;
         return (
-            <div data-active-color="white" data-background-color="black" data-image="https://pixinvent.com/apex-angular-4-bootstrap-admin-template/demo-1/assets/img/sidebar-bg/01.jpg" className="app-sidebar">
+            <div data-active-color="white" data-background-color="king-yna" data-image="https://pixinvent.com/apex-angular-4-bootstrap-admin-template/demo-1/assets/img/sidebar-bg/01.jpg" className="app-sidebar">
                 <div className="sidebar-header">
                 <div className="logo clearfix"><a href="https://azinvex.com" className="logo-text float-left">
                     <div className="logo-img"><img src={Logo} alt="" /></div><span className="text align-middle">AZINVEX</span></a><a id="sidebarToggle" className="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="collapsed" className="ft-toggle-left toggle-icon" /></a><a id="sidebarClose" className="nav-close d-block d-md-block d-lg-none d-xl-none"><i className="ft-x" /></a></div>
