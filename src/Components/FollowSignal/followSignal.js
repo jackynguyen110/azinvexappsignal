@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withFirestore } from 'react-redux-firebase'
 import moment from 'moment';
+import { Link } from 'react-router-dom'
 class followSignal extends Component {
     state={
       selectedExpert: undefined
@@ -61,9 +62,10 @@ class followSignal extends Component {
                 <div className="card-body">
                   <div className="card-block">
                     {followedExpert&&followedExpert.map(e => <div key={e.id} className="media mb-3">
-                      <img alt="96x96" className="media-object d-flex mr-3 align-self-center bg-primary height-50 rounded-circle" src={e.photoURL} />
+                      <Link to={"/expert/"+ e.followedId}><img alt="96x96" className="media-object d-flex mr-3 align-self-center bg-primary height-50 rounded-circle" src={e.photoURL || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjuSH7ZmYvOR6pUpUiZrLG7DPo76PL-HAIkSd9o1AEuLbKd41nUw'} />
+                      </Link>
                       <div className="media-body">
-                        <h4 className="font-medium-1 mt-2 mb-0">{e.displayName}</h4>
+                        <h4 className="font-medium-1 mt-2 mb-0">{e.displayName || 'NO NAME' }</h4>
                       </div>
                       {!this.isSelected(e.followedId) ? <a onClick={() => this.selectExpert(e.followedId)} className="d-flex ml-3 btn btn-raised btn-round btn-outline-grey py-2 width-150 justify-content-center">View</a> : <a className="d-flex ml-3 btn btn-raised btn-round gradient-blackberry py-2 width-150 justify-content-center white">Viewing</a>}
                       
