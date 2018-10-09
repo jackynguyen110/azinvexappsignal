@@ -166,7 +166,10 @@ class MainMenu extends Component {
                         <li className="nav-item"><NavLink to="/managesignal" ><i className="ft-home" /><span data-i18n className="menu-title">Manage Signal</span></NavLink></li>
                       }
                       {(profileUser.role && profileUser.role === 'member') &&
-                        <li className="nav-item"><NavLink to="/dashboard" ><i className="ft-home" /><span data-i18n className="menu-title">Room Tín Hiệu</span></NavLink></li>
+                        <li className="nav-item"><NavLink to="/dashboard" ><i className="ft-home" /><span data-i18n className="menu-title">Dashboard</span></NavLink></li>
+                      }
+                      {(profileUser.role && profileUser.role === 'member') &&
+                        <li className="nav-item"><NavLink to="/signals" ><i className="ft-home" /><span data-i18n className="menu-title">Room Tín Hiệu</span></NavLink></li>
                       }
                       {(profileUser.role && profileUser.role === 'member') &&
                         <li className="nav-item"><NavLink to="/experts" ><i className="ft-home" /><span data-i18n className="menu-title">Danh Sách Chuyên Gia</span></NavLink></li>

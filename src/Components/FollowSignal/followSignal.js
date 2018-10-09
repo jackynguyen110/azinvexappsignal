@@ -56,7 +56,7 @@ class followSignal extends Component {
             <div className="col-xl-4 col-lg-12">
               <div className="card">
                 <div className="card-header">
-                  <h4 className="card-title mb-0">Discover People</h4>
+                  <h4 className="card-title mb-0">Danh Sách Chuyên Gia</h4>
                 </div>
                 <div className="card-body">
                   <div className="card-block">
@@ -76,7 +76,7 @@ class followSignal extends Component {
             <div className="col-xl-8 col-lg-12">
               <div className="card">
                 <div className="card-header">
-                  <h4 className="card-title mb-0">Sales Analysis</h4>
+                  <h4 className="card-title mb-0">Danh Sách Tín Hiệu</h4>
                 </div>
                 <div className="card-body">
                   <div className="card-block">

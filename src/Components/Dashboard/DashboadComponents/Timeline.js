@@ -10,8 +10,8 @@ class Timeline extends Component {
             <section id="timeline" className="timeline-center timeline-wrapper">
                 <div className="row">
                     <div className="col-sm-12">
-                        <div className="content-header">Vertical Timeline</div>
-                        <p className="content-sub-header">This vertical timeline contain post with photos, videos, charts and map to make timeline more effective.</p>
+                        <div className="content-header">THÔNG BÁO</div>
+                        <p className="content-sub-header">Những cập nhật mới nhất từ các chuyên gia bạn đang theo dõi.</p>
                     </div>
                 </div>
                 <h3 className="page-title text-center">Timeline</h3>
