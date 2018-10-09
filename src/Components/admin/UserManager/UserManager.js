@@ -57,7 +57,7 @@ class UserManager extends Component {
                                             <tr key={user.id}>
                                                 <td><img className="media-object round-media" src={user.avatar} alt="Generic placeholder" style={{height: 75}} /></td>
                                                 <td>{user.email}</td>
-                                                <td>{user.username}</td>
+                                                <td>{user.displayName}</td>
                                                 <td>{user.role}</td>
                                                
                                                 <td>
