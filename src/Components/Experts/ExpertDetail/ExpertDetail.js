@@ -100,8 +100,8 @@ class ExpertDetail extends Component {
 
   render() {
     
-    const { expertDetail, isFollowed, currentUser} = this.props
-    if (currentUser.uid !== this.props.match.params.id){
+    const { expertDetail, isFollowed, currentUser, profile} = this.props
+    if (currentUser.uid !== this.props.match.params.id && profile.role == 'expert'){
       return (<div>NO ACCESS TO PAGE</div>)
     }
     return (
@@ -181,6 +181,7 @@ const mapStateToProps = state => {
   return {
     expertDetail: currentExpert,
     currentUser: state.firebase.auth,
+    profile: state.firebase.profile,
     activeList: state.firestore.ordered.activeList ? state.firestore.ordered.activeList : [],
     todayList: state.firestore.ordered.todayList ? state.firestore.ordered.todayList : [],
     isFollowed: state.firestore.ordered.isFollowed ? (state.firestore.ordered.isFollowed[0] ? true:false) : null 

@@ -1,5 +1,5 @@
 import React, { } from 'react';
-
+import { Link } from 'react-router-dom'
 const Navigation = props => {
   const handleSignOut = () => {
     props.firebase.logout();
@@ -49,9 +49,15 @@ const Navigation = props => {
                 }
                 {props.profileUser.role === 'member' &&
                   <a href="#/dashboard" className="dropdown-item">
+                    <i className="material-icons">view_quilt</i> Trang Quản Trị
+                  </a>
+                }
+                {props.profileUser.role === 'member' &&
+                  <a href="#/signals" className="dropdown-item">
                     <i className="material-icons">art_track</i> Room Tín Hiệu
                   </a>
                 }
+              
                 {props.profileUser.role === 'member' &&
                   <a href="#/experts" className="dropdown-item">
                     <i className="material-icons">view_quilt</i> Danh Sách Chuyên Gia
@@ -82,7 +88,10 @@ const Navigation = props => {
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
-            {props.isAuthenticated && <li>Xin chào {props.profileUser.displayName}&nbsp;</li>}
+            {props.isAuthenticated && props.profileUser.role === 'member' &&  <li>Xin chào <a href="#/dashboard">
+            {props.profileUser.displayName}&nbsp;</a>
+            </li>}
+
             <li className="button-container nav-item iframe-extern">
               {props.isAuthenticated ?
                 <a href="#/home" style={{ padding: '.375rem .75rem'}} className="btn btn-rose btn-round btn-block" onClick={handleSignOut}>Logout</a> :
