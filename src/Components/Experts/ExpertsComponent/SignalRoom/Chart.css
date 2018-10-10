@@ -1,0 +1,8 @@
+.emojiContainer {
+  position: absolute;
+  top: 175px;
+  left: 20px;
+}
+.emoji-picker {
+  height: 355px;
+}
