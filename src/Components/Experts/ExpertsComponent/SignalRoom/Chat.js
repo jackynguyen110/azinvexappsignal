@@ -7,7 +7,6 @@ import JSEMOJI from 'emoji-js';
 import ChatForm from './ChatForm';
 
 import styles from './Chart.css';
-import './chat.scss';
 
 //emoji set up
 let jsemoji = new JSEMOJI();
