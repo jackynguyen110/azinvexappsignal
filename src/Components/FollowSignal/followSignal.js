@@ -22,7 +22,7 @@ class followSignal extends Component {
       firestore.unsetListener(
         {
           collection: 'signals',
-          where: ['expert.id', '==', this.state.selectedExpert],
+          where: [['expert.id', '==', this.state.selectedExpert], ['status', '==', "active"]],
           storeAs: 'activeSignals'
         },
       )
@@ -36,7 +36,7 @@ class followSignal extends Component {
       firestore.unsetListener(
         {
           collection: 'signals',
-          where: ['expert.id', '==', this.state.selectedExpert],
+          where: [['expert.id', '==', this.state.selectedExpert], ['status', '==', "active"]],
           storeAs: 'activeSignals'
         },
       )
@@ -44,7 +44,7 @@ class followSignal extends Component {
       firestore.setListener(
         {
           collection: 'signals',
-          where: ['expert.id', '==', expertId],
+          where: [['expert.id', '==', expertId], ['status', '==', "active"]],
           storeAs: 'activeSignals'
         },
       )
