@@ -79,7 +79,7 @@ class Timeline extends Component {
                                     return (<li key={index} className="timeline-item mt-5">
                                         <div className="timeline-badge">
                                             <span className="avatar avatar-online" data-toggle="tooltip" data-placement="left" title={"Expert: " + item.expert.displayName}>
-                                                <img src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" className="rounded-circle" alt="avatar" width={40} />
+                                                <img src={item.expert.photoURL} className="rounded-circle" alt="avatar" width={40} />
                                             </span>
                                         </div>
                                         <div className="timeline-card card border-grey border-lighten-2">
