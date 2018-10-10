@@ -25,12 +25,13 @@ class Landing extends Component {
   }
 
   render() {
-    const { profileUser, isAuthenticated } = this.props;
+    const { profileUser, isAuthenticated, auth } = this.props;
     return (
       <div className="landing-page sidebar-collapse">
         <Navigation
           profileUser={profileUser}
           isAuthenticated={isAuthenticated}
+          auth = {auth}
           firebase={this.props.firebase}
         />
         <HeaderContent />

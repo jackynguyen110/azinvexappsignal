@@ -5,10 +5,12 @@ const Navigation = props => {
     props.firebase.logout();
   };
   return (
+   
     <nav className="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg">
       <div className="container">
         <div className="navbar-translate">
           <a className="navbar-brand" href="/">
+          {console.log(this.props)}
             <img alt="" style={{'margin-top': '-20px'}} src="https://azinvex.com/images/Logo-Az-invex.png" height="61px" width="243px" />
           </a>
           <button type="button" className="ml-auto navbar-toggler" data-toggle="collapse"
@@ -39,17 +41,22 @@ const Navigation = props => {
             </li>
             <li className="dropdown nav-item">
               <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                <i className="material-icons">apps</i> Danh Mục
+                <i className="material-icons">apps</i> Trang Quản Trị
               </a>
               <div className="dropdown-menu dropdown-with-icons">
                 {props.profileUser.role === 'expert' &&
+                    <a href={'#/expert/' + props.auth.uid} className="dropdown-item">
+                      <i className="material-icons">account_balance</i> Trang Cá Nhân
+                    </a>
+                  }
+                {props.profileUser.role === 'expert' &&
                   <a href="#/managesignal" className="dropdown-item">
-                    <i className="material-icons">account_balance</i> Manage Signal
+                    <i className="material-icons">account_balance</i> Bắn Tín Hiệu
                   </a>
                 }
                 {props.profileUser.role === 'member' &&
                   <a href="#/dashboard" className="dropdown-item">
-                    <i className="material-icons">view_quilt</i> Trang Quản Trị
+                    <i className="material-icons">view_quilt</i> Dashboard
                   </a>
                 }
                 {props.profileUser.role === 'member' &&
@@ -63,21 +70,7 @@ const Navigation = props => {
                     <i className="material-icons">view_quilt</i> Danh Sách Chuyên Gia
                   </a>
                 }
-                {props.isAuthenticated &&
-                  <a href="#/information" className="dropdown-item">
-                    <i className="material-icons">location_on</i> Thông Tin Cá Nhân
-                  </a>
-                }
-                {props.isAuthenticated &&
-                  <a href="#/changepassword" className="dropdown-item">
-                    <i className="material-icons">view_day</i> Đổi Mật Khẩu
-                  </a>
-                }
-                {props.isAuthenticated &&
-                  <a href="#/account" className="dropdown-item">
-                    <i className="material-icons">fingerprint</i> Thông Tin Tài Khoản
-                  </a>
-                }
+               
                 <a href="#/help" className="dropdown-item">
                   <i className="material-icons">shopping_basket</i> Hướng Dẫn Sử Dụng
                 </a>
