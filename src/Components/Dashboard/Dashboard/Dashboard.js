@@ -4,6 +4,7 @@ import Timeline from '../DashboadComponents/Timeline';
 import TopUser from '../DashboadComponents/TopUser';
 import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import { getEventsForDashboard } from '../notificationActions';
 
  class Dashboard extends Component {
@@ -61,9 +62,11 @@ componentWillUnmount(){
    };
 
   render() {
-    const { topExpert, currentUser, statistics, loading } = this.props
+    const { topExpert, currentUser, statistics, loading, profileUser } = this.props
     const { moreEvents, loadedEvents } = this.state;
+    
     return (
+       
         <div>
         <CardHeader statistics={statistics}/>
         <div className="row">
@@ -88,6 +91,7 @@ const mapStateToProps = (state) => {
     statistics: state.firestore.ordered.statistics ? state.firestore.ordered.statistics[0] : {activeSignal:0,experts:0,pips:0,users:0},
     loading: state.async.loading,
     timelineContent: state.events,
+    profileUser: state.firebase.profile
   })
 };
 const actions = {

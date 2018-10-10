@@ -155,7 +155,8 @@ class MainMenu extends Component {
     }
   
     render () {
-      const { profileUser } = this.props;
+      const { profileUser, auth } = this.props;
+      console.log(auth)
         return (
             <div data-active-color="white" data-background-color="king-yna" data-image="https://pixinvent.com/apex-angular-4-bootstrap-admin-template/demo-1/assets/img/sidebar-bg/01.jpg" className="app-sidebar">
                 <div className="sidebar-header">
@@ -167,8 +168,12 @@ class MainMenu extends Component {
                     <ul id="main-menu-navigation" data-menu="menu-navigation" className="navigation navigation-main">
                       <li className="nav-item"><NavLink to="/home" ><i className="ft-home" /><span data-i18n className="menu-title">Home</span></NavLink></li>
                       {(profileUser.role && profileUser.role === 'expert') &&
-                        <li className="nav-item"><NavLink to="/managesignal" ><i className="ft-home" /><span data-i18n className="menu-title">Manage Signal</span></NavLink></li>
+                        <li className="nav-item"><NavLink to={'/expert/' + auth.uid} ><i className="ft-home" /><span data-i18n className="menu-title">Trang Cá Nhân</span></NavLink></li>
                       }
+                      {(profileUser.role && profileUser.role === 'expert') &&
+                        <li className="nav-item"><NavLink to="/managesignal" ><i className="ft-home" /><span data-i18n className="menu-title">Bắn Tín Hiệu</span></NavLink></li>
+                      }
+                      
                       {(profileUser.role && profileUser.role === 'member') &&
                         <li className="nav-item"><NavLink to="/dashboard" ><i className="ft-home" /><span data-i18n className="menu-title">Dashboard</span></NavLink></li>
                       }
@@ -212,7 +217,8 @@ class MainMenu extends Component {
 
 export default connect(
   state => ({
-    profileUser: state.firebase.profile
+    profileUser: state.firebase.profile,
+    auth: state.firebase.auth
   }),
   {
    // action

@@ -29,9 +29,8 @@ class ListExpert extends Component {
             <section id="outline-variants">
                 <div className="row">
                     <div className="col-12 mt-3 mb-1">
-                        <div className="content-header">Outline variants</div>
-                        <p className="content-sub-header">In need of a colored card, but not the hefty background colors they bring? Replace the default modifier classes
-                with the <code>.card-outline-*</code> ones to style just the <code>border-color</code> of a card.</p>
+                        <div className="content-header">Danh Sách Chuyên Gia</div>
+                        <p className="content-sub-header">Tổng Hợp Những Chuyên gia forex hàng đầu từ khắp mọi nơi.</p>
                     </div>
                 </div>
                 <div className="row match-height">
