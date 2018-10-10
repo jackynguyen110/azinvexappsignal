@@ -5,7 +5,7 @@ import TopUser from '../DashboadComponents/TopUser';
 import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { getEventsForDashboard } from '../notificationActions';
-
+import firebase from 'app/config/firebase';
  class Dashboard extends Component {
    state = {
      moreEvents: false,
@@ -14,6 +14,21 @@ import { getEventsForDashboard } from '../notificationActions';
      contextRef: {}
    }
    async componentDidMount() {
+    //  const db = firebase.firestore();
+    //  db.collection("signals")
+    //    .onSnapshot(function (snapshot) {
+    //      snapshot.docChanges().forEach(function (change) {
+    //        if (change.type === "added") {
+    //          console.log("New city: ", change.doc.data());
+    //        }
+    //        if (change.type === "modified") {
+    //          console.log("Modified city: ", change.doc.data());
+    //        }
+    //        if (change.type === "removed") {
+    //          console.log("Removed city: ", change.doc.data());
+    //        }
+    //      });
+    //    });
      const { firestore } = this.props
      let next = await this.props.getEventsForDashboard();
      if (next && next.docs && next.docs.length > 1) {
@@ -22,6 +37,7 @@ import { getEventsForDashboard } from '../notificationActions';
          loadingInitial: false
        });
      }
+     firestore.onSnapshot({ collection: 'signals' })
      firestore.setListener({
          collection: 'users',
           where: ['role', '==', 'expert'],
