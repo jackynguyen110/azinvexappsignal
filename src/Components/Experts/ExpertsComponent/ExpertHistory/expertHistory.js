@@ -106,7 +106,7 @@ class expertHistory extends Component {
                             <ul className="no-list-style">
                                 <li className="mb-2">
                                     <span className="text-bold-500 primary"><a><i className="ft-user font-small-3" /> Tổng Số Pips: </a></span>
-                                    <span className="overflow-hidden">{expertDetail.totalpips}</span>
+                                    <span className="overflow-hidden">{expertDetail.totalpips.toFixed(2)}</span>
                                 </li>
                                 <li className="mb-2">
                                     <span className="text-bold-500 primary"><a><i className="ft-mail font-small-3" /> Số lệnh Thắng: </a></span>

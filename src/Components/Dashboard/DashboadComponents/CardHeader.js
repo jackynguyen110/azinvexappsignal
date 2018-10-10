@@ -29,7 +29,7 @@ import React, { Component } from 'react'
               <div className="card-block pt-2">
                 <div className="media">
                   <div className="media-body white text-left">
-                    <h3 className="font-large-1 mb-0">{statistics.pips}</h3>
+                    <h3 className="font-large-1 mb-0">{statistics.pips.toFixed(2)}</h3>
                     <span>Tổng Số Pips</span>
                   </div>
                   <div className="media-right white text-right">
