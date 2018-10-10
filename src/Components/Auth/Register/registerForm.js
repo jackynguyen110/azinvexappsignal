@@ -23,7 +23,7 @@ const RegisterForm = ({handleSubmit, registerUser, socialLogin, error}) => {
                         <div className="col-12 col-sm-12 col-md-6 gradient-deep-orange-orange">
                             <div className="card-block">
                             <div className="card-img overlap">  
-                                <img alt="" src={Avatar} width={350} className="mx-auto d-block" />
+                                <img alt="" src='https://pixinvent.com/apex-angular-4-bootstrap-admin-template/demo-2/assets/img/elements/13.png' width={350} className="mx-auto d-block" />
                             </div>
                             <h2 className="card-title font-large-1 text-center white mt-3">Registration</h2>
                             </div>
