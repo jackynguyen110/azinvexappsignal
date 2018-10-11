@@ -11,7 +11,7 @@ class PhotoPage extends Component {
     fileName: ''
   }
   uploadImage = async () => {
-    const { dispatch } = this.props
+    const { dispatch, firestore, currentUser } = this.props
     try {
       dispatch(asyncActionStart());
       let formData = new FormData();
@@ -23,9 +23,19 @@ class PhotoPage extends Component {
         }
       };
       let url = 'http://api.congtruyendich.com/upload';
-      axios.post(url, formData, axiosConfig).then((data) => {
+      axios.post(url, formData, axiosConfig).then(async (data) => {
         this.setState({ link: data.data.full})
         dispatch(asyncActionFinish());
+        firestore.add(
+          {
+            collection: 'users',
+            doc: currentUser.uid,
+            subcollections: [{ collection: 'photos' }]
+          },
+          {
+            name: data.data.title,
+            url: data.data.full
+          })
       }).catch(error => {
         console.log(error)
         dispatch(asyncActionError());
@@ -55,5 +65,7 @@ class PhotoPage extends Component {
     )
   }
 }
-
-export default connect(null, null)(withFirestore(PhotoPage))
+const mapState = (state) => ({
+  currentUser: state.firebase.auth,
+});
+export default connect(mapState, null)(withFirestore(PhotoPage))
