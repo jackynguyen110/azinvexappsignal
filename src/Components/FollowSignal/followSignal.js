@@ -85,30 +85,32 @@ class followSignal extends Component {
                   <table className="table table-responsive-md text-center">
                           <thead>
                             <tr>
-                              <th></th>
-                          <th>Ticket</th>
-                              <th>Cặp Tiền</th>
-                              <th>Stoploss</th>
-                              <th>TakeProfit</th>
-                              <th>Thời Gian mở</th>
-                              <th>Giá mở cửa</th>
+                              <th>Ticket</th>
+                              <th>Lệnh</th>
+                              <th>TP/SL</th>
+                              <th>Thời Gian Vào</th>
+                              <th>Trạng Thái</th>
+                              <th>Kết quả</th>
                               {/* <th>Kết Quả</th> */}
                             </tr>
                           </thead>
                           <tbody>
                         {activeSignals && activeSignals.map(e =>
-                          <tr>
-                            <td><img className="media-object round-media" src="https://thumbs.gfycat.com/ImmaculateUnacceptableArizonaalligatorlizard-size_restricted.gif" alt="Generic placeholder" style={{ height: 35 }} /></td>
-                            <td>{e.ticket}</td>
-                            <td>{e.symbol}</td>
-                            <td>{e.stoploss}</td>
-                            <td>{e.takeprofit}</td>
-                            <td>{moment(e.startAt.seconds*1000).format('HH:mm DD/MM/YYYY')}</td>
-                            <td>{e.openPrice}</td>
-                            {/* <td>
-                              <button type="button" className="btn btn-raised btn-info btn-min-width mr-1 mb-1">Running...</button>
-                            </td> */}
-                          </tr>
+                         <tr key={e.id}>
+                         <td>{e.id}</td>
+                         <td>
+                           {e.typeSignal ? <span className="badge badge-danger">SELL</span> : <span className="badge badge-success">BUY</span>}
+                           <br />
+                             <b>Open Price :</b>{e.openPrice}
+                         </td>
+                         <td> {e.symbol.toUpperCase()}</td>
+                         <td>
+                           <b>Stoploss : </b> {e.stoploss} <br /><b>Takeprofit : </b>{e.takeprofit}
+                           </td>
+                         <td>{moment(e.startAt.seconds*1000).format('HH:mm DD/MM/YYYY')}</td>
+                         <td><img src="https://thumbs.gfycat.com/ImmaculateUnacceptableArizonaalligatorlizard-size_restricted.gif" alt="" height="40px" width="40px" /></td>
+                       
+                       </tr>
                         )}
                       
                       
