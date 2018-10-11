@@ -6893,9 +6893,9 @@ react-dom@^16.0.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-dropzone@^6.0.3:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-6.0.3.tgz#7a995145ad7c40644fcb26cabc5e101604d6c4f9"
+react-dropzone@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-6.0.4.tgz#205cf0cf9905cb0ede8209d82f29d956ce6a9065"
   dependencies:
     attr-accept "^1.1.3"
     prop-types "^15.6.2"
@@ -6903,6 +6903,10 @@ react-dropzone@^6.0.3:
 react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
+
+react-icons@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.1.0.tgz#004bc8d8b64a5480cdebd86ccb72ba5930b0e434"
 
 react-infinite-scroller@^1.2.1:
   version "1.2.1"

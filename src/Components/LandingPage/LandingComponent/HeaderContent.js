@@ -1,5 +1,6 @@
 import React  from 'react';
 import landingBG from '../../../assets/landingImages/bg12.jpg';
+import NotificationComponent from "../../Notification/NotificationComponent";
 
 const HeaderContent = () => {
   return (
@@ -12,8 +13,8 @@ const HeaderContent = () => {
               lớn và tỷ lệ thắng cực cao.
               Vậy, liệu thông tin đó có được xác thực và tính minh bạch của họ như thế nào?</h4>
             <br />
+            <NotificationComponent />
           </div>
-        
         </div>
       </div>
     </div>
