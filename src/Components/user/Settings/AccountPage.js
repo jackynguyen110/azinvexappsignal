@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { withFirestore } from 'react-redux-firebase';
-import FileTextField from '../../../app/common/form/FileTextField';
 import DropzoneField from '../../../app/common/form/DropzoneField';
 
 const mapState = (state) => ({
