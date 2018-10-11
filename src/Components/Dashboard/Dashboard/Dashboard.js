@@ -6,6 +6,7 @@ import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import { getEventsForDashboard } from '../notificationActions';
+import * as Push from 'push.js'
 import firebase from 'app/config/firebase';
 class Dashboard extends Component {
   state = {
@@ -15,6 +16,15 @@ class Dashboard extends Component {
     contextRef: {}
   }
   async componentDidMount() {
+    // Push.create("Hello world!", {
+    //   body: "How's it hangin'?",
+    //   icon: '/icon.png',
+    //   timeout: 4000,
+    //   onClick: function () {
+    //     window.focus();
+    //     this.close();
+    //   }
+    // });
     const db = firebase.firestore();
     const { firestore, currentUser } = this.props
     let next = await this.props.getEventsForDashboard();
@@ -38,7 +48,7 @@ class Dashboard extends Component {
     firestore.setListener({
       collection: 'users',
       where: ['role', '==', 'expert'],
-      orderBy: ['totalpips'],
+      orderBy: ['totalpips','desc'],
       storeAs: 'topExpert',
       limit: 5
     })

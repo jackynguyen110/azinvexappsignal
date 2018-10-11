@@ -8,6 +8,7 @@ import LoginForm from '../../Components/Auth/Login/LoginForm';
 import RegisterForm from '../../Components/Auth/Register/registerForm';
 import AccountPage from '../../Components/user/Settings/AccountPage';
 import Changepass from '../../Components/user/Settings/Changepassword';
+import PhotoPage from '../../Components/user/Settings/PhotoPage';
 import ReduxToastr from 'react-redux-toastr'
 import ManageSignal from '../../Components/ManageSignal/ManageSignal';
 import PageRoute from '../routes/PageRoute';
@@ -38,6 +39,7 @@ class App extends Component {
             <PageRoute isAuthenticated={isAuthenticated}  component={RegisterForm} path="/register" />
             <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={AccountPage} path="/information" />
             <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={Changepass} path="/changepassword" />
+            <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={PhotoPage} path="/photo" />
             <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={ManageSignal} path="/managesignal" />
             <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={UserManager} path="/admin/users" />
             <ExpertRoute role={role} isAuthenticated={isAuthenticated} component={followSignal} path="/signals" />
