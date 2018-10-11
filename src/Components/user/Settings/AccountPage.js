@@ -3,15 +3,32 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { withFirestore } from 'react-redux-firebase';
+import FileTextField from '../../../app/common/form/FileTextField';
+import DropzoneField from '../../../app/common/form/DropzoneField';
 
 const mapState = (state) => ({
     initialValues: state.firebase.profile,
     currentUser: state.firebase.auth
 })
+
 class AccountPage extends React.Component {
+    state = { imageFile: [] };
+    
     onFormSubmit = (creds) => {
+        
         const { firestore, currentUser } = this.props;
-        firestore.update({ collection: 'users', doc: currentUser.uid }, creds)
+        const image = creds.imageToUpload[0];
+        console.log(image)
+        const data = {
+            photoURL : image.preview
+        }
+        
+        firestore.update({ collection: 'users', doc: currentUser.uid }, data)
+    }
+    handleOnDrop = newImageFile => this.setState({ imageFile: newImageFile });
+
+    HandleImageChange = (e) => {
+        e.preventDefault();
     }
     render(){
         const { handleSubmit } = this.props
@@ -72,6 +89,14 @@ class AccountPage extends React.Component {
                                                 <Field component={TextInputForm} id="information.about" rows={5} className="form-control border-primary" name="information.about" placeholder="Mô Tả Bản Thân" />
                                             </div>
                                         </div>
+                                       
+                                        <Field
+                                        name="imageToUpload"
+                                        component={DropzoneField}
+                                        type="file"
+                                        imagefile={this.state.imageFile}
+                                        handleOnDrop={this.handleOnDrop}
+                                        />
                                     </div>
                                     <div className="form-actions right">
                                         <button type="button" className="btn btn-raised btn-warning mr-1">
