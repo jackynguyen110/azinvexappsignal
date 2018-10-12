@@ -55,12 +55,7 @@ class AccountPage extends React.Component {
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title" id="from-actions-bottom-right">Thông Tin Cá Nhân</h4>
-                            <div className="alert alert-info" role="alert">
-                                <strong>Form Actions On Bottom Right.</strong>
-                            </div>
-                            <p className="mb-0">To add form actions on bottom of the form add a div with
-                        <code>.form-actions</code> class to end the form. This is the default position for form actions. We have added
-                        <code>.right</code> class to move buttons on the right side.</p>
+                           
                         </div>
                         <div className="card-body">
                             <div className="px-3">
