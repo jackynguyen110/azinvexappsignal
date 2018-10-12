@@ -12,7 +12,7 @@ class ChatForm extends Component {
             this.state = {}
         }
     handleSubmitForm = values => {
-        console.log(this.props.expertId)
+        console.log(values)
         const { expertId, addEventComment, reset } = this.props;
         addEventComment(expertId, values)
         reset()
@@ -33,7 +33,7 @@ class ChatForm extends Component {
                 <div className="form-control-position"  onClick={() => this.props.handleShowEmoji()} >
                 <i className="icon-emoticon-smile" />
                 </div>
-                <input className="mw-100 border rounded form-control" onChange={this.handleChange} value={this.props.text} placeholder="Type your text..." />
+                <Field component={TextInputForm} className="mw-100 border rounded form-control" name="comment" onChange={this.handleChange} value={this.props.text} placeholder="Type your text..." />
                 <div className="form-control-position control-position-right" >
                 <i className="ft-image"/>
                 </div>

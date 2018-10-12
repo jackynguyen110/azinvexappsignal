@@ -4,11 +4,20 @@ import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { connect } from 'react-redux';
 import { login, socialLogin } from '../../Auth/authActions'
+import { Redirect } from 'react-router'
+
 const actions = {
     login,
     socialLogin
 }
-const LoginForm = ({ login, handleSubmit, error, socialLogin }) => {
+
+const mapState = (state) => ({
+    currentUser: state.firebase.auth
+})
+const LoginForm = ({ login, handleSubmit, error, socialLogin, currentUser }) => {
+    if (currentUser) {
+        return <Redirect to="/"/>;
+    }
     return (
 
         <section id="login">
@@ -66,4 +75,4 @@ const LoginForm = ({ login, handleSubmit, error, socialLogin }) => {
 };
 
 
-export default connect(null, actions)(reduxForm({ form: 'LoginForm' })(LoginForm))
+export default connect(mapState, actions)(reduxForm({ form: 'LoginForm' })(LoginForm))
