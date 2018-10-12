@@ -15,7 +15,7 @@ class Dashboard extends Component {
     contextRef: {}
   }
   async componentDidMount() {
-    Push.create('Waiting notification!')
+    Push.Permission.request(onGranted, onDenied);
     const db = firebase.firestore();
     const { firestore, currentUser } = this.props
     let next = await this.props.getEventsForDashboard();
