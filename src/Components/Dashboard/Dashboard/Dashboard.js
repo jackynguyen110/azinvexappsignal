@@ -15,7 +15,11 @@ class Dashboard extends Component {
     contextRef: {}
   }
   async componentDidMount() {
-    Push.Permission.request(onGranted, onDenied);
+    Push.Permission.request(function(){
+      console.log("GRANTED")
+    }, function(){
+      console.log("DENIED")
+    });
     const db = firebase.firestore();
     const { firestore, currentUser } = this.props
     let next = await this.props.getEventsForDashboard();
