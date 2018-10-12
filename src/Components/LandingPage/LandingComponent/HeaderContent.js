@@ -13,7 +13,7 @@ const HeaderContent = () => {
               lớn và tỷ lệ thắng cực cao.
               Vậy, liệu thông tin đó có được xác thực và tính minh bạch của họ như thế nào?</h4>
             <br />
-            <NotificationComponent />
+            {/* <NotificationComponent /> */}
           </div>
         </div>
       </div>
