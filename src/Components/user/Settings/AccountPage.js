@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { withFirestore } from 'react-redux-firebase';
 import DropzoneField from '../../../app/common/form/DropzoneField';
-
+import axios from 'axios';
 const mapState = (state) => ({
     initialValues: state.firebase.profile,
     currentUser: state.firebase.auth
@@ -13,16 +13,29 @@ const mapState = (state) => ({
 class AccountPage extends React.Component {
     state = { imageFile: [] };
     
-    onFormSubmit = (creds) => {
-        
+    onFormSubmit = async (creds) => {
+        const { isLoaded, isEmpty, imageToUpload, updatedAt, ...updatedUser } = creds;
+        console.log(updatedUser)
         const { firestore, currentUser } = this.props;
-        const image = creds.imageToUpload[0];
-        console.log(image)
-        const data = {
-            photoURL : image.preview
+       
+        if(creds.imageToUpload){
+            const image = creds.imageToUpload[0];
+            let formData = new FormData();
+            formData.append('photo', image);
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "Access-Control-Allow-Origin": "*",
+                }
+            };
+            let url = 'http://api.congtruyendich.com/upload';
+            const data = await axios.post(url, formData, axiosConfig);
+            this.setState({ imageFile: [] })
+            const newData = { ...updatedUser, photoURL: data.data.full, updatedAt: firestore.FieldValue.serverTimestamp() }
+            firestore.update({ collection: 'users', doc: currentUser.uid }, newData)
+        }else{
+            firestore.update({ collection: 'users', doc: currentUser.uid }, updatedUser)
         }
-        
-        firestore.update({ collection: 'users', doc: currentUser.uid }, data)
     }
     handleOnDrop = newImageFile => this.setState({ imageFile: newImageFile });
 

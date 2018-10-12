@@ -36,6 +36,8 @@ export const registerUser = (user) =>
         displayName: user.name,
         role: "member",
         email: user.email,
+        followerCount:0,
+        followingCount: 0,
         photoURL: "/assets/user.png",
         createdAt: firestore.FieldValue.serverTimestamp()
       }
@@ -62,6 +64,8 @@ export const socialLogin = (selectedProvider) =>
         await firestore.set(`users/${user.user.uid}`, {
           displayName: user.profile.displayName,
           photoURL: user.profile.avatarUrl,
+          followerCount: 0,
+          followingCount: 0,
           role: "member",
           createdAt: firestore.FieldValue.serverTimestamp()
         })
