@@ -4,12 +4,13 @@ import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { withFirestore } from 'react-redux-firebase';
 import DropzoneField from '../../../app/common/form/DropzoneField';
+import LoadingComponent from 'app/layout/Loading/LoadingComponent'
 import axios from 'axios';
 const mapState = (state) => ({
     initialValues: state.firebase.profile,
-    currentUser: state.firebase.auth
+    currentUser: state.firebase.auth,
+    loading:false
 })
-
 class AccountPage extends React.Component {
     state = { imageFile: [] };
     
@@ -17,7 +18,7 @@ class AccountPage extends React.Component {
         const { isLoaded, isEmpty, imageToUpload, updatedAt, ...updatedUser } = creds;
         console.log(updatedUser)
         const { firestore, currentUser } = this.props;
-       
+       this.setState({loading:true})
         if(creds.imageToUpload){
             const image = creds.imageToUpload[0];
             let formData = new FormData();
@@ -36,6 +37,7 @@ class AccountPage extends React.Component {
         }else{
             firestore.update({ collection: 'users', doc: currentUser.uid }, updatedUser)
         }
+        this.setState({ loading: false })
     }
     handleOnDrop = newImageFile => this.setState({ imageFile: newImageFile });
 
@@ -44,6 +46,7 @@ class AccountPage extends React.Component {
     }
     render(){
         const { handleSubmit } = this.props
+        if (this.state.loading) return (<LoadingComponent />)
         return(<section id="accoutPage">
 
             <div className="row">
