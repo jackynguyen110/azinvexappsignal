@@ -4,9 +4,8 @@ import Timeline from '../DashboadComponents/Timeline';
 import TopUser from '../DashboadComponents/TopUser';
 import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
 import { getEventsForDashboard } from '../notificationActions';
-import * as Push from 'push.js'
+// import * as Push from 'push.js'
 import firebase from 'app/config/firebase';
 class Dashboard extends Component {
   state = {
