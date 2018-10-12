@@ -8,7 +8,6 @@ const MainContent = () => {
     <div className="main main-raised">
       <div className="container">
         <div className="section text-center">
-
           <div className="features-3" style={{ padding: 0 }}>
             <div className="row">
               <div className="col-md-6">

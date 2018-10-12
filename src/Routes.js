@@ -20,6 +20,7 @@ import Footer from './Components/Shared/Footer';
 import Notification from './Components/Shared/Notification';
 import ListExperts from './Components/Shared/ListExperts';
 import LoadingComponent from './app/layout/Loading/LoadingComponent';
+import Help from './Components/LandingPage/Help/Help';
 
 const Layout = (props) => {
   return props.isAuthenticated ? (
@@ -46,7 +47,7 @@ class Routes extends Component {
     const { isLoaded, role } = this.props.profileUser;
     const { isAuthenticated, location } = this.props;
     if (isLoaded) {
-      if (location.pathname === '/home') {
+      if (location.pathname === '/home' || location.pathname === '/help') {
         const oldlink = document.getElementsByTagName("link").item(17);
         const newlink = document.createElement("link");
         newlink.setAttribute("rel", "stylesheet");
@@ -64,6 +65,7 @@ class Routes extends Component {
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path="/home" component={LandingPage} />
+          <Route exact path="/help" component={Help} />
           <Route path="/403" render={() => (<h2>Access to the specified resource has been forbidden.</h2>)} />
           <Switch>
             <Layout role={role} isAuthenticated={isAuthenticated} pathname={this.props.location.pathname}>

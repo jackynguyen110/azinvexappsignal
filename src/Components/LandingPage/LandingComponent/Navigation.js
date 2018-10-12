@@ -29,8 +29,8 @@ const Navigation = props => {
               </a>
             </li>
             <li className="nav-item">
-              <a href="#/home" className="nav-link">
-                Về Chúng Tôi
+              <a href="#/helo" className="nav-link">
+                Hướng Dẫn Sử Dụng
               </a>
             </li>
           
