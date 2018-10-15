@@ -9,7 +9,7 @@ import LoginForm from './Components/Auth/Login/LoginForm';
 import RegisterForm from './Components/Auth/Register/registerForm';
 import AccountPage from './Components/user/Settings/AccountPage';
 import Changepass from './Components/user/Settings/Changepassword';
-import PhotoPage from './Components/user/Settings/PhotoPage';
+
 import ManageSignal from './Components/ManageSignal/ManageSignal';
 import UserManager from './Components/admin/UserManager/UserManager';
 import followSignal from './Components/FollowSignal/followSignal';
@@ -77,7 +77,7 @@ class Routes extends Component {
               <Route exact path="/expert/:id" component={ExpertDetail} />
               <Route exact path="/information" component={AccountPage} />
               <Route exact path="/changepassword" component={Changepass} />
-              <Route exact path="/myphoto" component={PhotoPage} />
+
               <Route exact path="/managesignal" component={ManageSignal} />
               <Route exact path="/admin/users" component={UserManager} />
               <Route exact path="/signals" component={followSignal} />

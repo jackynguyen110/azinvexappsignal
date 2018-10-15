@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SignalRoom from '../ExpertsComponent/SignalRoom/SignalRoom';
 import Information from '../ExpertsComponent/ExpertInformation/Information';
+import ExpertPost from '../ExpertsComponent/ExpertPost/Post';
 import { withFirestore } from 'react-redux-firebase'
 import { connect } from 'react-redux';
 import ExpertHistory from '../ExpertsComponent/ExpertHistory/expertHistory';
@@ -93,6 +94,8 @@ class ExpertDetail extends Component {
         return <Information expertDetail={expertDetail} />;
       case "HISTORY":
         return <ExpertHistory expertDetail={expertDetail} />;
+      case "POST":
+        return <ExpertPost expertDetail={expertDetail} />;
       default:
         return '';
     }
@@ -158,7 +161,7 @@ class ExpertDetail extends Component {
                           <a onClick={() => this.setState({ current: 'HISTORY' })}  className="primary font-medium-2 font-weight-600">Lịch Sử</a>
                         </li>
                         <li>
-                          <a onClick={() => this.setState({ current: 'HISTORY' })} href="#photos" className="primary font-medium-2 font-weight-600">Photos</a>
+                          <a onClick={() => this.setState({ current: 'POST' })} className="primary font-medium-2 font-weight-600">Photos</a>
                         </li>
                       </ul>
                     </div>

@@ -13,9 +13,9 @@ class ExpertCard extends Component {
   componentDidMount() {
     this.isFollowed()
   }
-  follow(followedId) {
+  follow(expert) {
     const { firestore, currentUser } = this.props
-    firestore.set({ collection: 'relationships', doc: `${currentUser.uid}_${followedId}` }, { followedId, followerId: currentUser.uid, createdAt: firestore.FieldValue.serverTimestamp() })
+    firestore.set({ collection: 'relationships', doc: `${currentUser.uid}_${expert.id}` }, { followedId: expert.id, followerId: currentUser.uid, createdAt: firestore.FieldValue.serverTimestamp(), displayName: expert.displayName, photoURL: expert.photoURL, })
     this.setState({ isFollowed: true })
   }
   unfollow(followedId) {
@@ -33,7 +33,7 @@ class ExpertCard extends Component {
        <div className="media-body">
           <h4 className="font-medium-1 mt-2 mb-0">{expert.displayName}</h4>
         </div>
-        {this.state.isFollowed !== null ? (this.state.isFollowed ? <button onClick={() => this.unfollow(expert.id)} type="button" className="d-flex ml-3 btn btn-raised btn-round gradient-man-of-steel btn-outline-grey py-2 width-150 justify-content-center">Unfollow</button> : <button onClick={() => this.follow(expert.id)} type="button" className="d-flex ml-3 btn btn-raised btn-round gradient-man-of-steel btn-outline-grey py-2 width-150 justify-content-center">Follow</button>) : null}
+        {this.state.isFollowed !== null ? (this.state.isFollowed ? <button onClick={() => this.unfollow(expert.id)} type="button" className="d-flex ml-3 btn btn-raised btn-round gradient-man-of-steel btn-outline-grey py-2 width-150 justify-content-center">Unfollow</button> : <button onClick={() => this.follow(expert)} type="button" className="d-flex ml-3 btn btn-raised btn-round gradient-man-of-steel btn-outline-grey py-2 width-150 justify-content-center">Follow</button>) : null}
         
       
       </div>
