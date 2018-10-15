@@ -2,9 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
+import TextareaField from '../../../app/common/form/TextareaField';
+import RadioInput from '../../../app/common/form/RadioInput';
 import { withFirestore } from 'react-redux-firebase';
 import DropzoneField from '../../../app/common/form/DropzoneField';
 import LoadingComponent from 'app/layout/Loading/LoadingComponent'
+
 import axios from 'axios';
 const mapState = (state) => ({
     initialValues: state.firebase.profile,
@@ -72,19 +75,45 @@ class AccountPage extends React.Component {
                                                 <Field component={TextInputForm} type="text" id="displayName" className="form-control border-primary" placeholder="Tên Đầy Đủ" name="displayName" />
                                             </div>
                                         </div>
-
-                                        <h4 className="form-section">
-                                            <i className="ft-mail" />Thông Tin Khác</h4>
+                                        <div className="row">
+                                            <div className="form-group col-md-6 mb-2">
+                                                <label htmlFor="userinput1">Giới tính</label>
+                                                <Field name="information.sex" component={RadioInput} options={[{ key: "Nam", value: "Nam" }, { key: "Nữ", value: "Nữ" }]} />
+                                            
+                                            </div>
+                                        </div>
                                         <div className="row">
                                             <div className="form-group col-12 mb-2">
-                                                <label htmlFor="userinput5">Website</label>
-                                                <Field component={TextInputForm} className="form-control border-primary" name="information.website" placeholder="information.website" id="information.website" />
+                                                <label htmlFor="userinput5">Ngày sinh</label>
+                                                <Field component={TextInputForm} className="form-control border-primary" name="information.birthday" type="date" placeholder="Ngày sinh" id="information.birthday" />
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="form-group col-12 mb-2">
                                                 <label htmlFor="userinput6">Số Điện Thoai</label>
                                                 <Field component={TextInputForm} className="form-control border-primary" name="information.phone" placeholder="Số Điện Thoại" id="information.phone" />
+                                            </div>
+                                        </div>
+                                        <h4 className="form-section">
+                                            <i className="ft-mail" />Thông Tin thêm</h4>
+                                  
+
+                                        <div className="row">
+                                            <div className="form-group col-12 mb-2">
+                                                <label htmlFor="userinput5">Địa chỉ</label>
+                                                <Field component={TextInputForm} className="form-control border-primary" name="information.address" placeholder="Địa chỉ" id="information.address" />
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="form-group col-12 mb-2">
+                                                <label htmlFor="userinput5">Nghề nghiệp</label>
+                                                <Field component={TextInputForm} className="form-control border-primary" name="information.occupation" placeholder="Quê quán" id="information.occupation" />
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="form-group col-12 mb-2">
+                                                <label htmlFor="userinput5">Quê quán</label>
+                                                <Field component={TextInputForm} className="form-control border-primary" name="information.birthplace" placeholder="Quê quán" id="information.birthplace" />
                                             </div>
                                         </div>
                                         <div className="row">
@@ -96,7 +125,8 @@ class AccountPage extends React.Component {
                                         <div className="row">
                                             <div className="form-group col-12 mb-2">
                                                 <label htmlFor="userinput8">Mô Tả Bản Thân</label>
-                                                <Field component={TextInputForm} id="information.about" rows={5} className="form-control border-primary" name="information.about" placeholder="Mô Tả Bản Thân" />
+                                                
+                                                <Field component={TextareaField} id="information.about" rows={5} className="form-control border-primary" name="information.about" placeholder="Mô Tả Bản Thân" />
                                             </div>
                                         </div>
                                        
@@ -107,6 +137,16 @@ class AccountPage extends React.Component {
                                         imagefile={this.state.imageFile}
                                         handleOnDrop={this.handleOnDrop}
                                         />
+
+        
+                                       
+                         
+                                        <div className="row">
+                                            <div className="form-group col-12 mb-2">
+                                                <label htmlFor="userinput5">Website</label>
+                                                <Field component={TextInputForm} className="form-control border-primary" name="information.website" placeholder="information.website" id="information.website" />
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="form-actions right">
                                         <button type="button" className="btn btn-raised btn-warning mr-1">

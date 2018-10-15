@@ -22,33 +22,45 @@ class expertHistory extends Component {
     }
     async handleSubmit(event) {
         event.preventDefault();
-        console.log(this.props)
         const { firestore, expertDetail } = this.props
-        let start,end;
+        let start, end;
         start = new Date(this.state.dateopened);
         end = new Date(this.state.datefixed);
         if (!this.state.dateopened) start = new Date('1980-01-01');
         if (!this.state.datefixed) end = new Date(Date.now());
-        const signalHistoryRef = firestore.collection('signals');
-        const query = signalHistoryRef
-            .where('expert.id', '==', expertDetail.id)
-            .where('status', '==', 'closed')
-            .where('symbol', '==', this.state.symbol)
-            .where('startAt', '>', start)
-            .where('startAt', '<', end)
-        let querySnap = await query.get();
-        let signalHistory = [];
-        for (let i = 0; i < querySnap.docs.length; i++) {
-            let evt = { ...querySnap.docs[i].data(), id: querySnap.docs[i].id };
-            signalHistory.push(evt);
+        if (this.state.symbol){
+      
+            const signalHistoryRef = firestore.collection('signals');
+            const query = signalHistoryRef
+                .where('expert.id', '==', expertDetail.id)
+                .where('status', '==', 'closed')
+                .where('symbol', '==', this.state.symbol)
+                .where('startAt', '>', start)
+                .where('startAt', '<', end)
+            let querySnap = await query.get();
+            let signalHistory = [];
+            for (let i = 0; i < querySnap.docs.length; i++) {
+                let evt = { ...querySnap.docs[i].data(), id: querySnap.docs[i].id };
+                signalHistory.push(evt);
+            }
+            this.setState({ isFilter: true, filterSignals: signalHistory })
         }
-        this.setState({ isFilter: true, filterSignals: signalHistory})
-        // this.afs.collection('invoices', ref => ref
-        //     .where('dueDate', '>', start)
-        //     .where('dueDate', '<', end)
-        // );
+        else{
+            const signalHistoryRef = firestore.collection('signals');
+            const query = signalHistoryRef
+                .where('expert.id', '==', expertDetail.id)
+                .where('status', '==', 'closed')
+                .where('startAt', '>', start)
+                .where('startAt', '<', end)
+            let querySnap = await query.get();
+            let signalHistory = [];
+            for (let i = 0; i < querySnap.docs.length; i++) {
+                let evt = { ...querySnap.docs[i].data(), id: querySnap.docs[i].id };
+                signalHistory.push(evt);
+            }
+            this.setState({ isFilter: true, filterSignals: signalHistory })
+        }
 
-    
     }
 
     state = {
@@ -138,7 +150,7 @@ class expertHistory extends Component {
                                         <div className="row">
                                             <div className="form-group col-12 mb-2">
                                                 <label htmlFor="issueinput5">Cặp Tiền</label>
-                                                <input type="text" id="issueinput4" className="form-control" name="symbol" required data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed" value={this.state.symbol}
+                                                <input type="text" id="issueinput4" className="form-control" name="symbol" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed" value={this.state.symbol}
                                                     onChange={this.handleInputChange} />
                                             </div>
                                         </div>

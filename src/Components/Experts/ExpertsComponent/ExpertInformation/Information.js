@@ -46,7 +46,7 @@ class Information extends Component {
                     <ul className="no-list-style">
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-user font-small-3" /> Gender:</a></span>
-                          <span className="display-block overflow-hidden">{expertDetail.information && expertDetail.information.sex ? "Male" : "Female"}</span>
+                          <span className="display-block overflow-hidden">{expertDetail.information && expertDetail.information.sex}</span>
                       </li>
                       <li className="mb-2">
                         <span className="text-bold-500 primary"><a><i className="ft-mail font-small-3" /> Email:</a></span>
