@@ -4,15 +4,23 @@ import { registerUser, socialLogin } from '../../Auth/authActions'
 import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { connect } from 'react-redux';
-
+import { Redirect } from 'react-router'
 
 const actions = {
     registerUser,
     socialLogin
 }
 
-const RegisterForm = ({handleSubmit, registerUser, socialLogin, error}) => {
-  return (
+const mapState = (state) => ({
+    currentUser: state.firebase.auth
+})
+
+const RegisterForm = ({handleSubmit, registerUser, socialLogin, error, currentUser}) => {
+    if (currentUser) {
+        return <Redirect to="/"/>;
+    }
+    return (
+    
     <section id="registration">
         <div className="container">
             <div className="row full-height-vh">
@@ -85,4 +93,4 @@ const RegisterForm = ({handleSubmit, registerUser, socialLogin, error}) => {
   )
 }
 
-export default connect(null, actions)(reduxForm({form: 'registerForm'})(RegisterForm))
+export default connect(mapState, actions)(reduxForm({form: 'registerForm'})(RegisterForm))

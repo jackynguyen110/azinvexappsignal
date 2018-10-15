@@ -55,7 +55,7 @@ class Chat extends Component {
                                 <div className={`chat ${Chat.uid !== currentUser.uid ? 'chat-left' : '' }`}>
                                     <div className="chat-avatar">
                                         <a className="avatar" data-toggle="tooltip" data-placement="right" title="true" data-original-title>
-                                        <img src={Chat.photoURL} className="width-50 rounded-circle" alt="avatar" />
+                                        <img src={Chat.photoURL} width="50px" height="50px" className="width-50 rounded-circle" alt="avatar" />
                                         </a>
                                     </div>
                                     <div className="chat-body">
