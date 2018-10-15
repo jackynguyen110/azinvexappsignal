@@ -29,7 +29,7 @@ class Dashboard extends Component {
       .limit(1)
       .onSnapshot((snapshot) => {
 
-        if (snapshot.docs[0].id !== this.state.loadedEvents[0].id) {
+        if (snapshot.docs[0] && snapshot.docs[0].id !== this.state.loadedEvents[0].id) {
           const signal = snapshot.docs[0].data();
           const type = signal.type == 1 ? `Tín hiệu mới` : (signal.type == 2 ? `Thay đổi lệnh ${signal.ticket}` : `Đóng lệnh ${signal.ticket}`)
           let body='';
