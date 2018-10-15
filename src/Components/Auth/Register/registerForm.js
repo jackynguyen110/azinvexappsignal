@@ -5,7 +5,7 @@ import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
-
+import TextAreaForm from '../../../app/common/form/TextareaField';
 const actions = {
     registerUser,
     socialLogin
@@ -16,7 +16,7 @@ const mapState = (state) => ({
 })
 
 const RegisterForm = ({handleSubmit, registerUser, socialLogin, error, currentUser}) => {
-    if (currentUser) {
+    if (currentUser.uid) {
         return <Redirect to="/"/>;
     }
     return (
@@ -46,7 +46,7 @@ const RegisterForm = ({handleSubmit, registerUser, socialLogin, error, currentUs
                                     name="name" 
                                     id="name" 
                                     placeholder="Tên Hiển Thị" />
-                                
+
                                
                             
                                 <Field  

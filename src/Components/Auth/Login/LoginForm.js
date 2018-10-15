@@ -15,7 +15,8 @@ const mapState = (state) => ({
     currentUser: state.firebase.auth
 })
 const LoginForm = ({ login, handleSubmit, error, socialLogin, currentUser }) => {
-    if (currentUser) {
+  
+    if (currentUser.uid) {
         return <Redirect to="/"/>;
     }
     return (
