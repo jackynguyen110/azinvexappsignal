@@ -70,7 +70,7 @@ class ExpertPost extends Component {
                     </div>
                   </div>
                   <div className="card-body">
-                    <img className="img-fluid" src="../app-assets/img/photos/06.jpg" alt="Timeline Image 1" />
+                    <img className="img-fluid" src="http://hinhnendepnhat.net/wp-content/uploads/2016/04/anh-girl-xinh-gai-dep-sieu-nong-bong.jpg" alt="Timeline Image 1" />
                     <div className="card-body">
                       <div className="card-block">
                         <p className="card-text">Nullam facilisis fermentum aliquam. Suspendisse ornare dolor vitae libero hendrerit auctor lacinia a ligula. Curabitur elit tellus, porta ut orci sed, fermentum bibendum nisi.</p>
@@ -101,7 +101,7 @@ class ExpertPost extends Component {
                   <span className="avatar avatar-online" data-toggle="tooltip" data-placement="right" title="Eu pid nunc urna integer"><img src="../app-assets/img/portrait/small/avatar-s-5.png" alt="avatar" width={40} /></span>
                 </div>
                 <div className="timeline-card card card-inverse">
-                  <img className="card-img img-fluid" src="../app-assets/img/photos/07.jpg" alt="Card image" />
+                  <img className="card-img img-fluid" src="https://nhipsongonline.net/wp-content/uploads/2017/08/gai-dep-sexy-12882-6-.jpg" alt="Card image" />
                   <div className="card-img-overlay bg-overlay">
                     <h4 className="card-title">Good Morning</h4>
                     <p className="card-text"><small>15 hours ago</small></p>
@@ -127,7 +127,7 @@ class ExpertPost extends Component {
                     <div className="media">
                       <div className="media-left">
                         <a>
-                          <span className="avatar avatar-md avatar-busy"><img src="../app-assets/img/portrait/small/avatar-s-11.png" alt="avatar" width={50} /></span>
+                          <span className="avatar avatar-md avatar-busy"><img src="https://image1.thegioitre.vn/2018/10/08/tgt_nu-game-thu_hoang-kieu_nong-bong_avt.jpg" alt="avatar" width={50} /></span>
                           <i />
                         </a>
                       </div>
@@ -141,7 +141,7 @@ class ExpertPost extends Component {
                     </div>
                   </div>
                   <div className="card-body">
-                    <img className="img-fluid" src="../app-assets/img/photos/08.jpg" alt="Timeline Image 1" />
+                    <img className="img-fluid" src="https://image1.thegioitre.vn/2018/10/08/tgt_nu-game-thu_hoang-kieu_nong-bong_avt.jpg" alt="Timeline Image 1" />
                     <div className="card-body">
                       <div className="card-block">
                         <p className="card-text">Nullam facilisis fermentum aliquam. Suspendisse ornare dolor vitae libero hendrerit auctor lacinia a ligula. Curabitur elit tellus, porta ut orci sed, fermentum bibendum nisi.</p>
@@ -164,7 +164,7 @@ class ExpertPost extends Component {
                             <div className="media">
                               <div className="media-left">
                                 <a>
-                                  <span className="avatar avatar-online"><img src="../app-assets/img/portrait/small/avatar-s-16.png" alt="avatar" width={50} /></span>
+                                  <span className="avatar avatar-online"><img src="http://giaoduc.net.vn/Uploaded/vanmao/2012_07_24/DSC_8886a.JPG" alt="avatar" width={50} /></span>
                                 </a>
                               </div>
                               <div className="media-body">
@@ -199,7 +199,7 @@ class ExpertPost extends Component {
                     </div>
                   </div>
                   <div className="card-body">
-                    <img className="img-fluid" src="../app-assets/img/photos/09.jpg" alt="Timeline Image 1" />
+                    <img className="img-fluid" src="http://giaoduc.net.vn/Uploaded/vanmao/2012_07_24/DSC_8886a.JPG" alt="Timeline Image 1" />
                     <div className="card-block">
                       <blockquote className="card-blockquote">
                         <p className="card-text">Eu pid nunc urna integer, sed, cras tortor scelerisque penatibus facilisis a pulvinar, rhoncus sagittis ut nunc elit! Sociis in et?</p>
