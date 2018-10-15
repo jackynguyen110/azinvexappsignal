@@ -37,7 +37,7 @@ export const registerUser = (user) =>
         role: "member",
         email: user.email,
         followerCount:0,
-        followingCount: 0,
+        followedCount: 0,
         photoURL: "/assets/user.png",
         createdAt: firestore.FieldValue.serverTimestamp()
       }
@@ -65,7 +65,7 @@ export const socialLogin = (selectedProvider) =>
           displayName: user.profile.displayName,
           photoURL: user.profile.avatarUrl,
           followerCount: 0,
-          followingCount: 0,
+          followedCount: 0,
           role: "member",
           createdAt: firestore.FieldValue.serverTimestamp()
         })

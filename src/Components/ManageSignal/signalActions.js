@@ -34,9 +34,7 @@ export const createSignal = (currentUser, signal) => {
             toastr.success('Success', 'Signal mới khởi tạo thành công');
         }).catch(error => {
           dispatch(asyncActionError());
-          if(error.response.data.message[0]) {
-            toastr.error('Lỗi Xảy Ra', error.response.data.message[0]);
-          }
+      console.log(error)
           
         })
     } catch (error) {

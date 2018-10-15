@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-
+import { Field, reduxForm } from 'redux-form'
+import TextInputForm from 'app/common/form/TextInputForm';
+import TextareaField from 'app/common/form/TextareaField';
+import DropzoneField from 'app/common/form/DropzoneField';
 class FormMessage extends Component {
     render() {
         return (
@@ -14,13 +17,35 @@ class FormMessage extends Component {
                   <div className="px-3">
                     <form className="form form-horizontal form-bordered">
                       <div className="form-body">
+                          <div className="form-group row">
+                            <label className="col-md-3 label-control" htmlFor="eventRegInput1">Tiêu đề</label>
+                
+                              <Field component={TextInputForm} type="text" id="title" className="form-control border-primary" placeholder="Tiêu đề" name="title" />
+                          
+                          </div>
                         <div className="form-group row">
+                        
                           <label className="col-md-3 label-control" htmlFor="eventRegInput1">Nội Dung</label>
                           <div className="col-md-9">
-                            <input type="text" id="eventRegInput1" className="form-control" placeholder="name" name="fullname" />
+
+                              <Field component={TextareaField} id="content" rows={5} className="form-control border-primary" name="content" placeholder="Mô Tả Bản Thân" />
                           </div>
                         </div>
-                      
+                          <div className="form-group row">
+
+                            <label className="col-md-3 label-control" htmlFor="eventRegInput1">Nội Dung</label>
+                         
+                              <Field
+                                name="imageToUpload"
+                                component={DropzoneField}
+                                type="file"
+                                imagefile={this.state.imageFile}
+                                handleOnDrop={this.handleOnDrop}
+                              />
+
+
+                   
+                          </div>  
                       </div>
                       <div className="form-actions center">
                         <button onClick={this.props.changeState}  type="button" className="btn btn-raised btn-warning mr-1">
@@ -41,4 +66,4 @@ class FormMessage extends Component {
     }
 }
 
-export default FormMessage;
+export default reduxForm({ form: 'postForm', enableReinitialize: true, destroyOnUnmount: true })(FormMessage);

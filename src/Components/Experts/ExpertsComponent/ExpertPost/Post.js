@@ -13,7 +13,7 @@ class ExpertPost extends Component {
   }
   componentDidMount() {
     const { firestore, expertDetail } = this.props;
-    firestore.get(
+    firestore.setListener(
       {
         collection: 'users',
         doc: expertDetail.id,
@@ -22,7 +22,7 @@ class ExpertPost extends Component {
       },
     )
   }
-  onFormSubmit = async (creds) => {
+  addPost = async (creds) => {
     const { firestore, expertDetail } = this.props;
     await firestore.add(
       {
@@ -38,6 +38,7 @@ class ExpertPost extends Component {
   }
 
   render() {
+    const { expertDetail } = this.props;
     return (
       <div>
         {!this.state.showMessageForm && <a onClick={() => this.setState({showMessageForm : true})} className="btn btn-social btn-round btn-min-width mr-2 mb-2 btn-outline-twitter"><span class="fa fa-twitter"></span> TẠO THÔNG BÁO MỚI</a> }
@@ -60,7 +61,7 @@ class ExpertPost extends Component {
               <li className="timeline-line" />
               <li className="timeline-item">
                 <div className="timeline-badge">
-                  <span className="bg-red bg-lighten-1" data-toggle="tooltip" data-placement="right" title="Portfolio project work"><i className="fa fa-plane" /></span>
+                  <span className="avatar avatar-online" data-toggle="tooltip" data-placement="right" title="Eu pid nunc urna integer"><img src={expertDetail.photoURL} class="rounded-circle" alt="avatar" width={40} /></span>
                 </div>
                 <div className="timeline-card card border-grey border-lighten-2">
                   <div className="card-header">
@@ -74,14 +75,17 @@ class ExpertPost extends Component {
                     <div className="card-body">
                       <div className="card-block">
                         <p className="card-text">Nullam facilisis fermentum aliquam. Suspendisse ornare dolor vitae libero hendrerit auctor lacinia a ligula. Curabitur elit tellus, porta ut orci sed, fermentum bibendum nisi.</p>
-                        <div className="list-inline mb-1">
+
+                        {/* <div className="list-inline mb-1">
                           <span className="pr-1"><a className="primary"><span className="fa fa-thumbs-o-up" /> Like</a></span>
                           <span className="pr-1"><a className="primary"><span className="fa fa-commenting-o" /> Comment</a></span>
                           <span><a className="primary"><span className="fa fa-share-alt" /> Share</a></span>
-                        </div>
+                        </div> */}
+
                       </div>
                     </div>
-                    <div className="card-footer px-0 py-0">
+
+                    {/* <div className="card-footer px-0 py-0">
                       <div className="card-block">
                         <form>
                           <fieldset className="form-group position-relative has-icon-left mb-0">
@@ -92,13 +96,14 @@ class ExpertPost extends Component {
                           </fieldset>
                         </form>
                       </div>
-                    </div>
+                    </div> */}
+
                   </div>
                 </div>
               </li>            
-              <li className="timeline-item mt-5">
+              {/* <li className="timeline-item mt-5">
                 <div className="timeline-badge">
-                  <span className="avatar avatar-online" data-toggle="tooltip" data-placement="right" title="Eu pid nunc urna integer"><img src="../app-assets/img/portrait/small/avatar-s-5.png" alt="avatar" width={40} /></span>
+                  <span className="avatar avatar-online" data-toggle="tooltip" data-placement="right" title="Eu pid nunc urna integer"><img src={expertDetail.photoURL} alt="avatar" width={40} /></span>
                 </div>
                 <div className="timeline-card card card-inverse">
                   <img className="card-img img-fluid" src="https://nhipsongonline.net/wp-content/uploads/2017/08/gai-dep-sexy-12882-6-.jpg" alt="Card image" />
@@ -107,7 +112,7 @@ class ExpertPost extends Component {
                     <p className="card-text"><small>15 hours ago</small></p>
                   </div>
                 </div>
-              </li>
+              </li> */}
             </ul>
             {/* 2016 */}
             <ul className="timeline">
@@ -127,7 +132,7 @@ class ExpertPost extends Component {
                     <div className="media">
                       <div className="media-left">
                         <a>
-                          <span className="avatar avatar-md avatar-busy"><img src="https://image1.thegioitre.vn/2018/10/08/tgt_nu-game-thu_hoang-kieu_nong-bong_avt.jpg" alt="avatar" width={50} /></span>
+                          <span className="avatar avatar-md avatar-busy"><img src="https://image1.thegioitre.vn/2018/10/08/tgt_nu-game-thu_hoang-kieu_nong-bong_avt.jpg" class="rounded-circle" alt="avatar" width={50} /></span>
                           <i />
                         </a>
                       </div>
@@ -224,4 +229,9 @@ class ExpertPost extends Component {
     )
   }
 }
-export default connect(null, null)(withFirestore(ExpertPost))
+const mapStateToProps = state => {
+  return {
+    expertPosts: state.firestore.ordered.expertPosts ? state.firestore.ordered.expertPosts : [],
+  };
+};
+export default connect(mapStateToProps, null)(withFirestore(ExpertPost))
