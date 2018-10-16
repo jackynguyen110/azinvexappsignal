@@ -7,7 +7,6 @@ export const createSignal = (state, payload) => {
 }
 
 export const selectedSignal = (state, payload) => {
-  console.log(payload)
   return {selectedSignal: payload}
 }
 

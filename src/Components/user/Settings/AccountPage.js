@@ -18,7 +18,7 @@ class AccountPage extends React.Component {
     
     onFormSubmit = async (creds) => {
         const { isLoaded, isEmpty, imageToUpload, updatedAt, ...updatedUser } = creds;
-        console.log(updatedUser)
+ 
         const { firestore, currentUser } = this.props;
        this.setState({loading:true})
         if(creds.imageToUpload){

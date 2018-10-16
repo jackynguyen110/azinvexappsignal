@@ -86,7 +86,7 @@ class ExpertDetail extends Component {
   }
 
   renderSwitch = () => {
-    const { expertDetail, todayList, activeList } = this.props
+    const { expertDetail, todayList, activeList, currentUser } = this.props
     switch (this.state.current) {
       case "SIGNAL_ROOM":
         return <SignalRoom expertDetail={expertDetail}  activeList={activeList} todayList={todayList} />;
@@ -95,7 +95,7 @@ class ExpertDetail extends Component {
       case "HISTORY":
         return <ExpertHistory expertDetail={expertDetail} />;
       case "POST":
-        return <ExpertPost expertDetail={expertDetail} />;
+        return <ExpertPost currentUser={currentUser} expertDetail={expertDetail} />;
       default:
         return '';
     }
@@ -132,7 +132,7 @@ class ExpertDetail extends Component {
                   <div className="profile-cover-buttons">
                     <div className="media-body halfway-fab align-self-end">
                       <div className="text-right d-none d-sm-none d-md-none d-lg-block">
-                        {isFollowed !== null ? (isFollowed ? <button onClick={() => this.unfollow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>) : null}
+                        {currentUser.uid !== this.props.match.params.id && profile.role == 'expert' ? (isFollowed !== null ? (isFollowed ? <button onClick={() => this.unfollow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>) : null) : null}
                         {/* <button type="button" className="btn btn-primary btn-raised mr-2"><i className="fa fa-plus" /> Theo Dõi</button> */}
                       </div>
                     </div>
@@ -161,7 +161,7 @@ class ExpertDetail extends Component {
                           <a onClick={() => this.setState({ current: 'HISTORY' })}  className="primary font-medium-2 font-weight-600">Lịch Sử</a>
                         </li>
                         <li>
-                          <a onClick={() => this.setState({ current: 'POST' })} className="primary font-medium-2 font-weight-600">Photos</a>
+                          <a onClick={() => this.setState({ current: 'POST' })} className="primary font-medium-2 font-weight-600">Bài viết</a>
                         </li>
                       </ul>
                     </div>

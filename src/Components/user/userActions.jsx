@@ -28,7 +28,6 @@ export const uploadImage = (file,fileName) => {
             };
             let url = 'http://api.congtruyendich.com/upload';
             axios.post(url, formData, axiosConfig).then((data) => {
-                console.log(data)
                 dispatch(asyncActionFinish());
             }).catch(error => {
                 dispatch(asyncActionError());

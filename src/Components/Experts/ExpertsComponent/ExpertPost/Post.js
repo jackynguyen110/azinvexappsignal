@@ -56,11 +56,10 @@ class ExpertPost extends Component {
   }
 
   render() {
-    const { expertDetail, expertPosts } = this.props;
-    console.log(expertPosts)
+    const { expertDetail, expertPosts, currentUser} = this.props;
     return (
       <div>
-        {!this.state.showMessageForm && <a onClick={() => this.setState({showMessageForm : true})} className="btn btn-social btn-round btn-min-width mr-2 mb-2 btn-outline-twitter"><span class="fa fa-twitter"></span> TẠO THÔNG BÁO MỚI</a> }
+        {currentUser.uid == expertDetail.id ? (!this.state.showMessageForm && <a onClick={() => this.setState({ showMessageForm: true })} className="btn btn-social btn-round btn-min-width mr-2 mb-2 btn-outline-twitter"><span class="fa fa-twitter"></span> TẠO THÔNG BÁO MỚI</a>) : null}
         {this.state.showMessageForm && <FormMessage loading={this.state.loading} addPost={this.addPost} changeState = {() => this.setState({showMessageForm : false})}/> }
         
         <section id="user">   
