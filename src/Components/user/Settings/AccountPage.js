@@ -12,10 +12,9 @@ import axios from 'axios';
 const mapState = (state) => ({
     initialValues: state.firebase.profile,
     currentUser: state.firebase.auth,
-    loading:false
 })
 class AccountPage extends React.Component {
-    state = { imageFile: [] };
+    state = { imageFile: [], loading: false};
     
     onFormSubmit = async (creds) => {
         const { isLoaded, isEmpty, imageToUpload, updatedAt, ...updatedUser } = creds;
