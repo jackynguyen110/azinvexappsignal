@@ -95,7 +95,7 @@ class ExpertDetail extends Component {
       case "HISTORY":
         return <ExpertHistory expertDetail={expertDetail} />;
       case "POST":
-        return <ExpertPost currentUser={currentUser} expertDetail={expertDetail} />;
+        return <ExpertPost profileUser={this.props.profile} currentUser={currentUser} expertDetail={expertDetail} />;
       default:
         return '';
     }

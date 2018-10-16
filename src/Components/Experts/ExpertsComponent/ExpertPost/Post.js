@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import FormMessage from './components/FormMessage';
+import FormComment from './components/FormComment';
 import axios from 'axios';
 import moment from 'moment'
 import 'moment/locale/vi';
@@ -24,6 +25,7 @@ class ExpertPost extends Component {
       },
     )
   }
+
   addPost = async (creds) => {
     const { imageToUpload, ...newPost } = creds;
     const { firestore, expertDetail } = this.props;
@@ -99,7 +101,19 @@ class ExpertPost extends Component {
                           <span className="pr-1"><a className="primary"><span className="fa fa-commenting-o" /> Comment</a></span>
                           <span><a className="primary"><span className="fa fa-share-alt" /> Share</a></span>
                         </div>   
-
+                        <div class="card-footer px-0 py-0">
+                          <div class="card-block">
+                            <div class="media">
+                              <div class="media-left"><a><span class="avatar avatar-online"><img src="http://giaoduc.net.vn/Uploaded/vanmao/2012_07_24/DSC_8886a.JPG" alt="avatar" width="50" /></span></a></div>
+                                <div class="media-body">
+                                  <p class="text-bold-600 mb-0"><a>Crystal Lawson</a></p>
+                                  <p class="m-0">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
+                
+                                  </div>
+                                </div>
+                            <FormComment profileUser={this.props.profileUser} expertDetail={this.props.expertDetail} firestore={this.props.firestore} postId={e.id} />
+    </div>
+                              </div>
                       </div>
 
 
