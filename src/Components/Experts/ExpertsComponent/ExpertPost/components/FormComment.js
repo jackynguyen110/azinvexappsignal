@@ -37,7 +37,7 @@ class FormComment extends Component {
           <input required type="text" name="comment" value={this.state.comment}
             onChange={this.handleInputChange} class="form-control" placeholder="Write comments..." /> 
           <div class="form-control-position"><i class="fa fa-dashcube"></i></div>
-          <div className="form-control-position control-position-right" style={{ top: 2, right: 18, cursor: 'pointer' }}> <button type="submit" className="btn btn-raised btn-primary">
+          <div className="form-control-position control-position-right" style={{ top: 2, right: 4, cursor: 'pointer' }}> <button type="submit" style={{height:34}} className="btn btn-raised btn-primary">
             <i className="ft-arrow-right" />
                         </button></div>
         </fieldset>
