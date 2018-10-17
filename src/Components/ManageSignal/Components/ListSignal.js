@@ -8,7 +8,7 @@ class ListSignals extends React.Component {
   componentDidMount(){
       const { firestore, currentUser } = this.props
 
-      firestore.onSnapshot({
+      firestore.setListener({
           collection: 'signals',
           where: [
               ['expert.id', '==', currentUser.uid],

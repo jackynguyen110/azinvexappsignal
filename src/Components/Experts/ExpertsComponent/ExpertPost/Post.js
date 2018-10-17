@@ -80,8 +80,8 @@ class ExpertPost extends Component {
             </ul>
             <ul className="timeline">
               <li className="timeline-line" />
-              {expertPosts.map(e => 
-                <li className="timeline-item">
+              {expertPosts.map((e,i) => 
+                <li className={i % 2 == 0 ? "timeline-item" : "timeline-item mt-5"}>
                   <div className="timeline-badge">
                     <span className="avatar avatar-online" data-toggle="tooltip" data-placement="right" title="Eu pid nunc urna integer"><img src={expertDetail.photoURL} class="rounded-circle" alt="avatar" width={40} /></span>
                   </div>
@@ -97,12 +97,9 @@ class ExpertPost extends Component {
                         <div className="card-block">
                           <p className="card-text">{e.content}</p>   
 
-                       <div className="list-inline mb-1">
-                          <span className="pr-1"><a className="primary"><span className="fa fa-thumbs-o-up" /> Like</a></span>
-                          <span className="pr-1"><a className="primary"><span className="fa fa-commenting-o" /> Comment</a></span>
-                          <span><a className="primary"><span className="fa fa-share-alt" /> Share</a></span>
-                        </div>   
+                  
                         <div class="card-footer px-0 py-0">
+                          <div class="card-title"><h2>Bình luận</h2></div>
                           <div class="card-block">
                             <ListComment expertDetail={this.props.expertDetail}  postId={e.id} />
 

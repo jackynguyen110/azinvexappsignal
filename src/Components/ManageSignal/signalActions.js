@@ -16,7 +16,7 @@ export const createSignal = (currentUser, signal) => {
             type,
             stoploss,
             takeprofit,
-            symbol,
+            symbol:symbol.value,
             isFree: true
         };
         //let typeSignal =  type === "0" ? "SELL" : "BUY";

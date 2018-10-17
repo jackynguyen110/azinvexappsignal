@@ -58,6 +58,7 @@
     "react-redux-toastr": "^7.4.0",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",
+    "react-select": "^2.1.0",
     "redux": "^4.0.0",
     "redux-auth-wrapper": "^2.0.3",
     "redux-devtools": "^3.4.1",
