@@ -104,7 +104,7 @@ class ExpertDetail extends Component {
   render() {
     
     const { expertDetail, isFollowed, currentUser, profile} = this.props
-    if (currentUser.uid !== this.props.match.params.id && profile.role == 'expert'){
+    if (currentUser.uid !== this.props.match.params.id && profile.role === 'expert'){
       return (<div>NO ACCESS TO PAGE</div>)
     }
     return (
@@ -132,7 +132,7 @@ class ExpertDetail extends Component {
                   <div className="profile-cover-buttons">
                     <div className="media-body halfway-fab align-self-end">
                       <div className="text-right d-none d-sm-none d-md-none d-lg-block">
-                        {currentUser.uid !== this.props.match.params.id && profile.role == 'expert' ? (isFollowed !== null ? (isFollowed ? <button onClick={() => this.unfollow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>) : null) : null}
+                        {currentUser.uid !== this.props.match.params.id && profile.role === 'expert' ? (isFollowed !== null ? (isFollowed ? <button onClick={() => this.unfollow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Unfollow</button> : <button onClick={() => this.follow(expertDetail)} type="button" className="btn btn-raised btn-primary btn-min-width mr-1 mb-1">Follow</button>) : null) : null}
                         {/* <button type="button" className="btn btn-primary btn-raised mr-2"><i className="fa fa-plus" /> Theo Dõi</button> */}
                       </div>
                     </div>

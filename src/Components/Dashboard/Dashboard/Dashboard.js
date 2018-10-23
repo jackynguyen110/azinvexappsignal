@@ -31,11 +31,11 @@ class Dashboard extends Component {
 
         if (snapshot.docs[0] && snapshot.docs[0].id !== this.state.loadedEvents[0].id) {
           const signal = snapshot.docs[0].data();
-          const type = signal.type == 1 ? `Tín hiệu mới` : (signal.type == 2 ? `Thay đổi lệnh ${signal.ticket}` : `Đóng lệnh ${signal.ticket}`)
+          const type = signal.type === 1 ? `Tín hiệu mới` : (signal.type === 2 ? `Thay đổi lệnh ${signal.ticket}` : `Đóng lệnh ${signal.ticket}`)
           let body='';
-          if (signal.type == 1) body = `${signal.typeSignal ? "BUY" : "SELL"} ${signal.symbol} NOW`
-          if (signal.type == 2) body = `Cắt lỗ tại: ${signal.stoploss},  Chốt lời tại: ${signal.takeprofit} `
-          if (signal.type == 3) body = `Đóng lệnh tại: ${signal.closePrice}, Lợi nhuận: ${signal.profit}`
+          if (signal.type === 1) body = `${signal.typeSignal ? "BUY" : "SELL"} ${signal.symbol} NOW`
+          if (signal.type === 2) body = `Cắt lỗ tại: ${signal.stoploss},  Chốt lời tại: ${signal.takeprofit} `
+          if (signal.type === 3) body = `Đóng lệnh tại: ${signal.closePrice}, Lợi nhuận: ${signal.profit}`
           Push.create(type, {
             body: body,
             icon: '/icon.png',
@@ -95,7 +95,7 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { topExpert, currentUser, statistics, loading, profileUser } = this.props
+    const { topExpert, currentUser, statistics, loading } = this.props
     const { moreEvents, loadedEvents } = this.state;
 
     return (

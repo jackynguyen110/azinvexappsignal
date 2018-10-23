@@ -7,15 +7,13 @@ class ListSignals extends React.Component {
 
   componentDidMount(){
       const { firestore, currentUser } = this.props
-
-      firestore.setListener({
-          collection: 'signals',
-          where: [
-              ['expert.id', '==', currentUser.uid],
-              ['status', '==', "active"]
-          ],
-          storeAs: 'myActiveSignals'
-      })
+    firestore.setListener(
+      {
+        collection: 'signals',
+        where: [['expert.id', '==', currentUser.uid], ['status', '==', "active"]],
+        storeAs: 'myActiveSignals'
+      },
+    )
   }
   componentWillUnmount() {
       const { firestore, currentUser } = this.props

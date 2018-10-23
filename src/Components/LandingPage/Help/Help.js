@@ -103,7 +103,7 @@ class Help extends Component {
                 <div className="col-md-8 ml-auto mr-auto">
                 <h2 style={{color: 'red'}} className="title">ĐĂNG KÝ TÀI KHOẢN</h2>
                 <p>- Bạn có thể đăng ký tài khoản bằng cách nhấp vào biểu tượng LOGIN ở góc trên, bên phải màn hình</p>
-                <img className="img-raised rounded img-fluid" alt="Raised Image" src="https://azinvex.com/files/folder_web/images/1-Wum400.png" />
+                <img className="img-raised rounded img-fluid" alt="Raised" src="https://azinvex.com/files/folder_web/images/1-Wum400.png" />
                 <p>- Sau đó, bạn có thể thấy giao diện của trang Đăng Nhập. Ở đây bạn có thể:</p>
                 <ul>
                     <li>Đăng ký bằng tài khoản Facebook</li>

@@ -1,11 +1,9 @@
 import React from 'react'
-import Avatar from 'assets/img/elements/13.png'
 import { registerUser, socialLogin } from '../../Auth/authActions'
 import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
-import TextAreaForm from '../../../app/common/form/TextareaField';
 const actions = {
     registerUser,
     socialLogin

@@ -1,5 +1,4 @@
 import React from 'react'
-import image from 'assets/img/portrait/avatars/avatar-08.png'
 import { reduxForm, Field } from 'redux-form'
 import TextInputForm from '../../../app/common/form/TextInputForm';
 import { connect } from 'react-redux';

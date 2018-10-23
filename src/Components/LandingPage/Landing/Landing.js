@@ -30,7 +30,7 @@ class Landing extends Component {
     $(document).on('click', '.navbar-toggler', function() {
       var $toggle = $(this);
     
-      if (materialKit.misc.navbar_menu_visible == 1) {
+      if (materialKit.misc.navbar_menu_visible === 1) {
         $('html').removeClass('nav-open');
         materialKit.misc.navbar_menu_visible = 0;
         $('#bodyClick').remove();

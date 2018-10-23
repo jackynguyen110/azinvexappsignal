@@ -83,7 +83,7 @@ class ExpertPost extends Component {
               {expertPosts.map((e,i) => 
                 <li className={i % 2 == 0 ? "timeline-item" : "timeline-item mt-5"}>
                   <div className="timeline-badge">
-                    <span className="avatar avatar-online" data-toggle="tooltip" data-placement="right" title="Eu pid nunc urna integer"><img src={expertDetail.photoURL} class="rounded-circle" alt="avatar" width={40} /></span>
+                    <span className="avatar avatar-online" data-toggle="tooltip" data-placement="right" title="Eu pid nunc urna integer"><img src={expertDetail.photoURL} className="rounded-circle" alt="avatar" width={40} /></span>
                   </div>
                   <div className="timeline-card card border-grey border-lighten-2">
                     <div className="card-header">
@@ -98,9 +98,9 @@ class ExpertPost extends Component {
                           <p className="card-text">{e.content}</p>   
 
                   
-                        <div class="card-footer px-0 py-0">
-                          <div class="card-title"><h2>Bình luận</h2></div>
-                          <div class="card-block">
+                        <div className="card-footer px-0 py-0">
+                          <div className="card-title"><h2>Bình luận</h2></div>
+                          <div className="card-block">
                             <ListComment expertDetail={this.props.expertDetail}  postId={e.id} />
 
                             <FormComment profileUser={this.props.profileUser} expertDetail={this.props.expertDetail} firestore={this.props.firestore} postId={e.id} />

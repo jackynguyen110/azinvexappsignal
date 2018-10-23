@@ -57,7 +57,7 @@ class PhotoPage extends Component {
       <div>
         <Dropzone onDrop={this.onDrop} multiple={false}>
         </Dropzone>
-        {this.state.files[0] && <img width="200px" src={this.state.files[0].preview} />}
+        {this.state.files[0] && <img alt="preview avatar" width="200px" src={this.state.files[0].preview} />}
         <button onClick={this.uploadImage}>Upload</button>
         {this.state.link && <h1>{this.state.link}</h1>}
       </div>
